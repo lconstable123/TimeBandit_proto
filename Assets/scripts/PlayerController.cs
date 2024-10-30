@@ -1,9 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor.Callbacks;
+//using System;
+//using System.Collections;
+//using System.Collections.Generic;
+//using UnityEditor.Callbacks;
 using UnityEngine;
-using UnityEngine.XR;
+//using UnityEngine.XR;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,7 +24,7 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float y = Input.GetAxis("Vertical");
         Vector3 moveDir = new Vector3(x,0,y);
-        Debug.Log(moveDir);
+        //Debug.Log(moveDir);
         rb.velocity = moveDir*playerSpeed*Time.deltaTime;
         
         if (x != 0 && x < 0){
