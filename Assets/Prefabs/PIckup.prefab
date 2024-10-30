@@ -212,6 +212,8 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 0
   objectId: 
+  Dialogue: {fileID: 0}
+  DialogueText: This is an object that does something...
 --- !u!114 &4245114285444604573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,3 +226,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e250bea98da0004db8ece676e3f48c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 122ba86f-2263-4a9d-9f66-de561de84a6c

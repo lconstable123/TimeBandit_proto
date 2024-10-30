@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 public class Pickup : MonoBehaviour
 {
@@ -13,6 +15,10 @@ public class Pickup : MonoBehaviour
     [SerializeField] Color32 colour;
     [SerializeField] string objectId;
     GameSession gs;
+    //public UIWindow WindowHeader;
+    
+    public DialogueWindow Dialogue;
+    public string DialogueText;
     //Material mat;
     //Renderer renderer = GetComponent<Renderer>();
     // Start is called before the first frame update
@@ -38,13 +44,23 @@ public class Pickup : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-    
-            Debug.Log("Picked up object");
-            
-            gs.AddPickedUpItem(objectId);
-            Destroy(gameObject);
-        
-       
+        if (other.tag == "Player"){
+            Debug.Log("Interacting With Object");
+            Dialogue.UpdatePosition(transform.position);
+            Dialogue.Show(DialogueText);
+        }
+    }
+
+    void OnTriggerExit(Collider other){
+        if(other.tag == "Player"){
+            Debug.Log("leaving object");
+            Dialogue.Close();
+        }
+    }
+
+    void PickupObject(){
+        gs.AddPickedUpItem(objectId);
+        Destroy(gameObject);
     }
    
 }
