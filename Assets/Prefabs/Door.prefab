@@ -409,7 +409,7 @@ Transform:
   m_GameObject: {fileID: 5942346241593904046}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1.4435, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8894256673085978854}
@@ -433,7 +433,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotator: {fileID: 0}
-  ppvol: {fileID: 0}
   rotSpeed: 0
   doorOpen: 1
   whereTo: Level_2
