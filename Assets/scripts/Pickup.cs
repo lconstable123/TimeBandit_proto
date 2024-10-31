@@ -14,10 +14,11 @@ public class Pickup : MonoBehaviour
     [SerializeField] string whereTo;
     [SerializeField] Color32 colour;
     [SerializeField] string objectId;
+    GameObject Textbox;
     GameSession gs;
     //public UIWindow WindowHeader;
     
-    public DialogueWindow Dialogue;
+    DialogueWindow Dialogue;
     public string DialogueText;
     //Material mat;
     //Renderer renderer = GetComponent<Renderer>();
@@ -26,6 +27,16 @@ public class Pickup : MonoBehaviour
     {
         gs = FindObjectOfType<GameSession>();
         objectId = GetComponent<UniqueId>().GetId();
+        Textbox = GetComponentInChildren<Canvas>().gameObject;
+        
+        if (Textbox == null){
+            Debug.Log("no textbox found");
+        }
+        Textbox.SetActive(true);
+        Dialogue = Textbox.GetComponentInChildren<DialogueWindow>();
+        if (Dialogue == null){
+            Debug.Log("no dialogue container found");
+        }
 
        if (gs.IsItemPickedUp(objectId) == true){
             Destroy(gameObject);
@@ -48,13 +59,14 @@ public class Pickup : MonoBehaviour
             Debug.Log("Interacting With Object");
             Dialogue.UpdatePosition(transform.position);
             Dialogue.Show(DialogueText);
+            
         }
     }
 
     void OnTriggerExit(Collider other){
         if(other.tag == "Player"){
             Debug.Log("leaving object");
-            Dialogue.Close();
+    Dialogue.Close();
         }
     }
 

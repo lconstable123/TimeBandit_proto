@@ -24,7 +24,9 @@ public class Doorway : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (rotator != null){
         ProcessRotation();
+        }
     }
 
     private void ProcessRotation()
