@@ -433,12 +433,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotator: {fileID: 0}
+  ppvol: {fileID: 0}
   rotSpeed: 0
   doorOpen: 1
-  whereTo: 
+  whereTo: Level_2
   colour:
     serializedVersion: 2
     rgba: 0
+  transitionDuration: 0.4
 --- !u!65 &3399658157290476480
 BoxCollider:
   m_ObjectHideFlags: 0
