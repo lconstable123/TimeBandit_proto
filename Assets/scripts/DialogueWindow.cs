@@ -13,26 +13,24 @@ public class DialogueWindow : MonoBehaviour
     const float kMaxTextTime = 0.1f;
     public int TextSpeed =1;
     private string CurrentText;
-    //CanvasGroup Group;
+    
     Animator Anim;
     private Camera currentCamera;
     Vector3 target;
     public Vector3 offset;
     public float animatedOffset;
     public RectTransform BoxAppear;
-    //public Vector2 pos;
+
     Vector3 boxappearAlign;
    
     void Start()
     {
         Text.text = "";
-        //Group = GetComponent<CanvasGroup>();
         Anim = GetComponent<Animator>();
         if (Anim == null){
             Debug.Log("animator not found");
         }
-        
-       // Group.alpha = 0;
+
        
     }
 
@@ -41,15 +39,11 @@ public class DialogueWindow : MonoBehaviour
     }
    
     public void Show(string text){
-        //Group.alpha = 1;
-        
-        //Debug.Log("animating on");
         Anim.SetBool("Open", true);
         CurrentText = text;
         
     }
     public void Close(){
-        //Group.alpha = 0;
         Anim.SetBool("Open", false);
         
     }
@@ -63,7 +57,6 @@ public class DialogueWindow : MonoBehaviour
         foreach(char c in CurrentText.ToCharArray()){
             alphaIndex++;
             Text.text = originalText;
-            //Text.text+=c;
             displayedText = Text.text.Insert(alphaIndex,kAlphaCode);
             Text.text = displayedText;
             yield return new WaitForSeconds(kMaxTextTime/TextSpeed);
@@ -74,14 +67,14 @@ public class DialogueWindow : MonoBehaviour
    public void SetPosition(){
         Camera mainCamera = Camera.main;
         Vector3 pos = mainCamera.WorldToScreenPoint(target);
-        //offset = new Vector3(offset.x,offset.y+animatedOffset,offset.z);
+        
         Vector2 newoffset = new Vector2(0,animatedOffset);
         if(transform.position != pos){
             transform.position = pos+offset;
         }    
-        //boxappearAlign = BoxAppear.transform.position;
+        
         BoxAppear.localPosition = newoffset;
-        //BoxAppear.transform.position = boxappearAlign+newoffset;
+        
         
    }
    public void UpdatePosition(Vector3 pos){

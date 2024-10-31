@@ -26,6 +26,7 @@ public class GameSession : MonoBehaviour
             Debug.Log("found post effect");
         } else {
             Debug.Log("could not find effect");
+            
         }
     }
 

@@ -8,31 +8,37 @@ using TMPro;
 public class Pickup : MonoBehaviour
 {
     [SerializeField] GameObject rotator;
+    [SerializeField] bool isInteractable;
+    [SerializeField] string objectName;
+
     
     [SerializeField] float rotSpeed;
 
     [SerializeField] string whereTo;
     [SerializeField] Color32 colour;
     [SerializeField] string objectId;
-    GameObject Textbox;
+    [SerializeField] GameObject Textbox;
+    [SerializeField] GameObject ActionText;
+    [SerializeField] GameObject NameText;
+
+    //GameObject Textbox;
     GameSession gs;
     //public UIWindow WindowHeader;
     
     DialogueWindow Dialogue;
     public string DialogueText;
-    //Material mat;
-    //Renderer renderer = GetComponent<Renderer>();
-    // Start is called before the first frame update
+    
     void Start()
     {
         gs = FindObjectOfType<GameSession>();
         objectId = GetComponent<UniqueId>().GetId();
-        Textbox = GetComponentInChildren<Canvas>().gameObject;
+        
         
         if (Textbox == null){
             Debug.Log("no textbox found");
         }
-        Textbox.SetActive(true);
+
+        
         Dialogue = Textbox.GetComponentInChildren<DialogueWindow>();
         if (Dialogue == null){
             Debug.Log("no dialogue container found");
@@ -41,6 +47,21 @@ public class Pickup : MonoBehaviour
        if (gs.IsItemPickedUp(objectId) == true){
             Destroy(gameObject);
         }
+
+        Textbox.SetActive(true);
+
+        if (!isInteractable){
+            ActionText.SetActive(false);
+            Dialogue.offset.y -= 20;
+            
+        }
+        if (NameText != null && string.IsNullOrEmpty(objectName) == false ){
+            NameText.SetActive(true);
+            Debug.Log("assigning title");
+            NameText.GetComponent<TextMeshProUGUI>().text = objectName;
+        }
+
+
     }
 
     void Update()
