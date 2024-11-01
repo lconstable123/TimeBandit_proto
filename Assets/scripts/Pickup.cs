@@ -24,7 +24,7 @@ public class Pickup : MonoBehaviour
 
     //GameObject Textbox;
     GameSession gs;
-    string objectId;
+    public string objectId;
     //public UIWindow WindowHeader;
     
     DialogueWindow Dialogue;
@@ -75,6 +75,9 @@ public class Pickup : MonoBehaviour
     {
         float rot = Time.deltaTime * rotSpeed;
         rotator.transform.Rotate(new Vector3(0, rot, 0));
+    }
+    public void SetItem(ItemSO Setitem){
+        item = Setitem; 
     }
 
     void OnTriggerEnter(Collider other){
