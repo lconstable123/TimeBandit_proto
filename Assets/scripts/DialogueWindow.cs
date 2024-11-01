@@ -13,6 +13,8 @@ public class DialogueWindow : MonoBehaviour
     const float kMaxTextTime = 0.1f;
     public int TextSpeed =1;
     private string CurrentText;
+
+    //ItemSO item;
     
     Animator Anim;
     private Camera currentCamera;
@@ -47,6 +49,9 @@ public class DialogueWindow : MonoBehaviour
         Anim.SetBool("Open", false);
         
     }
+    //public void SetItem(ItemSO settoitem){
+      //  item = settoitem;
+   // }
 
     private IEnumerator DisplayText(){
         Text.text = "";

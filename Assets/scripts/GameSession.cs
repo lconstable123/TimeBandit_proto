@@ -5,28 +5,27 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
+using TMPro;
 
 public class GameSession : MonoBehaviour
 {
     public HashSet<string> pickedUpItems = new();
+    public List<ItemSO> inventory = new();
     [SerializeField] Volume ppvol;
     public float transitionDuration = .5f;
     [SerializeField] bool useSceneFade;
     ColorAdjustments cAdjust;
+    [SerializeField] TextMeshProUGUI inventoryGUI;
     //Dictionary<string,bool> levelItemKeys = new Dictionary<string,bool>();
     void Awake()
     {
         Singleton();
-
-      
-
     }
     void Start(){
         if(ppvol.profile.TryGet(out cAdjust)){
             Debug.Log("found post effect");
         } else {
-            Debug.Log("could not find effect");
-            
+            Debug.Log("could not find effect");  
         }
     }
 
@@ -51,9 +50,23 @@ public class GameSession : MonoBehaviour
         FindObjectOfType<ScenePersist>().ResetScenePersist();
         Destroy(gameObject);
     }
-    public void AddPickedUpItem(string itemId){
+    public void AddPickedUpItem(string itemId, ItemSO item)
+    {
         pickedUpItems.Add(itemId);
+        inventory.Add(item);
+        RefreshInventory();
     }
+
+    private void RefreshInventory()
+    {
+        string itemList = "";
+        foreach (ItemSO itemL in inventory)
+        {
+            itemList += itemL.GetName() + "\n";
+        }
+        inventoryGUI.text = itemList;
+    }
+
     public bool IsItemPickedUp(string itemId){
         return pickedUpItems.Contains(itemId);
     }
@@ -63,9 +76,9 @@ public class GameSession : MonoBehaviour
     public void LeaveScene(string whereTo){
         if(useSceneFade){
             StartCoroutine(ILeaveScene(whereTo));
-    } else {
+        } else {
         SceneManager.LoadScene(whereTo);
-    }
+        }
     }
 
     IEnumerator ILeaveScene(string whereTo){
