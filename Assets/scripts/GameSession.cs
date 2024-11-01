@@ -72,16 +72,16 @@ public class GameSession : MonoBehaviour
                 Debug.Log("entered doorway");
                 float elapsed = 0f;
                 while (elapsed < transitionDuration){
-                    cAdjust.postExposure.value = Mathf.Lerp(0f,-6f, elapsed/transitionDuration);
+                    cAdjust.postExposure.value = Mathf.Lerp(0f,-10f, elapsed/transitionDuration);
                     elapsed += Time.deltaTime;
                     yield return null;
                 }
-                cAdjust.postExposure.value = -6;
+                cAdjust.postExposure.value = -10;
 
                 SceneManager.LoadScene(whereTo);
                 elapsed = 0f;
                 while (elapsed < transitionDuration){
-                    cAdjust.postExposure.value = Mathf.Lerp(-6f,0f, elapsed/transitionDuration);
+                    cAdjust.postExposure.value = Mathf.Lerp(-10f,0f, elapsed/transitionDuration);
                     elapsed += Time.deltaTime;
                     yield return null;
                 }

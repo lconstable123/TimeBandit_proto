@@ -57,7 +57,7 @@ public class Pickup : MonoBehaviour
         }
         if (NameText != null && string.IsNullOrEmpty(objectName) == false ){
             NameText.SetActive(true);
-            Debug.Log("assigning title");
+            //Debug.Log("assigning title");
             NameText.GetComponent<TextMeshProUGUI>().text = objectName;
         }
 
@@ -77,7 +77,7 @@ public class Pickup : MonoBehaviour
 
     void OnTriggerEnter(Collider other){
         if (other.tag == "Player"){
-            Debug.Log("Interacting With Object");
+           // Debug.Log("Interacting With Object");
             Dialogue.UpdatePosition(transform.position);
             Dialogue.Show(DialogueText);
             
@@ -86,7 +86,7 @@ public class Pickup : MonoBehaviour
 
     void OnTriggerExit(Collider other){
         if(other.tag == "Player"){
-            Debug.Log("leaving object");
+            //Debug.Log("leaving object");
     Dialogue.Close();
         }
     }

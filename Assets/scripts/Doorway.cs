@@ -18,7 +18,11 @@ public class Doorway : MonoBehaviour
     [SerializeField] string whereTo;
     [SerializeField] Color32 colour;
     [SerializeField] float transitionDuration;
+    [SerializeField] bool isSpawn;
+    [SerializeField] float SpwanHeight;
+    [SerializeField] float SpawnDist;
     GameSession gs;
+    GameObject player;
     //Material mat;
     //Renderer renderer = GetComponent<Renderer>();
     // Start is called before the first frame update
@@ -30,6 +34,20 @@ public class Doorway : MonoBehaviour
         //ppvol = FindObjectOfType<Volume>();
         //animator = ppvol.GetComponent<Animator>();
         gs = FindObjectOfType<GameSession>();
+
+        if (isSpawn){
+
+            player = FindObjectOfType<PlayerController>().gameObject;
+            if (player == null){Debug.Log("no player found");} else {
+                Debug.Log("player found");
+            }
+            Vector3 spawnPos = transform.position-transform.forward*SpawnDist;
+            spawnPos += new Vector3(0f,SpwanHeight,0f);
+            //Debug.Log("teleporting to "+transform.position);
+            player.transform.position = spawnPos;
+            
+        }
+
        
 
     }
