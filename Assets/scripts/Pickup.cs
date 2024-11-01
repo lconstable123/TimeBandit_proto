@@ -28,7 +28,7 @@ public class Pickup : MonoBehaviour
     DialogueWindow Dialogue;
     public string DialogueText;
     
-   void Start()
+    void Start()
     {
         gs = FindObjectOfType<GameSession>();
         objectId = GetComponent<UniqueId>().GetId();
