@@ -24,7 +24,7 @@ public class UniqueId : MonoBehaviour
     {
         
     }
-    void AssignUniqueId(){
+    public void AssignUniqueId(){
         id = System.Guid.NewGuid().ToString();
         EditorUtility.SetDirty(this);
     }

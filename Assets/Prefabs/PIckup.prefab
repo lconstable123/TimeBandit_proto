@@ -554,19 +554,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f11e6126f258bb14d9acc5a4885848cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotator: {fileID: 5143175778443353992}
-  isInteractable: 1
-  objectName: sword
+  item: {fileID: 0}
   rotSpeed: 100
-  whereTo: 
-  colour:
-    serializedVersion: 2
-    rgba: 0
-  objectId: 
   Textbox: {fileID: 1171403317239969287}
   ActionText: {fileID: 2184646865818109693}
   NameText: {fileID: 3868664960054001833}
-  DialogueText: do i want this
+  rotator: {fileID: 5143175778443353992}
+  objectId: 
+  isEnabled: 1
 --- !u!114 &4245114285444604573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -579,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e250bea98da0004db8ece676e3f48c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: 01a1da30-18b1-4850-8637-6c47007058fc
+  id: 
 --- !u!136 &2109170068499886871
 CapsuleCollider:
   m_ObjectHideFlags: 0

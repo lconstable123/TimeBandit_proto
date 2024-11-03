@@ -12,13 +12,14 @@ using System.Linq;
 public class GameSession : MonoBehaviour
 {
     public HashSet<string> pickedUpItems = new();
+    public Dictionary<string,Vector3> itemLocations = new();
     public List<ItemSO> inventory = new();
     [SerializeField] Volume ppvol;
     public float transitionDuration = .5f;
     [SerializeField] bool useSceneFade;
     ColorAdjustments cAdjust;
     [SerializeField] TextMeshProUGUI inventoryGUI;
-    Dictionary<string,ItemSO> itemsDict = new Dictionary<string,ItemSO>();
+    public Dictionary<string,ItemSO> itemsDict = new();
     GameObject player;
     [SerializeField] GameObject itemPrefab;
     void Awake()
@@ -36,7 +37,7 @@ public class GameSession : MonoBehaviour
 
     void Update(){
         if (Input.GetKeyDown(KeyCode.P)){
-            Debug.Log("dropping");
+            //Debug.Log("dropping");
             DropObject();
         }
     }
@@ -65,9 +66,23 @@ public class GameSession : MonoBehaviour
     public void AddPickedUpItem(string itemId, ItemSO item)
     {
         pickedUpItems.Add(itemId);
-        //inventory.Add(item);
+        inventory.Add(item);
         itemsDict.Add(itemId, item);
+        //Debug.Log(itemsDict.Keys.ToString());
+        //DebugInv();
         RefreshInventory();
+    }
+
+    private void DebugInv()
+    {
+        string subs = "";
+        string inv = "";
+        foreach (string key in itemsDict.Keys)
+        {
+            subs = key + ", ";
+            inv += subs;
+        }
+        Debug.Log(inv);
     }
 
     private void RefreshInventory()
@@ -119,14 +134,31 @@ public class GameSession : MonoBehaviour
     void DropObject(){
         
         if (itemsDict != null && itemsDict.Count > 0){
+            
             player = FindObjectOfType<PlayerController>().gameObject;
-            Vector3 pos = player.transform.position - player.transform.forward*2f;
+            Vector3 pos = player.transform.position - player.transform.forward*.5f;
             GameObject droppedItem = Instantiate(itemPrefab, pos, Quaternion.identity);
             Pickup p= droppedItem.GetComponent<Pickup>();
+
+            //find first item in inv
             p.objectId = itemsDict.Keys.First();
+            Debug.Log("dropping "+p.objectId);
+            
+            //set dropped item type
             p.SetItem(itemsDict.Values.First());
-            //work on this
+            //set persistent location
+
+            if (!itemLocations.ContainsKey(p.objectId)){
+                itemLocations.Add(p.objectId,pos);
+            } else {
+                itemLocations[p.objectId] = pos;
+            }
+
+            p.isEnabled = false;
+
             itemsDict.Remove(p.objectId);
+            RefreshInventory();
+            Debug.Log(p.objectId);
         }
     }
     

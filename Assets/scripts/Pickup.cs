@@ -29,11 +29,12 @@ public class Pickup : MonoBehaviour
     
     DialogueWindow Dialogue;
     
+    public bool isEnabled = true;
     
    void Start()
     {
         gs = FindObjectOfType<GameSession>();
-        objectId = GetComponent<UniqueId>().GetId();
+        if (string.IsNullOrEmpty(objectId)){objectId = GetComponent<UniqueId>().GetId();}
         
         
         if (Textbox == null){
@@ -46,9 +47,11 @@ public class Pickup : MonoBehaviour
             Debug.Log("no dialogue container found");
         }
 
-       if (gs.IsItemPickedUp(objectId) == true){
-            Destroy(gameObject);
-        }
+       //if (gs.IsItemPickedUp(objectId) == true){
+       //     Destroy(gameObject);
+      //  }
+
+
         //Dialogue.SetItem(item);
         Textbox.SetActive(true);
 
@@ -69,6 +72,9 @@ public class Pickup : MonoBehaviour
     void Update()
     {
         ProcessRotation();
+       // if (Input.GetKeyDown(KeyCode.O)){
+       //     Debug.Log('picking up');
+       // }
     }
 
     private void ProcessRotation()
@@ -81,23 +87,26 @@ public class Pickup : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        if (other.tag == "Player"){
-           
+
+        if (other.CompareTag("Player") && isEnabled == true){
             //Dialogue.UpdatePosition(transform.position);
             //Dialogue.Show(item.GetDescription());
-            PickupObject();
-            
+            PickupObject();   
         }
     }
 
+    
+
     void OnTriggerExit(Collider other){
         if(other.tag == "Player"){
+            isEnabled = true;
             //Debug.Log("leaving object");
     Dialogue.Close();
         }
     }
 
     void PickupObject(){
+        //objectId = GetComponent<UniqueId>().GetId();
         gs.AddPickedUpItem(objectId,item);
         Destroy(gameObject);
     }
