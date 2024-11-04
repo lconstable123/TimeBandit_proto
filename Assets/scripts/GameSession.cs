@@ -22,30 +22,28 @@ public class GameSession : MonoBehaviour
     public int DebugCounter;
     public static GameSession Persistent {get; private set;} 
     [SerializeField] Volume ppvol;
-    //[SerializeField] string ob;
     public float transitionDuration = .5f;
     [SerializeField] bool useSceneFade;
     ColorAdjustments cAdjust;
     [SerializeField] TextMeshProUGUI inventoryGUI;
     public Dictionary<string,ItemSO> itemsDict = new();
+    public Pickup TakeableObject;
+
     
-[SerializeField] Dictionary<string, List<ItemInstance> > ItemsInLevel = new();
-[SerializeField] Dictionary<string, List<string> > ItemsInLevel2 = new();
-//Dictionary<string, 
+    Dictionary<string, List<ItemInstance> > ItemsInLevel = new();
+
+
 
     GameObject player;
     [SerializeField] GameObject itemPrefab;
 
     public class ItemInstance
-    
 {
     public string Id;
     public Vector3 Loc;
     public ItemSO Iteminfo;
     public string Level;
 
-
-    // Constructor to initialize the struct
     public ItemInstance(string id, Vector3 loc, ItemSO iteminfo, string level)
     {
         this.Id = id;
@@ -54,10 +52,6 @@ public class GameSession : MonoBehaviour
         this.Level = level;
     }
 }
-
-    //public class LevelPickup(string Id, Vector3 Loc, ItemSO Item, string Scene);
-  
-
 
 
     void Awake()
@@ -74,8 +68,26 @@ public class GameSession : MonoBehaviour
     }
 
     void Update(){
-        if (Input.GetKeyDown(KeyCode.P)){
-            DropObject();
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button1) ){
+            if(TakeableObject!= null){
+            TakeableObject.PickupObject();
+            } else{
+            DropObject();}
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button0)){
+            Debug.Log("joy0");
+        }
+         //if (Input.GetKeyDown(KeyCode.Joystick1Button1)){
+          //  Debug.Log("joy1");
+        //}
+        if (Input.GetKeyDown(KeyCode.Joystick1Button2)){
+            Debug.Log("joy2");
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button3)){
+            Debug.Log("joy3");
+        }
+        if (Input.GetKeyDown(KeyCode.Joystick1Button4)){
+            Debug.Log("joy4");
         }
     }
 
@@ -85,13 +97,11 @@ public class GameSession : MonoBehaviour
 
         if (numGameSessions > 1)
         {
-           // Debug.Log("game session exists, destroying lastest one");
             Destroy(gameObject);
         }
         else
         {
             Persistent = this;
-           // Debug.Log("keeping game session");
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -255,8 +265,6 @@ public class GameSession : MonoBehaviour
           gP.SetItem(item.Iteminfo);
         }
     }
-
-
 
    string GetSceneName(){
     return SceneManager.GetActiveScene().name;

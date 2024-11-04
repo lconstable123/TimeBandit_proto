@@ -30,6 +30,7 @@ public class Pickup : MonoBehaviour
     DialogueWindow Dialogue;
     
     public bool isEnabled = true;
+    public bool isTakeable=false;
     
    void Start()
     {
@@ -93,9 +94,11 @@ public class Pickup : MonoBehaviour
     void OnTriggerEnter(Collider other){
 
         if (other.CompareTag("Player") && isEnabled == true){
-            //Dialogue.UpdatePosition(transform.position);
-            //Dialogue.Show(item.GetDescription());
-            PickupObject();   
+            isTakeable = true;
+            gs.TakeableObject = this;
+            Dialogue.UpdatePosition(transform.position);
+            Dialogue.Show(item.GetDescription());
+            //PickupObject();   
         }
     }
 
@@ -104,13 +107,14 @@ public class Pickup : MonoBehaviour
     void OnTriggerExit(Collider other){
         if(other.tag == "Player"){
             isEnabled = true;
+            isTakeable = false;
+            gs.TakeableObject = null;
             //Debug.Log("leaving object");
     Dialogue.Close();
         }
     }
 
-    void PickupObject(){
-        //objectId = GetComponent<UniqueId>().GetId();
+    public void PickupObject(){
         gs.AddPickedUpItem(objectId,item);
         Destroy(gameObject);
     }
