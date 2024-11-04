@@ -123,7 +123,8 @@ public class Pickup : MonoBehaviour
     }
 
     public string InitialiseId(){
-        objectId = GetComponent<UniqueId>().GetId();
+        
+        objectId = System.Guid.NewGuid().ToString();
         return objectId;
     }
    
