@@ -33,8 +33,9 @@ public class Pickup : MonoBehaviour
     
    void Start()
     {
-        gs = FindObjectOfType<GameSession>();
-        if (string.IsNullOrEmpty(objectId)){objectId = GetComponent<UniqueId>().GetId();}
+        //gs = FindObjectOfType<GameSession>();
+        gs = GameSession.Persistent;
+        //if (string.IsNullOrEmpty(objectId)){objectId = GetComponent<UniqueId>().GetId();}
         
         
         if (Textbox == null){
@@ -47,9 +48,12 @@ public class Pickup : MonoBehaviour
             Debug.Log("no dialogue container found");
         }
 
-       //if (gs.IsItemPickedUp(objectId) == true){
-       //     Destroy(gameObject);
-      //  }
+      // if (gs.IsItemPickedUp(objectId) == true){
+       //    Destroy(gameObject);
+       //}
+       // if (gs.IsSceneInitialised()){
+        //   Destroy(gameObject);
+      // }
 
 
         //Dialogue.SetItem(item);
@@ -109,6 +113,14 @@ public class Pickup : MonoBehaviour
         //objectId = GetComponent<UniqueId>().GetId();
         gs.AddPickedUpItem(objectId,item);
         Destroy(gameObject);
+    }
+    public ItemSO getitem(){
+        return item;
+    }
+
+    public string InitialiseId(){
+        objectId = GetComponent<UniqueId>().GetId();
+        return objectId;
     }
    
 }

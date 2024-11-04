@@ -39,7 +39,7 @@ public class Doorway : MonoBehaviour
 
             player = FindObjectOfType<PlayerController>().gameObject;
             if (player == null){Debug.Log("no player found");} else {
-                Debug.Log("player found");
+               // Debug.Log("player found");
             }
             Vector3 spawnPos = transform.position-transform.forward*SpawnDist;
             spawnPos += new Vector3(0f,SpwanHeight,0f);

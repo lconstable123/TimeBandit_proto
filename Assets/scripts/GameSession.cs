@@ -6,38 +6,75 @@ using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.Rendering;
 using TMPro;
-using Unity.VisualScripting;
+
 using System.Linq;
+using System.Data.Common;
+using Unity.VisualScripting;
+using Unity.Mathematics;
+using UnityEditor.PackageManager;
+using System;
 
 public class GameSession : MonoBehaviour
 {
     public HashSet<string> pickedUpItems = new();
     public Dictionary<string,Vector3> itemLocations = new();
-    public List<ItemSO> inventory = new();
+    public List<string> scenesInitialised = new();
+    public int DebugCounter;
+    public static GameSession Persistent {get; private set;} 
     [SerializeField] Volume ppvol;
+    //[SerializeField] string ob;
     public float transitionDuration = .5f;
     [SerializeField] bool useSceneFade;
     ColorAdjustments cAdjust;
     [SerializeField] TextMeshProUGUI inventoryGUI;
     public Dictionary<string,ItemSO> itemsDict = new();
+    
+[SerializeField] Dictionary<string, List<ItemInstance> > ItemsInLevel = new();
+[SerializeField] Dictionary<string, List<string> > ItemsInLevel2 = new();
+//Dictionary<string, 
+
     GameObject player;
     [SerializeField] GameObject itemPrefab;
+
+    public class ItemInstance
+    
+{
+    public string Id;
+    public Vector3 Loc;
+    public ItemSO Iteminfo;
+    public string Level;
+
+
+    // Constructor to initialize the struct
+    public ItemInstance(string id, Vector3 loc, ItemSO iteminfo, string level)
+    {
+        this.Id = id;
+        this.Loc = loc;
+        this.Iteminfo = iteminfo;
+        this.Level = level;
+    }
+}
+
+    //public class LevelPickup(string Id, Vector3 Loc, ItemSO Item, string Scene);
+  
+
+
+
     void Awake()
     {
         Singleton();
     }
     void Start(){
         if(ppvol.profile.TryGet(out cAdjust)){
-            Debug.Log("found post effect");
+          //  Debug.Log("found post effect");
         } else {
-            Debug.Log("could not find effect");  
+          //  Debug.Log("could not find effect");  
         }
     player = FindObjectOfType<PlayerController>().gameObject;
     }
 
     void Update(){
         if (Input.GetKeyDown(KeyCode.P)){
-            //Debug.Log("dropping");
             DropObject();
         }
     }
@@ -48,12 +85,13 @@ public class GameSession : MonoBehaviour
 
         if (numGameSessions > 1)
         {
-            Debug.Log("game session exists, destroying lastest one");
+           // Debug.Log("game session exists, destroying lastest one");
             Destroy(gameObject);
         }
         else
         {
-            Debug.Log("keeping game session");
+            Persistent = this;
+           // Debug.Log("keeping game session");
             DontDestroyOnLoad(gameObject);
         }
     }
@@ -63,15 +101,7 @@ public class GameSession : MonoBehaviour
         FindObjectOfType<ScenePersist>().ResetScenePersist();
         Destroy(gameObject);
     }
-    public void AddPickedUpItem(string itemId, ItemSO item)
-    {
-        pickedUpItems.Add(itemId);
-        inventory.Add(item);
-        itemsDict.Add(itemId, item);
-        //Debug.Log(itemsDict.Keys.ToString());
-        //DebugInv();
-        RefreshInventory();
-    }
+    
 
     private void DebugInv()
     {
@@ -102,6 +132,7 @@ public class GameSession : MonoBehaviour
         pickedUpItems.Clear();
     }
     public void LeaveScene(string whereTo){
+        SetSceneInitialised();
         if(useSceneFade){
             StartCoroutine(ILeaveScene(whereTo));
         } else {
@@ -111,6 +142,7 @@ public class GameSession : MonoBehaviour
 
     IEnumerator ILeaveScene(string whereTo){
                 Debug.Log("entered doorway");
+                StoreObjectStates();
                 float elapsed = 0f;
                 while (elapsed < transitionDuration){
                     cAdjust.postExposure.value = Mathf.Lerp(0f,-10f, elapsed/transitionDuration);
@@ -130,39 +162,108 @@ public class GameSession : MonoBehaviour
 
                 
     }
+    public void AddPickedUpItem(string itemId, ItemSO item)
+    {
+        pickedUpItems.Add(itemId);
+        itemLocations.Remove(itemId);
+        itemsDict.Add(itemId, item);
 
+        RefreshInventory();
+    }
     void DropObject(){
         
         if (itemsDict != null && itemsDict.Count > 0){
             
+            string id = itemsDict.Keys.First();
             player = FindObjectOfType<PlayerController>().gameObject;
             Vector3 pos = player.transform.position - player.transform.forward*.5f;
             GameObject droppedItem = Instantiate(itemPrefab, pos, Quaternion.identity);
-            Pickup p= droppedItem.GetComponent<Pickup>();
+            Pickup p = droppedItem.GetComponent<Pickup>();
 
+            pickedUpItems.Remove(id);
             //find first item in inv
-            p.objectId = itemsDict.Keys.First();
+            p.objectId = id;
             Debug.Log("dropping "+p.objectId);
             
             //set dropped item type
             p.SetItem(itemsDict.Values.First());
             //set persistent location
 
-            if (!itemLocations.ContainsKey(p.objectId)){
-                itemLocations.Add(p.objectId,pos);
+            if (!itemLocations.ContainsKey(id)){
+                itemLocations.Add(id,pos);
             } else {
-                itemLocations[p.objectId] = pos;
+                itemLocations[id] = pos;
             }
 
             p.isEnabled = false;
 
             itemsDict.Remove(p.objectId);
             RefreshInventory();
-            Debug.Log(p.objectId);
+            //Debug.Log(p.objectId);
         }
     }
+
+   public void SetSceneInitialised(){
+    string sceneName = GetSceneName();
+    if (!scenesInitialised.Contains(sceneName)){
+        scenesInitialised.Add(sceneName);
+       // Debug.Log("initialising scene" + sceneName);
+        StoreObjectStates();
+    } else {
+       // Debug.Log("scene already initialised, saving items " + sceneName);
+        StoreObjectStates();
+    }
+   }
+   public bool IsSceneInitialised(){
+        return scenesInitialised.Contains(GetSceneName());
+   }
+
+   public void StoreObjectStates(){
+        
+        List<ItemInstance> localPopulatedPickups = new();
+        
+        Pickup[] pickups = FindObjectsOfType<Pickup>();
+       // Debug.Log("storing "+ pickups.Length + " items"); 
+        foreach (Pickup pickup in pickups){
+            string id = pickup.objectId;
+            Vector3 pos = pickup.gameObject.transform.position;
+            ItemSO objectType = pickup.getitem();
+            string level = GetSceneName();
+            ItemInstance item = new(id, pos,objectType, level);
+                
+            localPopulatedPickups.Add(item);
+
+            
+        }
+       
+        ItemsInLevel[GetSceneName()] = localPopulatedPickups;
+        Debug.Log("storing "+ localPopulatedPickups.Count + " items in " + GetSceneName() ); 
+   }
+
+    public void PopulateObjectStates(){
+        Pickup [] existingPickups = FindObjectsOfType<Pickup>();
+        foreach (Pickup p in existingPickups){
+            Destroy(p.gameObject);
+        }
+
+        List<ItemInstance> items = ItemsInLevel[GetSceneName()];
+        Debug.Log("repopulating "+ items.Count + " items in " + GetSceneName() ); 
+        foreach ( ItemInstance item in items){
+          GameObject g = Instantiate(itemPrefab,item.Loc,quaternion.identity);
+          Pickup gP = g.GetComponent<Pickup>();
+          gP.objectId = item.Id; 
+          gP.SetItem(item.Iteminfo);
+        }
+    }
+
+
+
+   string GetSceneName(){
+    return SceneManager.GetActiveScene().name;
+   }
     
   
 
 
 }
+

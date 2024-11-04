@@ -11,6 +11,8 @@ public class ItemSO : ScriptableObject
    [SerializeField] string itemDescription = "Enter Scrolling Text";
    [SerializeField] bool isInteractable = true;
 
+
+
    public string GetDescription(){
     return itemDescription;
    }
