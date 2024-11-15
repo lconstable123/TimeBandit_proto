@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8913148626529705053
 SpriteRenderer:
@@ -126,12 +126,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb98be37676ce1c4892f64e855c9bc80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 20000
-  groundDist: 1.2
-  groundDrag: 5
+  playerSpeed: 40000
+  groundDist: 1.5
+  groundDrag: 12
+  playerHeight: 2
+  maxSlopeAngle: 54
+  OnSlopDebug: 0
+  SlopeAngleDebug: 0
   TerrainLayer:
     serializedVersion: 2
     m_Bits: 64
+  grounded: 0
 --- !u!65 &4820493767961922967
 BoxCollider:
   m_ObjectHideFlags: 0
