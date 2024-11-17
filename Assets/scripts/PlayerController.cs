@@ -4,9 +4,10 @@
 //using UnityEditor.Callbacks;
 
 using System;
-
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
 //using UnityEngine.XR;
 
@@ -19,9 +20,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerHeight = 2f;
     [SerializeField] float jumpPower = 4000000.0f;
 
+    [Header("navigation")]
+    public float XRayoffset= 0.2f;
+    public float YRayoffset = 0.4f;
+    public float probeLength = 0.3f;
+    public float groundprobelength = 1f;
+    public bool groundAhead;
+    public bool groundBelow;
+
     [Header("Slope handling")]
     public float maxSlopeAngle;
     private RaycastHit slopeHit;
+    private RaycastHit groundslopeHit;
     public bool OnSlopDebug;
     public float SlopeAngleDebug;
 
@@ -31,7 +41,18 @@ public class PlayerController : MonoBehaviour
     SpriteRenderer sr;
     float x,y;
     Vector3 moveDir;
-    public bool grounded;
+
+    private bool isJumping;
+    public bool isClimbing;
+    public bool touchingRamp;
+
+    public enum MovingMode{
+        ground = 1,
+        ramp=2,
+        falling=3,
+        climbing=4
+    }
+    public MovingMode movingMode;
 
     void Start()
     {
@@ -41,36 +62,105 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        x = Input.GetAxis("Horizontal");
-        y = Input.GetAxis("Vertical");
-        moveDir = new Vector3(x, 0, y);
-        
-        if (Input.GetKeyDown(KeyCode.Space)){
-        ProcessJump();
-        }
         GroundProbe(true);
-        //rb.useGravity = !OnSlope();
-        void GroundProbe( bool debug)
-        {
-            Vector3 slopeChecker = new();
-            if (y > 0.3f)
-            {
-                slopeChecker = Vector3.down + (Vector3.forward * .3f);
-                grounded = Physics.Raycast(transform.position, slopeChecker, out slopeHit, groundDist * 0.5f + 0.2f, TerrainLayer);
 
-            }
-            else
-            {
-                slopeChecker = Vector3.down;
-                grounded = Physics.Raycast(transform.position, Vector3.down, out slopeHit, groundDist * 0.5f + 0.2f, TerrainLayer);
-            }
-            if (debug){Debug.DrawRay(transform.position, slopeChecker);}
-        }
+       // if(isClimbing){ClimbLadder2();}
+      
     }
 
+    void ClimbLadder2()
+    {
+        rb.useGravity = false;
+        //Vector3 climbVelocity = new Vector3(rb.velocity.x,y*1,0);
+        //rb.velocity = climbVelocity;
+        //bool playerHasVerticalSpeed = Math.Abs(myRigidbody.velocity.y) > Mathf.Epsilon;
+        //animator.SetBool("isClimbing",true);
+        //if(!playerHasVerticalSpeed){animator.speed = 0;} else {animator.speed = 1;}
+    }
+
+     void EndClimbing(){
+       isClimbing = false;
+        //myRigidbody.gravityScale = gravity;
+       // animator.speed = 1;
+       // animator.SetBool("isClimbing",false);
+    }
+
+    void OnTriggerEnter(Collider other){
+        //if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
+         //   isClimbing = true;
+            //movingMode = MovingMode.climbing;
+          //  Debug.Log("ladded");
+        //};
+       
+       
+    }
+
+    void OnTriggerExit(Collider other){
+   // if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
+     //   if(isClimbing){EndClimbing();};
+    //    };
+    }
+    void OnCollisionEnter(Collision other ){
+        if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
+            isClimbing = true;
+            //movingMode = MovingMode.climbing;
+            Debug.Log("ladded");
+        };
+    }
+      void OnCollisionExit(Collision other ){
+         if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
+        if(isClimbing){
+            Debug.Log("leaving ladder");
+            EndClimbing();};
+        };
+        }
+            // if (other.gameObject.layer == LayerMask.NameToLayer("Ramp")){
+            // //Debug.Log("ramp");
+            // movingMode = MovingMode.ramp;
+            // touchingRamp = true;
+            // };
+            // if (other.gameObject.layer == LayerMask.NameToLayer("Ground")){
+            //Debug.Log("ramp");
+            //movingMode = MovingMode.ground;
+            //touchingRamp = true;
+           // };
+    
+    
+
+    void GroundProbe( bool debug)
+        {
+        
+          
+
+           float xOffset = (Mathf.Abs(x)*XRayoffset) ;
+           float yOffset = (Mathf.Abs(y)*YRayoffset);
+           Vector3 off = new (moveDir.x*xOffset*XRayoffset,0,moveDir.z*yOffset*YRayoffset);
+           Vector3 heightOffset = new(0,playerHeight*0.5f,0);
+           Vector3 startray = transform.position + off;
+            groundAhead = Physics.Raycast(startray, Vector3.down, out slopeHit,  probeLength, TerrainLayer);
+            groundBelow = Physics.Raycast(transform.position, Vector3.down, out groundslopeHit,  groundprobelength, TerrainLayer);
+
+            CalulateMoveMode();
+            
+
+            if (debug){Debug.DrawRay(startray, Vector3.down*probeLength);}
+           // if (debug){Debug.DrawRay(transform.position,Vector3.down*groundprobelength);}
+        }
+
+    void OnMove(InputValue move){
+        
+        x = move.Get<Vector2>().x;
+        y = move.Get<Vector2>().y;
+        moveDir = new Vector3(x, 0, y);
+
+    }
     private void ProcessJump()
     {
-        rb.AddForce(Vector3.up* jumpPower, ForceMode.Force);
+        //rb.AddForce(Vector3.up* jumpPower, ForceMode.Force);
+
+        rb.velocity += new Vector3(x*playerSpeed,0,jumpPower);
+        rb.useGravity= true;
+        rb.drag = 0;
     }
 
     void FixedUpdate(){
@@ -78,48 +168,72 @@ public class PlayerController : MonoBehaviour
         ProcessSpriteFlip();
     }
 
-    private bool OnSlope(){
-        if(grounded){
-            float angle = Vector3.Angle(Vector3.up,slopeHit.normal);
-            OnSlopDebug = true;
-            SlopeAngleDebug = angle;
-            return angle < maxSlopeAngle && angle != 0;
-        }
-        OnSlopDebug = false;
-        
-        return false;
-    }
+    void CalulateMoveMode(){
+        float angle = Vector3.Angle(Vector3.up,slopeHit.normal);
+        SlopeAngleDebug = angle;
 
-    private Vector3 getSlopeMoveDirection(){
+        if (isClimbing){
+            // if on ladder
+            movingMode = MovingMode.climbing;
+        } else if (!groundBelow && !groundAhead){
+            movingMode = MovingMode.falling;
+        } else {
+            if (angle < maxSlopeAngle && angle != 0 ){
+                movingMode = MovingMode.ramp;
+            } else {movingMode = MovingMode.ground;}; 
+    }
+    }
+    private Vector3 GetSlopeMoveDirection(){
         return Vector3.ProjectOnPlane(moveDir,slopeHit.normal).normalized;
     }
 
+    private Vector3 GetLadderMoveDirection(){
+        if(!groundBelow || y > Mathf.Epsilon){return new Vector3(x,y,0);}
+        if(groundBelow && y > Mathf.Epsilon){return new Vector3(x,y,0);}
+        else { return moveDir;}
+    }
      void ProcessForce(){
        Vector3 force = new();
+   
+       switch (movingMode){
+        
+        case MovingMode.climbing:
+            rb.useGravity = false;
+            force = playerSpeed *Time.fixedDeltaTime * GetLadderMoveDirection();
+            break;
 
-        if(grounded){
-            //on ground
+        case MovingMode.ground:
             rb.drag = groundDrag;
-            if (OnSlope()){
-                rb.useGravity = false;
-                force = playerSpeed * Time.fixedDeltaTime * getSlopeMoveDirection(); 
-            } else {
-                rb.useGravity = true;
-                force = playerSpeed * Time.fixedDeltaTime * moveDir;
-            }
-        } else {
-            //in air
-                rb.useGravity= true;
-                rb.drag = 0;
-                force = playerSpeed*.1f * Time.fixedDeltaTime * moveDir;
-        }
+            rb.useGravity = false;
+            force = playerSpeed * Time.fixedDeltaTime * moveDir;
+            break;
 
-        rb.AddForce(force, ForceMode.Force);
+        case MovingMode.ramp:
+            rb.drag = groundDrag;
+            rb.useGravity = false;
+            force = playerSpeed * Time.fixedDeltaTime * GetSlopeMoveDirection(); 
+            break;
 
-        if(rb.velocity.y > 0){
-            rb.AddForce(Vector3.down * 80f, ForceMode.Force);
-        }
+        case MovingMode.falling:
+            rb.useGravity= true;
+            
+            rb.drag = 0f;  
+            
+            force = playerSpeed*.01f * Time.fixedDeltaTime * moveDir;
+            break;
+
+        default: 
+            break;
+       }
+        ApplyForce(force);
     }
+
+    void ApplyForce(Vector3 force){
+            rb.AddForce(force, ForceMode.Force);
+            if(rb.velocity.y > 0 || rb.velocity.z > 0){
+             rb.AddForce(Vector3.down * 100f, ForceMode.Force);
+            }
+        }
     void ProcessSpriteFlip(){
         if (x != 0 && x < 0){
             sr.flipX=true;
@@ -130,3 +244,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 }
+
+//probe ahead
+//probe under
+//if probhead is false
+    //check probe under
+    //if both are false player is int air
+//if flat is under, 
+
