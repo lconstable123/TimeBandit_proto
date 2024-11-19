@@ -9,8 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1922266175820466911}
-  - component: {fileID: 3829291454835956006}
-  - component: {fileID: 52814482984373138}
   m_Layer: 0
   m_Name: camerachanging
   m_TagString: Untagged
@@ -27,48 +25,13 @@ Transform:
   m_GameObject: {fileID: 3517758085528323003}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.67, y: -2.18, z: -11.157}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5.420644, y: 1.1149, z: 1.1149}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6739321833087245276}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &3829291454835956006
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3517758085528323003}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 7.3710823, y: 2.985273, z: 9.698251}
-  m_Center: {x: 0.34729767, y: 0.99263644, z: 3.127689}
---- !u!114 &52814482984373138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3517758085528323003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9da8b91a18bb861469447f8aee9c60aa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ChangeToCamera: 2
-  ChangeOutCamera: 0
 --- !u!1 &7524265968273482097
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +44,7 @@ GameObject:
   - component: {fileID: 9200128505709461347}
   - component: {fileID: 3306209863397936909}
   - component: {fileID: 394366828308381744}
+  - component: {fileID: 2436947524826264811}
   m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
@@ -96,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7524265968273482097}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.96, y: 0, z: 3.51}
+  m_LocalPosition: {x: 0.96, y: 0, z: 19.7}
   m_LocalScale: {x: 7.436797, y: 3.2585, z: 9.484408}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -175,3 +139,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2436947524826264811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7524265968273482097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9da8b91a18bb861469447f8aee9c60aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ChangeToCamera: 3
+  ChangeOutCamera: 2
