@@ -132,8 +132,6 @@ public class PlayerController : MonoBehaviour
     void GroundProbe( bool debug)
         {
         
-          
-
            float xOffset = (Mathf.Abs(x)*XRayoffset) ;
            float yOffset = (Mathf.Abs(y)*YRayoffset);
            Vector3 off = new (moveDir.x*xOffset*XRayoffset,0,moveDir.z*yOffset*YRayoffset);
@@ -156,13 +154,25 @@ public class PlayerController : MonoBehaviour
         moveDir = new Vector3(x, 0, y);
 
     }
+
+    void OnJump(){
+       // Debug.Log("jump");
+       if (movingMode != MovingMode.falling){
+       rb.velocity += new Vector3(0,jumpPower,0);
+        //rb.useGravity= true;
+        //rb.drag = 0;
+        movingMode = MovingMode.falling;
+       }
+    }
     private void ProcessJump()
     {
-        //rb.AddForce(Vector3.up* jumpPower, ForceMode.Force);
+    //     //rb.AddForce(Vector3.up* jumpPower, ForceMode.Force);
+    //     movingMode = MovingMode.falling;
+    //    // rb.velocity += new Vector3(x*playerSpeed,jumpPower,0);
+    //     rb.velocity += new Vector3(0,jumpPower,0);
+    //     rb.useGravity= true;
+    //     rb.drag = 0;
 
-        rb.velocity += new Vector3(x*playerSpeed,0,jumpPower);
-        rb.useGravity= true;
-        rb.drag = 0;
     }
 
     void FixedUpdate(){
@@ -206,9 +216,11 @@ public class PlayerController : MonoBehaviour
             break;
 
         case MovingMode.ground:
+
+        
             rb.drag = groundDrag;
             rb.useGravity = false;
-            force = playerSpeed * Time.fixedDeltaTime * moveDir+transform.forward;
+            force = playerSpeed * Time.fixedDeltaTime * moveDir;
             break;
 
         case MovingMode.ramp:
