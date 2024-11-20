@@ -35,21 +35,25 @@ public class cameraManager : MonoBehaviour
     }
 
     public void ChangeCam(Cams changecam){
+        if(cams != changecam){
+            cams = changecam;
         switch (changecam){
-            case(Cams.stairdolly):
+            case(Cams.cam1):
                 animator.SetTrigger("cam1");
+                
+              //  Debug.Log("cam1");
                 break;
             
-            case(Cams.followcam):
+            case(Cams.cam2):
                 animator.SetTrigger("cam2");
-                Debug.Log("pressed");
+               // Debug.Log("cam2");
                 break;
             
             case(Cams.cam3):
                 animator.SetTrigger("cam3");
                 break;
 
-            case(Cams.wallcam):
+            case(Cams.cam4):
                 animator.SetTrigger("wallcam");
                 break;
 
@@ -59,7 +63,7 @@ public class cameraManager : MonoBehaviour
 
 
         }
-
+        }
 
 
     }

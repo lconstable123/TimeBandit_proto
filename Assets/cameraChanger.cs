@@ -24,10 +24,10 @@ public class cameraChanger : MonoBehaviour
       }  
     }
     void Update(){
-        if (Input.GetKeyDown(KeyCode.Alpha3)){
-            Debug.Log("pressed");
-           cm.ChangeCam(Cams.followcam);
-        }
+       // if (Input.GetKeyDown(KeyCode.Alpha3)){
+        //    Debug.Log("pressed");
+          // cm.ChangeCam(Cams.followcam);
+       // }
 
 
 
@@ -35,13 +35,19 @@ public class cameraChanger : MonoBehaviour
     
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("Player")){
-            Debug.Log("change coamera volume");
+           //Debug.Log("enter change");
             cm.ChangeCam(ChangeToCamera);
         }
     }
+    void OnTriggerStay(Collider other){
+        if (other.CompareTag("Player")){
+          Debug.Log("change coamera volume " + ChangeToCamera.ToString());
+            cm.ChangeCam(ChangeToCamera);
+        }
+}
     void OnTriggerExit(Collider other){
-        if (other.CompareTag("Player") && ChangeOutCamera != default){
-           Debug.Log("change coamera volume");
+        if (other.CompareTag("Player") ){
+       //  Debug.Log("out change");
             cm.ChangeCam(ChangeOutCamera);
         }
     }

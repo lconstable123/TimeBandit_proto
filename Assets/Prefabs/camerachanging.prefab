@@ -30,7 +30,7 @@ Transform:
   m_Children:
   - {fileID: 6739321833087245276}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7524265968273482097
 GameObject:
@@ -60,7 +60,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7524265968273482097}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.96, y: 0, z: 19.7}
+  m_LocalPosition: {x: 0.96, y: 1.43, z: 2.73}
   m_LocalScale: {x: 7.436797, y: 3.2585, z: 9.484408}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -151,5 +151,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9da8b91a18bb861469447f8aee9c60aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ChangeToCamera: 3
+  ChangeToCamera: 1
   ChangeOutCamera: 2
