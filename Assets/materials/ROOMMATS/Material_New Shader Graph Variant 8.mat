@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Material_New Shader Graph Variant
+  m_Name: Material_New Shader Graph Variant 8
   m_Shader: {fileID: -6465566751694194690, guid: 5b021d085605a844d8a3a467005f9e94,
     type: 3}
   m_Parent: {fileID: -876546973899608171, guid: 5b021d085605a844d8a3a467005f9e94,
@@ -40,7 +40,10 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
+    - _BRIGHTNESS: 5.7
     - _QueueControl: 0
+    - _Shiny: 0
+    - _skribble: 1
     m_Colors:
-    - _Color: {r: 1, g: 0.9584457, b: 0, a: 0}
+    - _Color: {r: 0.3773585, g: 0.012459958, b: 0.19462718, a: 0}
   m_BuildTextureStacks: []

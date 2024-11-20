@@ -27,6 +27,7 @@ public class PlayerController : MonoBehaviour
     public float groundprobelength = 1f;
     public bool groundAhead;
     public bool groundBelow;
+    Camera cam;
 
     [Header("Slope handling")]
     public float maxSlopeAngle;
@@ -58,6 +59,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         sr = GetComponent<SpriteRenderer>();
+        cam = Camera.main;
     }
 
     void Update()
@@ -194,6 +196,7 @@ public class PlayerController : MonoBehaviour
     }
      void ProcessForce(){
        Vector3 force = new();
+       Quaternion playerrot = transform.rotation;
    
        switch (movingMode){
         
@@ -205,7 +208,7 @@ public class PlayerController : MonoBehaviour
         case MovingMode.ground:
             rb.drag = groundDrag;
             rb.useGravity = false;
-            force = playerSpeed * Time.fixedDeltaTime * moveDir;
+            force = playerSpeed * Time.fixedDeltaTime * moveDir+transform.forward;
             break;
 
         case MovingMode.ramp:
