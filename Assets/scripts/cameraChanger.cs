@@ -9,6 +9,7 @@ public class cameraChanger : MonoBehaviour
     GameSession gs;
     cameraManager cm;
     Cams cams;
+    [SerializeField] bool isOn = true;
     [SerializeField] Cams ChangeToCamera;
     [SerializeField] Cams ChangeOutCamera;
     // Start is called before the first frame update
@@ -34,19 +35,19 @@ public class cameraChanger : MonoBehaviour
     }
     
     void OnTriggerEnter(Collider other){
-        if (other.CompareTag("Player")){
+        if (other.CompareTag("Player" ) && isOn){
            //Debug.Log("enter change");
             cm.ChangeCam(ChangeToCamera);
         }
     }
-    void OnTriggerStay(Collider other){
-        if (other.CompareTag("Player")){
-          Debug.Log("change coamera volume " + ChangeToCamera.ToString());
-            cm.ChangeCam(ChangeToCamera);
-        }
-}
+//     void OnTriggerStay(Collider other){
+//         if (other.CompareTag("Player")){
+//           Debug.Log("change coamera volume " + ChangeToCamera.ToString());
+//             cm.ChangeCam(ChangeToCamera);
+//         }
+// }
     void OnTriggerExit(Collider other){
-        if (other.CompareTag("Player") ){
+        if (other.CompareTag("Player") && isOn ){
        //  Debug.Log("out change");
             cm.ChangeCam(ChangeOutCamera);
         }

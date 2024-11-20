@@ -35,7 +35,7 @@ public class LightAffector : MonoBehaviour
 
         foreach (lightspiller light in lights){
             float distance = Vector3.Distance(pos, light.gameObject.transform.position);
-            if (distance < minDistance){
+            if (distance < minDistance && light.isOn){
                 minDistance = distance;
                 nearestLight = light;
                 dist = distance;

@@ -5,7 +5,7 @@ using UnityEngine;
 public class lightspiller : MonoBehaviour
 {
     public float distance = 5f;
-    [SerializeField] bool isEnabled = false;
+    public bool isOn = true;
    // [SerializeField] Color32 col;
     public Color32 colly;
     // Start is called before the first frame update
