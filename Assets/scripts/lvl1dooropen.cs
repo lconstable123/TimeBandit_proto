@@ -20,4 +20,8 @@ public class lvl1dooropen : MonoBehaviour
         an.SetBool("doorOpen", true);
 
     }
+     void OnTriggerExit(){
+       // an.SetBool("doorOpen", false);
+
+    }
 }
