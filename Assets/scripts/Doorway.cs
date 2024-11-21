@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -21,6 +22,8 @@ public class Doorway : MonoBehaviour
     [SerializeField] bool isSpawn;
     [SerializeField] float SpwanHeight;
     [SerializeField] float SpawnDist;
+    [SerializeField] bool StateDrivenCameraReset;
+    [SerializeField] CinemachineStateDrivenCamera sdc;
     GameSession gs;
     GameObject player;
     //Material mat;
@@ -45,6 +48,12 @@ public class Doorway : MonoBehaviour
             spawnPos += new Vector3(0f,SpwanHeight,0f);
             //Debug.Log("teleporting to "+transform.position);
             player.transform.position = spawnPos;
+            
+        }
+
+        if (StateDrivenCameraReset){
+            Animator an =gs.GetComponent<Animator>();
+            sdc.m_AnimatedTarget = an;
             
         }
 

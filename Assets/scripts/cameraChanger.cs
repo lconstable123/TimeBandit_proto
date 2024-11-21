@@ -23,6 +23,7 @@ public class cameraChanger : MonoBehaviour
        if (cm==null){
         Debug.Log("camMonager not ofund");
       }  
+      //cm = FindObjectOfType<cameraManager>();
     }
     void Update(){
        // if (Input.GetKeyDown(KeyCode.Alpha3)){
