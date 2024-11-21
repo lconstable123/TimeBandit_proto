@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float groundDrag;
     [SerializeField] float playerHeight = 2f;
     [SerializeField] float jumpPower = 4000000.0f;
+    [SerializeField] bool camerBasedMove = false;
 
     [Header("navigation")]
     public float XRayoffset= 0.2f;
@@ -151,7 +152,20 @@ public class PlayerController : MonoBehaviour
         
         x = move.Get<Vector2>().x;
         y = move.Get<Vector2>().y;
-        moveDir = new Vector3(x, 0, y);
+        
+        if (!camerBasedMove){
+            moveDir = new Vector3(x, 0, y);} 
+        else {
+            Vector3 pureMov = new Vector3(x, 0, y); 
+            Vector3 cameraForward = cam.transform.forward;
+            Vector3 cameraRight = cam.transform.right;
+            cameraForward.y = 0;
+            cameraRight.y = 0;
+            cameraForward.Normalize();
+            cameraRight.Normalize();
+            moveDir = cameraForward*y+cameraRight*x;
+
+        }
 
     }
 
