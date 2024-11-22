@@ -15,7 +15,7 @@ public class Doorway : MonoBehaviour
     Animator animator;
     
     [SerializeField] float rotSpeed;
-    [SerializeField] bool doorOpen;
+    public bool doorOpen;
     [SerializeField] string whereTo;
     [SerializeField] Color32 colour;
     [SerializeField] float transitionDuration;
@@ -24,6 +24,7 @@ public class Doorway : MonoBehaviour
     [SerializeField] float SpawnDist;
     [SerializeField] bool StateDrivenCameraReset;
     [SerializeField] CinemachineStateDrivenCamera sdc;
+    [SerializeField] Cams startCamera;
     GameSession gs;
     GameObject player;
     //Material mat;
@@ -54,6 +55,8 @@ public class Doorway : MonoBehaviour
         if (StateDrivenCameraReset){
             Animator an =gs.GetComponent<Animator>();
             sdc.m_AnimatedTarget = an;
+            gs.GetComponent<cameraManager>().ChangeCam(startCamera);
+            
             
         }
 

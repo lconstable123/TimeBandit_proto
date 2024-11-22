@@ -36,7 +36,7 @@ public class PlayerController : MonoBehaviour
     private RaycastHit groundslopeHit;
     public bool OnSlopDebug;
     public float SlopeAngleDebug;
-
+    Vector3 force = new();
 
     public LayerMask TerrainLayer;
     Rigidbody rb;
@@ -66,9 +66,14 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GroundProbe(true);
+       // ApplyForce(force);
 
        // if(isClimbing){ClimbLadder2();}
       
+    }
+    void FixedUpdate(){
+        ProcessForce();
+        ProcessSpriteFlip();
     }
 
     void ClimbLadder2()
@@ -189,10 +194,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    void FixedUpdate(){
-        ProcessForce();
-        ProcessSpriteFlip();
-    }
+    
 
     void CalulateMoveMode(){
         float angle = Vector3.Angle(Vector3.up,slopeHit.normal);
@@ -219,7 +221,7 @@ public class PlayerController : MonoBehaviour
         else { return moveDir;}
     }
      void ProcessForce(){
-       Vector3 force = new();
+       
        Quaternion playerrot = transform.rotation;
    
        switch (movingMode){
@@ -235,6 +237,7 @@ public class PlayerController : MonoBehaviour
             rb.drag = groundDrag;
             rb.useGravity = false;
             force = playerSpeed * Time.fixedDeltaTime * moveDir;
+            //Debug.Log(force);
             break;
 
         case MovingMode.ramp:
@@ -254,7 +257,7 @@ public class PlayerController : MonoBehaviour
         default: 
             break;
        }
-        ApplyForce(force);
+       ApplyForce(force);
     }
 
     void ApplyForce(Vector3 force){
