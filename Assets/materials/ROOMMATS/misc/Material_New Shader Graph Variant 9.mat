@@ -43,7 +43,8 @@ Material:
     - _BRIGHTNESS: 1.16
     - _QueueControl: 0
     - _Shiny: 0
-    - _skribble: 1
+    - _skribble: 0.504
     m_Colors:
     - _Color: {r: 0.5568628, g: 0.38419634, b: 0.22352941, a: 0}
+    - _tiling: {r: 1674, g: 5, b: 0, a: 0}
   m_BuildTextureStacks: []

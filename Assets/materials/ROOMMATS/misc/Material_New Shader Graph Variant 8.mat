@@ -40,10 +40,11 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _BRIGHTNESS: 5.7
+    - _BRIGHTNESS: 10.32
     - _QueueControl: 0
-    - _Shiny: 0
-    - _skribble: 1
+    - _Shiny: 0.5
+    - _skribble: 0.251
     m_Colors:
-    - _Color: {r: 0.3773585, g: 0.012459958, b: 0.19462718, a: 0}
+    - _Color: {r: 0.46226418, g: 0.03706836, b: 0.25195226, a: 0}
+    - _tiling: {r: 3535, g: 1144, b: 0, a: 0}
   m_BuildTextureStacks: []
