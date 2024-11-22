@@ -39,15 +39,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _Texture2D:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: f41ecdec482557646853b860f43fcfe8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BRIGHTNESS: 0.75
+    - _BRIGHTNESS: 1.84
     - _QueueControl: 0
-    - _Shiny: 0.612
-    - _skribble: 0.661
+    - _Shiny: 0.515
+    - _skribble: 1
     m_Colors:
     - _Color: {r: 1, g: 0.5122583, b: 0, a: 0}
   m_BuildTextureStacks: []
