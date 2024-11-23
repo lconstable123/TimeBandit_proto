@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float playerHeight = 2f;
     [SerializeField] float jumpPower = 4000000.0f;
     [SerializeField] bool camerBasedMove = false;
+    [SerializeField] float rotationSpeed = 10f;
 
     [Header("navigation")]
     public float XRayoffset= 0.2f;
@@ -66,6 +67,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         GroundProbe(true);
+        
        // ApplyForce(force);
 
        // if(isClimbing){ClimbLadder2();}
@@ -74,6 +76,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate(){
         ProcessForce();
         ProcessSpriteFlip();
+        RotateCharacter();
     }
 
     void ClimbLadder2()
@@ -192,6 +195,20 @@ public class PlayerController : MonoBehaviour
     //     rb.useGravity= true;
     //     rb.drag = 0;
 
+    }
+
+    public void RotateCharacter(){
+        Vector3 direction = new Vector3(x, 0f, y);
+         if (direction.magnitude >= 0.1f)
+        {
+            // Calculate the angle to rotate
+            float targetAngle = Mathf.Atan2(-direction.x, -direction.z) * Mathf.Rad2Deg;
+            
+            // Smoothly rotate the character to face the new direction
+            Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+            rb.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
+            
+        }
     }
 
     

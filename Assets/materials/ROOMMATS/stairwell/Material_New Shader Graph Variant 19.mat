@@ -44,7 +44,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BRIGHTNESS: 1.84
+    - _BRIGHTNESS: 0.04
     - _QueueControl: 0
     - _Shiny: 0.515
     - _skribble: 1

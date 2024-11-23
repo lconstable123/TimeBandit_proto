@@ -37,13 +37,17 @@ Material:
   m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
-    m_TexEnvs: []
+    m_TexEnvs:
+    - _Texture2D:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BRIGHTNESS: 1.16
+    - _BRIGHTNESS: 0.45
     - _QueueControl: 0
     - _Shiny: 0
-    - _skribble: 0.504
+    - _skribble: 1
     m_Colors:
     - _Color: {r: 0.5568628, g: 0.38419634, b: 0.22352941, a: 0}
     - _tiling: {r: 1674, g: 5, b: 0, a: 0}

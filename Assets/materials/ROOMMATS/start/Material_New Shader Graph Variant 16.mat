@@ -41,7 +41,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _QueueControl: 0
-    - _Shiny: 0
+    - _Shiny: 0.623
     m_Colors:
     - _Color: {r: 0.06452473, g: 0.5471698, b: 0.09859385, a: 0}
   m_BuildTextureStacks: []

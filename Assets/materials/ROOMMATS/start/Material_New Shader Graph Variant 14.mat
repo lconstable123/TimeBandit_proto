@@ -40,7 +40,7 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _BRIGHTNESS: 18.35
+    - _BRIGHTNESS: 7.3
     - _QueueControl: 0
     - _Shiny: 1
     - _skribble: 1

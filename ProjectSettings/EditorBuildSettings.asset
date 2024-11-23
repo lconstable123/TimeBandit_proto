@@ -6,13 +6,16 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/StartRoom.unity
-    guid: 140a037bf0057e5409c8a84183118888
+    path: Assets/Scenes/StartRoom nolines.unity
+    guid: 4bf16f4b1efc1dd4cb48df7b84f551ca
   - enabled: 1
-    path: Assets/Scenes/Stairwell.unity
-    guid: 99214a52ea23fb745966cc988335893d
+    path: Assets/Scenes/stairwell_nolines.unity
+    guid: 3380502bf4ab4fb418c1f6f09cc75a39
   - enabled: 1
-    path: Assets/Scenes/Mainroom.unity
+    path: Assets/Scenes/Mainroom nolines.unity
+    guid: a4f8ba25a8f383644a720f0b7a6b991e
+  - enabled: 0
+    path: Assets/Scenes/old/Mainroom.unity
     guid: 14f280ed832ae0945baa7ca3325901db
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e150635e156965946bd25770bf6b8998,
