@@ -72,8 +72,12 @@ public class teleporter : MonoBehaviour
                     }
                     if (dolly != null){ 
                         Debug.Log("dolly found found");
-                        dolly.m_AutoDolly.m_Enabled = false; }
+                        //dolly.m_AutoDolly.m_Enabled = false; 
+                        dolly.m_XDamping=0;
+                        }
                     other.transform.position = whereTo.transform.position;
+                    StartCoroutine(EnableDamping());
+                   //dolly.m_XDamping=1.5f;
                     break;
 
                 default:
@@ -96,6 +100,11 @@ public class teleporter : MonoBehaviour
             //     other.transform.position = whereTo.transform.position;
             // }
 
+        }
+        IEnumerator EnableDamping(){
+            yield return new WaitForSeconds(.5f);
+            // Debug.Log("damped");
+            dolly.m_XDamping=1.5f;
         }
     }
 

@@ -188,7 +188,8 @@ public class PlayerController : MonoBehaviour
     }
 
     public void RotateCharacter(){
-        Vector3 direction = new Vector3(x, 0f, y);
+       // Vector3 direction = new Vector3(x, 0f, y);
+        Vector3 direction = new Vector3(moveDir.x, moveDir.y, moveDir.z);
          if (direction.magnitude >= 0.1f)
         {
             // Calculate the angle to rotate

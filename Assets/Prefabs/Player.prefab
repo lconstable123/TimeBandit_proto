@@ -82,10 +82,10 @@ MonoBehaviour:
   playerHeight: 0.14
   jumpPower: 10
   camerBasedMove: 1
-  rotationSpeed: 10
+  rotationSpeed: 4.19
   XRayoffset: 0.5
   YRayoffset: 0.4
-  probeLength: 0.41
+  probeLength: 0.53
   groundprobelength: 0.73
   groundAhead: 0
   groundBelow: 0
