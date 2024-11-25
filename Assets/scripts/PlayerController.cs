@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        sr = GetComponent<SpriteRenderer>();
+        //sr = GetComponent<SpriteRenderer>();
         cam = Camera.main;
     }
 
@@ -75,7 +75,7 @@ public class PlayerController : MonoBehaviour
     }
     void FixedUpdate(){
         ProcessForce();
-        ProcessSpriteFlip();
+        // ProcessSpriteFlip();
         RotateCharacter();
     }
 
@@ -125,17 +125,7 @@ public class PlayerController : MonoBehaviour
             EndClimbing();};
         };
         }
-            // if (other.gameObject.layer == LayerMask.NameToLayer("Ramp")){
-            // //Debug.Log("ramp");
-            // movingMode = MovingMode.ramp;
-            // touchingRamp = true;
-            // };
-            // if (other.gameObject.layer == LayerMask.NameToLayer("Ground")){
-            //Debug.Log("ramp");
-            //movingMode = MovingMode.ground;
-            //touchingRamp = true;
-           // };
-    
+
     
 
     void GroundProbe( bool debug)
@@ -283,15 +273,15 @@ public class PlayerController : MonoBehaviour
              rb.AddForce(Vector3.down * 100f, ForceMode.Force);
             }
         }
-    void ProcessSpriteFlip(){
-        if (x != 0 && x < 0){
-            sr.flipX=true;
-        }
-        else if (x != 0 && x > 0){
-            sr.flipX=false;
+    // void ProcessSpriteFlip(){
+    //     if (x != 0 && x < 0){
+    //         sr.flipX=true;
+    //     }
+    //     else if (x != 0 && x > 0){
+    //         sr.flipX=false;
 
-        }
-    }
+    //     }
+    // }
 }
 
 //probe ahead
