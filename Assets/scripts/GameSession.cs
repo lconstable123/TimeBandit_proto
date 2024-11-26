@@ -25,16 +25,19 @@ public class GameSession : MonoBehaviour
     [SerializeField] bool useSceneFade;
     ColorAdjustments cAdjust;
     [SerializeField] TextMeshProUGUI inventoryGUI;
+    [SerializeField] TextMeshProUGUI doorStatus;
+    [SerializeField] public TextMeshProUGUI debug;
+    [SerializeField] public TextMeshProUGUI currentLoc;
+        // [SerializeField] public GameObject TimeBandit;
     public Dictionary<string,ItemSO> itemsDict = new();
     public Pickup TakeableObject;
-
     
     Dictionary<string, List<ItemInstance> > ItemsInLevel = new();
 
-
-
-    GameObject player;
+    public GameObject player;
     [SerializeField] GameObject itemPrefab;
+    public int enteredDoor = 0;
+    
 
     public class ItemInstance
 {
@@ -49,45 +52,30 @@ public class GameSession : MonoBehaviour
         this.Loc = loc;
         this.Iteminfo = iteminfo;
         this.Level = level;
-    }
+    } 
 }
-
 
     void Awake()
     {
         Singleton();
     }
     void Start(){
-        if(ppvol.profile.TryGet(out cAdjust)){
-          //  Debug.Log("found post effect");
-        } else {
-          //  Debug.Log("could not find effect");  
-        }
-    player = FindObjectOfType<PlayerController>().gameObject;
+        // if(ppvol.profile.TryGet(out cAdjust)){
+        //   //  Debug.Log("found post effect");
+        // } else {
+        //   //  Debug.Log("could not find effect");  
+        // }
+    //player = FindObjectOfType<PlayerController>().gameObject;
     }
 
     void Update(){
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button1) ){
-            if(TakeableObject!= null){
-            TakeableObject.PickupObject();
-            } else{
-            DropObject();}
-        }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button0)){
-            Debug.Log("joy0");
-        }
-         //if (Input.GetKeyDown(KeyCode.Joystick1Button1)){
-          //  Debug.Log("joy1");
-        //}
-        if (Input.GetKeyDown(KeyCode.Joystick1Button2)){
-            Debug.Log("joy2");
-        }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button3)){
-            Debug.Log("joy3");
-        }
-        if (Input.GetKeyDown(KeyCode.Joystick1Button4)){
-            Debug.Log("joy4");
-        }
+        // if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.Joystick1Button1) ){
+        //     if(TakeableObject!= null){
+        //     TakeableObject.PickupObject();
+        //     } else{
+        //     DropObject();}
+        // }
+       doorStatus.text = enteredDoor.ToString();
     }
 
     private void Singleton()
@@ -111,7 +99,6 @@ public class GameSession : MonoBehaviour
         Destroy(gameObject);
     }
     
-
     private void DebugInv()
     {
         string subs = "";
@@ -148,7 +135,6 @@ public class GameSession : MonoBehaviour
         SceneManager.LoadScene(whereTo);
         }
     }
-
     IEnumerator ILeaveScene(string whereTo){
                 Debug.Log("entered doorway");
                 StoreObjectStates();
@@ -211,8 +197,7 @@ public class GameSession : MonoBehaviour
             //Debug.Log(p.objectId);
         }
     }
-
-   public void SetSceneInitialised(){
+    public void SetSceneInitialised(){
     string sceneName = GetSceneName();
     if (!scenesInitialised.Contains(sceneName)){
         scenesInitialised.Add(sceneName);
@@ -223,11 +208,10 @@ public class GameSession : MonoBehaviour
         StoreObjectStates();
     }
    }
-   public bool IsSceneInitialised(){
+    public bool IsSceneInitialised(){
         return scenesInitialised.Contains(GetSceneName());
    }
-
-   public void StoreObjectStates(){
+    public void StoreObjectStates(){
         
         List<ItemInstance> localPopulatedPickups = new();
         
@@ -248,7 +232,6 @@ public class GameSession : MonoBehaviour
         ItemsInLevel[GetSceneName()] = localPopulatedPickups;
         Debug.Log("storing "+ localPopulatedPickups.Count + " items in " + GetSceneName() ); 
    }
-
     public void PopulateObjectStates(){
         Pickup [] existingPickups = FindObjectsOfType<Pickup>();
         foreach (Pickup p in existingPickups){
@@ -264,13 +247,15 @@ public class GameSession : MonoBehaviour
           gP.SetItem(item.Iteminfo);
         }
     }
-
-   string GetSceneName(){
+    string GetSceneName(){
     return SceneManager.GetActiveScene().name;
    }
-    
-  
-
-
+    public int GetDoorEntered(){
+        return enteredDoor;
+    }
+    public void SetDoorEntered(int door){
+        enteredDoor = door;
+       Debug.Log("setting door to " + enteredDoor);
+    }
 }
 

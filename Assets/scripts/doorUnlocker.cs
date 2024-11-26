@@ -20,6 +20,7 @@ public class doorUnlocker : MonoBehaviour
         if (other.CompareTag("Player")){
             foreach (Doorway doorway in doorsToUnlock){
                 doorway.doorOpen=true;
+                
             }
             //doorToUnlock.doorOpen = true;
         }

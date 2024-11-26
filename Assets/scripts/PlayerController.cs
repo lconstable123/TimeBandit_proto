@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("locomotion")]
     [SerializeField] float playerSpeed = 400000.0f;
-    [SerializeField] float groundDist = 1.5f;
+   // [SerializeField] float groundDist = 1.5f;
     [SerializeField] float groundDrag;
     [SerializeField] float playerHeight = 2f;
     [SerializeField] float jumpPower = 4000000.0f;
