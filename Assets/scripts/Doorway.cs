@@ -73,7 +73,9 @@ public class Doorway : MonoBehaviour
                 Animator an =gs.GetComponent<Animator>();
                 sdc.m_AnimatedTarget = an;
                 sdc.m_DefaultBlend.m_Time = 0f;
-                gs.GetComponent<cameraManager>().ChangeCam(startCamera);    
+                gs.GetComponent<cameraManager>().ChangeCam(startCamera);   
+                StartCoroutine(ResetCameraDelay()); 
+                //sdc.m_DefaultBlend.m_Time = 2f;
                 
             }
                 //sdc.m_DefaultBlend.m_Time = 0f;
@@ -94,6 +96,11 @@ public class Doorway : MonoBehaviour
             return spawnPos;
 
 
+   }
+
+   IEnumerator ResetCameraDelay(){
+    yield return new WaitForSeconds(2);
+    sdc.m_DefaultBlend.m_Time = 2f;
    }
 
    

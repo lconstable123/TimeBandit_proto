@@ -41,19 +41,19 @@ public class cameraManager : MonoBehaviour
             case(Cams.cam1):
               //  animator.SetTrigger("cam1");
                 animator.SetInteger("cam",1);
-                Debug.Log("cam1");
+                // Debug.Log("cam1");
                 break;
             
             case(Cams.cam2):
                 //animator.SetTrigger("cam2");
                 animator.SetInteger("cam",2);
-                Debug.Log("cam2");
+                // Debug.Log("cam2");
                 break;
             
             case(Cams.cam3):
                // animator.SetTrigger("cam3");
                animator.SetInteger("cam",3);
-                Debug.Log("cam3");
+                // Debug.Log("cam3");
                 break;
 
             case(Cams.cam4):
