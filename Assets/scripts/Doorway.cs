@@ -52,6 +52,8 @@ public class Doorway : MonoBehaviour
         if (other.CompareTag("Player")){
             if (doorOpen){
                 gs.SetDoorEntered(doorToId);
+                
+                
                 gs.LeaveScene(whereTo);   
 
             } 
@@ -65,6 +67,19 @@ public class Doorway : MonoBehaviour
    
    public Vector3 ProcessSpawn(){
             player = FindObjectOfType<PlayerController>().gameObject;
+
+               if (StateDrivenCameraReset){
+                gs = GameSession.Persistent;
+                Animator an =gs.GetComponent<Animator>();
+                sdc.m_AnimatedTarget = an;
+                sdc.m_DefaultBlend.m_Time = 0f;
+                gs.GetComponent<cameraManager>().ChangeCam(startCamera);    
+                
+            }
+                //sdc.m_DefaultBlend.m_Time = 0f;
+                
+                //cinemachineBrain.m_DefaultBlend.m_Time = blendTime;
+            
             if (player == null){
                // gs.debug.text = "no player found";
                // Debug.Log("no player found");
@@ -75,12 +90,7 @@ public class Doorway : MonoBehaviour
             spawnPos += new Vector3(0f,SpwanHeight,0f);
             
 
-            if (StateDrivenCameraReset){
-                gs = GameSession.Persistent;
-                Animator an =gs.GetComponent<Animator>();
-                sdc.m_AnimatedTarget = an;
-                gs.GetComponent<cameraManager>().ChangeCam(startCamera);    
-            }
+         
             return spawnPos;
 
 
