@@ -764,7 +764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorId: 0
   doorOpen: 0
-  whereTo: StartRoom nolines
+  whereTo: Hallway_1
   doorToId: 1
   transitionDuration: 0
   SpwanHeight: 0
@@ -3753,7 +3753,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360199262}
-  m_LocalRotation: {x: 0.014967974, y: -0.057120956, z: 0.00085647975, w: 0.9982547}
+  m_LocalRotation: {x: 0.014973825, y: -0.049836993, z: 0.0007472631, w: 0.9986448}
   m_LocalPosition: {x: -17.58, y: 4.1260004, z: -33.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4517,7 +4517,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548636252}
-  m_LocalRotation: {x: 0.014967974, y: -0.057120956, z: 0.00085647975, w: 0.9982547}
+  m_LocalRotation: {x: 0.014973825, y: -0.049836993, z: 0.0007472631, w: 0.9986448}
   m_LocalPosition: {x: -17.58, y: 4.1260004, z: -33.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
