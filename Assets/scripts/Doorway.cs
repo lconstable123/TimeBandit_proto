@@ -24,6 +24,7 @@ public class Doorway : MonoBehaviour
 
     [Header("Spawn Tweaking")]
     //[SerializeField] bool isSpawn;
+    [SerializeField] public float SpawnVel;
     [SerializeField] float SpwanHeight;
     [SerializeField] float SpawnDist;
 

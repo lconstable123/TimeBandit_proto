@@ -79,7 +79,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 16664
   groundDrag: 7
-  playerHeight: 0.14
+  playerHeight: 0.1
   jumpPower: 10
   camerBasedMove: 1
   rotationSpeed: 4.19
@@ -149,9 +149,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.21
-  m_Height: 1.09
+  m_Height: 0.99
   m_Direction: 1
-  m_Center: {x: 0.02, y: 0.03, z: 0}
+  m_Center: {x: 0.019999994, y: 0.01, z: 1.12797105e-10}
 --- !u!114 &7929578003236939414
 MonoBehaviour:
   m_ObjectHideFlags: 0

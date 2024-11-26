@@ -767,6 +767,7 @@ MonoBehaviour:
   whereTo: Hallway_1
   doorToId: 1
   transitionDuration: 0
+  SpawnVel: 3000
   SpwanHeight: 0
   SpawnDist: 0
   StateDrivenCameraReset: 0
@@ -800,14 +801,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404139299}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.9995613, z: -0, w: 0.029619398}
   m_LocalPosition: {x: 0.86, y: -0.092, z: 3.777}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1176901484}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 176.605, z: 0}
 --- !u!114 &404139303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1889,6 +1890,7 @@ MonoBehaviour:
   whereTo: Mainroom nolines
   doorToId: 0
   transitionDuration: 0
+  SpawnVel: 0
   SpwanHeight: 0
   SpawnDist: 0
   StateDrivenCameraReset: 0
