@@ -69,7 +69,14 @@ public class PlayerController : MonoBehaviour
         GroundProbe(true);
         
        // ApplyForce(force);
-
+        if (Input.GetKeyDown(KeyCode.Escape)){
+            #if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+        #else
+            // If we are in a build, quit the game
+            Application.Quit();
+        #endif
+        }
        // if(isClimbing){ClimbLadder2();}
       
     }
