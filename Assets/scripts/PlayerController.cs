@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpPower = 4000000.0f;
     [SerializeField] bool camerBasedMove = false;
     [SerializeField] float rotationSpeed = 10f;
+    [SerializeField] float slopeUp = 20f;
 
     [Header("navigation")]
     public float XRayoffset= 0.2f;
@@ -150,10 +151,10 @@ public class PlayerController : MonoBehaviour
             groundBelow = Physics.Raycast(transform.position, Vector3.down, out groundslopeHit,  groundprobelength, TerrainLayer);
             steppable = Physics.Raycast(startray, Vector3.down, out slopeHit,  probeLength-steppableLength, TerrainLayer);
             CalulateMoveMode();
-            
+            //Debug.DrawRay(transform.position,slopeMove);
 
             // if (debug){Debug.DrawRay(startray, Vector3.down*probeLength);}
-            if (debug){Debug.DrawRay(startray, Vector3.down*(probeLength-steppableLength));}
+            //if (debug){Debug.DrawRay(startray, Vector3.down*(probeLength-steppableLength));}
             // if (debug){Debug.DrawRay(transform.position, Vector3.down*groundprobelength);}
            // if (debug){Debug.DrawRay(transform.position,Vector3.down*groundprobelength);}
         }
@@ -217,7 +218,7 @@ public class PlayerController : MonoBehaviour
     
 
     void CalulateMoveMode(){
-        float angle = Vector3.Angle(Vector3.up,slopeHit.normal);
+        float angle = Vector3.Angle(Vector3.up,groundslopeHit.normal);
         SlopeAngleDebug = angle;
 
         if (isClimbing){
@@ -238,7 +239,7 @@ public class PlayerController : MonoBehaviour
     
     }
     private Vector3 GetSlopeMoveDirection(){
-        return Vector3.ProjectOnPlane(moveDir,slopeHit.normal).normalized;
+        return Vector3.ProjectOnPlane(moveDir,groundslopeHit.normal).normalized;
     }
 
     private Vector3 GetLadderMoveDirection(){
@@ -278,9 +279,15 @@ public class PlayerController : MonoBehaviour
         case MovingMode.ramp:
             rb.drag = groundDrag;
             rb.useGravity = false;
+            Vector3 slopeMove = GetSlopeMoveDirection(); 
+            //Debug.DrawLine(transform.position,slopeMove);
+            //Debug.DrawRay(transform.position,slopeMove);
+            // if (slopeMove.y > 0){
+            //     slopeMove += (Vector3.up*slopeUp);
+            // }
             //rb.AddForce(Vector3.up * 100f, ForceMode.Force);
            // rb.AddForce(Vector3.down * 100f, ForceMode.Force);
-            force = playerSpeed * Time.fixedDeltaTime * GetSlopeMoveDirection(); 
+            force = playerSpeed * Time.fixedDeltaTime * slopeMove; 
             break;
 
         case MovingMode.falling:
