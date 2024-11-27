@@ -83,12 +83,13 @@ MonoBehaviour:
   jumpPower: 10
   camerBasedMove: 1
   rotationSpeed: 4.19
-  XRayoffset: 0.5
-  YRayoffset: 0.4
-  probeLength: 0.53
+  XRayoffset: 0.3
+  probeLength: 0.54
+  steppableLength: 0.1
   groundprobelength: 0.73
   groundAhead: 0
   groundBelow: 0
+  steppable: 0
   maxSlopeAngle: 54
   OnSlopDebug: 1
   SlopeAngleDebug: 0
@@ -149,9 +150,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.21
-  m_Height: 0.99
+  m_Height: 1.0558228
   m_Direction: 1
-  m_Center: {x: 0.019999994, y: 0.01, z: 1.12797105e-10}
+  m_Center: {x: 0.019999994, y: 0.047088612, z: 1.12797105e-10}
 --- !u!114 &7929578003236939414
 MonoBehaviour:
   m_ObjectHideFlags: 0

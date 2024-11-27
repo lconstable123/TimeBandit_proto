@@ -24,11 +24,13 @@ public class PlayerController : MonoBehaviour
 
     [Header("navigation")]
     public float XRayoffset= 0.2f;
-    public float YRayoffset = 0.4f;
+
     public float probeLength = 0.3f;
+    public float steppableLength = 0.3f;
     public float groundprobelength = 1f;
     public bool groundAhead;
     public bool groundBelow;
+    public bool steppable;
     Camera cam;
 
     [Header("Slope handling")]
@@ -53,7 +55,8 @@ public class PlayerController : MonoBehaviour
         ground = 1,
         ramp=2,
         falling=3,
-        climbing=4
+        climbing=4,
+        stepping=5
     }
     public MovingMode movingMode;
 
@@ -139,17 +142,19 @@ public class PlayerController : MonoBehaviour
         {
         
            float xOffset = (Mathf.Abs(x)*XRayoffset) ;
-           float yOffset = (Mathf.Abs(y)*YRayoffset);
-           Vector3 off = new (moveDir.x*xOffset*XRayoffset,0,moveDir.z*yOffset*YRayoffset);
+           float yOffset = (Mathf.Abs(y)*XRayoffset);
+           Vector3 off = new (moveDir.x*xOffset,0,moveDir.z*yOffset);
            Vector3 heightOffset = new(0,playerHeight*0.5f,0);
            Vector3 startray = transform.position + off;
             groundAhead = Physics.Raycast(startray, Vector3.down, out slopeHit,  probeLength, TerrainLayer);
             groundBelow = Physics.Raycast(transform.position, Vector3.down, out groundslopeHit,  groundprobelength, TerrainLayer);
-
+            steppable = Physics.Raycast(startray, Vector3.down, out slopeHit,  probeLength-steppableLength, TerrainLayer);
             CalulateMoveMode();
             
 
-            if (debug){Debug.DrawRay(startray, Vector3.down*probeLength);}
+            // if (debug){Debug.DrawRay(startray, Vector3.down*probeLength);}
+            if (debug){Debug.DrawRay(startray, Vector3.down*(probeLength-steppableLength));}
+            // if (debug){Debug.DrawRay(transform.position, Vector3.down*groundprobelength);}
            // if (debug){Debug.DrawRay(transform.position,Vector3.down*groundprobelength);}
         }
 
@@ -218,13 +223,19 @@ public class PlayerController : MonoBehaviour
         if (isClimbing){
             // if on ladder
             movingMode = MovingMode.climbing;
+            return;
         } else if (!groundBelow && !groundAhead){
             movingMode = MovingMode.falling;
-        } else {
-            if (angle < maxSlopeAngle && angle != 0 ){
-                movingMode = MovingMode.ramp;
-            } else {movingMode = MovingMode.ground;}; 
-    }
+            return;
+        } else if ( angle != 0  && angle < maxSlopeAngle ){
+            movingMode = MovingMode.ramp;
+            return;
+        } else if (groundAhead && steppable){
+            movingMode = MovingMode.stepping;
+            return;
+        }
+            else {movingMode = MovingMode.ground;}; 
+    
     }
     private Vector3 GetSlopeMoveDirection(){
         return Vector3.ProjectOnPlane(moveDir,slopeHit.normal).normalized;
@@ -247,10 +258,19 @@ public class PlayerController : MonoBehaviour
             break;
 
         case MovingMode.ground:
-
-        
             rb.drag = groundDrag;
             rb.useGravity = false;
+            
+            force = playerSpeed * Time.fixedDeltaTime * moveDir + (Vector3.down * 100f);
+            //Debug.Log(force);
+            rb.AddForce(Vector3.down * 20f, ForceMode.Force);
+            break;
+
+          case MovingMode.stepping:
+            rb.drag = groundDrag;
+            rb.useGravity = false;
+            //rb.position += new Vector3(0f,.1f,0f);
+            moveDir+= new Vector3(0f,.1f,0f);
             force = playerSpeed * Time.fixedDeltaTime * moveDir;
             //Debug.Log(force);
             break;
@@ -258,6 +278,8 @@ public class PlayerController : MonoBehaviour
         case MovingMode.ramp:
             rb.drag = groundDrag;
             rb.useGravity = false;
+            //rb.AddForce(Vector3.up * 100f, ForceMode.Force);
+           // rb.AddForce(Vector3.down * 100f, ForceMode.Force);
             force = playerSpeed * Time.fixedDeltaTime * GetSlopeMoveDirection(); 
             break;
 
@@ -277,9 +299,9 @@ public class PlayerController : MonoBehaviour
 
     void ApplyForce(Vector3 force){
             rb.AddForce(force, ForceMode.Force);
-            if(rb.velocity.y > 0 || rb.velocity.z > 0){
-             rb.AddForce(Vector3.down * 100f, ForceMode.Force);
-            }
+            // if(rb.velocity.y > 0){
+            //  rb.AddForce(Vector3.down * 100f, ForceMode.Force);
+            // }
         }
     // void ProcessSpriteFlip(){
     //     if (x != 0 && x < 0){
