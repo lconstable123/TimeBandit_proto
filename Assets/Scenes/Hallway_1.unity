@@ -645,6 +645,7 @@ MonoBehaviour:
   zNormaliser: 0
   teleportZmagnitute: 0
   ParallaxspawnHeight: 0
+  impulse: 0
   teleportMode: 1
   side: 0
 --- !u!65 &318182195
@@ -975,7 +976,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOn: 1
   ChangeToCamera: 1
+  ChangeOut: 0
   ChangeOutCamera: 1
+  HardCut: 0
+  sdc: {fileID: 0}
 --- !u!64 &553350189
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -1389,7 +1393,7 @@ GameObject:
   - component: {fileID: 776877141}
   - component: {fileID: 776877140}
   m_Layer: 0
-  m_Name: Dolly Track (2)
+  m_Name: Dolly Track 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1414,11 +1418,9 @@ MonoBehaviour:
     width: 0.58
   m_Looped: 0
   m_Waypoints:
-  - position: {x: -50.8, y: 3.7363725, z: -3.4881427}
+  - position: {x: -52.06, y: 6.8, z: -3.4881427}
     roll: 0
-  - position: {x: -22.3, y: 3.736372, z: -3.488143}
-    roll: 0
-  - position: {x: -10.74, y: 3.7363725, z: -3.4881501}
+  - position: {x: -8.500001, y: 6.7101927, z: -3.4881463}
     roll: 0
 --- !u!4 &776877141
 Transform:
@@ -1428,7 +1430,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 776877139}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.9511495, y: -0.35877624, z: -103.3154}
+  m_LocalPosition: {x: 0.9511495, y: -1.71, z: -103.3154}
   m_LocalScale: {x: 0.35552126, y: 0.45298234, z: 1.6820558}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2522,7 +2524,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360199262}
   m_LocalRotation: {x: -0.0077666356, y: 0, z: 0, w: 0.99996984}
-  m_LocalPosition: {x: -35.525524, y: 4.81698, z: -21.391617}
+  m_LocalPosition: {x: -36.16063, y: 4.857723, z: -21.391617}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2904,6 +2906,7 @@ MonoBehaviour:
   StateDrivenCameraReset: 1
   sdc: {fileID: 1561304078}
   startCamera: 1
+  returnToFlowCam: 1
 --- !u!65 &1437196055
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3124,7 +3127,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOn: 1
   ChangeToCamera: 1
+  ChangeOut: 0
   ChangeOutCamera: 1
+  HardCut: 0
+  sdc: {fileID: 0}
 --- !u!65 &1473302423
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3226,7 +3232,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548636252}
   m_LocalRotation: {x: -0.0077666356, y: -0, z: -0, w: 0.99996984}
-  m_LocalPosition: {x: -28.665527, y: -0.32694817, z: -3.4761028}
+  m_LocalPosition: {x: -29.300632, y: -0.28620481, z: -3.4761028}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3282,9 +3288,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e769095ae06c1e143a260e11bba4a0e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorId: 1
+  doorId: 0
   doorOpen: 0
-  whereTo: stairwell_nolines
+  whereTo: Redroom
   doorToId: 0
   transitionDuration: 0
   SpawnVel: 54.49
@@ -3293,6 +3299,7 @@ MonoBehaviour:
   StateDrivenCameraReset: 1
   sdc: {fileID: 1561304078}
   startCamera: 1
+  returnToFlowCam: 1
 --- !u!65 &1557320515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3368,34 +3375,34 @@ MonoBehaviour:
   m_Follow: {fileID: 1991340180}
   m_AnimatedTarget: {fileID: 282503084}
   m_LayerIndex: 0
-  m_ShowDebugText: 1
+  m_ShowDebugText: 0
   m_ChildCameras:
   - {fileID: 1548636253}
   - {fileID: 1378871986}
   - {fileID: 2015067333}
   m_Instructions:
   - m_FullHash: 475735122
-    m_VirtualCamera: {fileID: 1548636253}
+    m_VirtualCamera: {fileID: 0}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -812619847
-    m_VirtualCamera: {fileID: 1378871986}
+    m_VirtualCamera: {fileID: 0}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -229292674
-    m_VirtualCamera: {fileID: 2015067333}
+    m_VirtualCamera: {fileID: 0}
     m_ActivateAfter: 0
     m_MinDuration: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 0
+    m_Time: 2
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
+  m_CustomBlends: {fileID: 11400000, guid: bfa8175430e0cbc46b67b18adea7482c, type: 2}
   m_ParentHash:
   - m_Hash: 475735122
     m_ParentHash: 756556552

@@ -5,6 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Cinemachine;
 using UnityEditor.Rendering;
+using System;
 //using CinemachineTrackedDolly;
 
 public class teleporter : MonoBehaviour
@@ -18,6 +19,7 @@ public class teleporter : MonoBehaviour
      [SerializeField] float zNormaliser;
      [SerializeField] float teleportZmagnitute;
      [SerializeField] float ParallaxspawnHeight;
+     [SerializeField] float impulse;
     // [SerializeField] bool LR;
      Vector3 teleportPos;
 
@@ -67,16 +69,26 @@ public class teleporter : MonoBehaviour
 
                 case Mode.teleporter:
                     if (virtualCamera != null){
-                        Debug.Log("cam found");
+                       // Debug.Log("cam found");
                         dolly = virtualCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>();
                     }
                     if (dolly != null){ 
-                        Debug.Log("dolly found found");
+                       // Debug.Log("dolly found found");
                         //dolly.m_AutoDolly.m_Enabled = false; 
                         dolly.m_XDamping=0;
+                        StartCoroutine(EnableDamping());
                         }
+                    
+
+
+
                     other.transform.position = whereTo.transform.position;
-                    StartCoroutine(EnableDamping());
+                    other.transform.rotation = transform.rotation;
+                    Rigidbody rb =other.GetComponent<Rigidbody>();
+                    //if (rb == null){Debug.Log("no");};
+                    Vector3 force = transform.forward* impulse;
+                    rb.AddForce(force, ForceMode.Force);
+                    
                    //dolly.m_XDamping=1.5f;
                     break;
 
@@ -136,6 +148,7 @@ public class teleporter : MonoBehaviour
         
        
         other.transform.position = teleportPos;
+ 
         // dolly.m_AutoDolly.m_Enabled  = true;
     
 }

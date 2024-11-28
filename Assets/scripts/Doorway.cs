@@ -32,8 +32,11 @@ public class Doorway : MonoBehaviour
     [SerializeField] bool StateDrivenCameraReset;
     [SerializeField] CinemachineStateDrivenCamera sdc;
     [SerializeField] Cams startCamera;
+    
+    [SerializeField] bool returnToFlowCam=true;
     GameSession gs;
     GameObject player;
+
 
     void Start()
     {
@@ -75,7 +78,9 @@ public class Doorway : MonoBehaviour
                 sdc.m_AnimatedTarget = an;
                 sdc.m_DefaultBlend.m_Time = 0f;
                 gs.GetComponent<cameraManager>().ChangeCam(startCamera);   
-                StartCoroutine(ResetCameraDelay()); 
+                //if(returnToFlowCam){
+                StartCoroutine(ResetCameraDelay());
+               // }; 
                 //sdc.m_DefaultBlend.m_Time = 2f;
                 
             }

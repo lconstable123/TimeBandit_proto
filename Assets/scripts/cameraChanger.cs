@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using Cinemachine;
 
 public class cameraChanger : MonoBehaviour
 {
@@ -11,7 +12,10 @@ public class cameraChanger : MonoBehaviour
     Cams cams;
     [SerializeField] bool isOn = true;
     [SerializeField] Cams ChangeToCamera;
+    [SerializeField] bool ChangeOut = false;
     [SerializeField] Cams ChangeOutCamera;
+    [SerializeField] bool HardCut;
+    [SerializeField] CinemachineStateDrivenCamera sdc;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,7 +42,13 @@ public class cameraChanger : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("Player" ) && isOn){
            //Debug.Log("enter change");
-            cm.ChangeCam(ChangeToCamera);
+  if (!HardCut){
+          sdc.m_DefaultBlend.m_Time = 2f;
+            
+        } else {
+          sdc.m_DefaultBlend.m_Time = 0f;
+        }
+        cm.ChangeCam(ChangeToCamera);
         }
     }
 //     void OnTriggerStay(Collider other){
@@ -48,9 +58,17 @@ public class cameraChanger : MonoBehaviour
 //         }
 // }
     void OnTriggerExit(Collider other){
+      if (ChangeOut){
         if (other.CompareTag("Player") && isOn ){
        //  Debug.Log("out change");
+         if (!HardCut){
+          sdc.m_DefaultBlend.m_Time = 2f;
+            
+        } else {
+          sdc.m_DefaultBlend.m_Time = 0f;
+        }
             cm.ChangeCam(ChangeOutCamera);
         }
+    }
     }
 }
