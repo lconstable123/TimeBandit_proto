@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float jumpPower = 4000000.0f;
     [SerializeField] bool camerBasedMove = false;
     [SerializeField] float rotationSpeed = 10f;
-    [SerializeField] float slopeUp = 20f;
+   // [SerializeField] float slopeUp = 20f;
 
     [Header("navigation")]
     public float XRayoffset= 0.2f;
@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     public bool groundAhead;
     public bool groundBelow;
     public bool steppable;
+    [SerializeField] bool BoatModeEnbled = false;
+    public bool OnBoat = false;
+    bool nearBoat = false;
     Camera cam;
 
     [Header("Slope handling")]
@@ -45,19 +48,24 @@ public class PlayerController : MonoBehaviour
     public LayerMask TerrainLayer;
     Rigidbody rb;
     SpriteRenderer sr;
+    BoatCtrl boatRef;
     float x,y;
     Vector3 moveDir;
+    Transform originalParent;
 
     private bool isJumping;
     public bool isClimbing;
     public bool touchingRamp;
+    public float boatheight;
 
     public enum MovingMode{
         ground = 1,
         ramp=2,
         falling=3,
         climbing=4,
-        stepping=5
+        stepping=5,
+        riding=6
+
     }
     public MovingMode movingMode;
 
@@ -66,12 +74,18 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //sr = GetComponent<SpriteRenderer>();
         cam = Camera.main;
+        if (BoatModeEnbled){
+            boatRef = FindObjectOfType<BoatCtrl>();
+        }
     }
 
     void Update()
     {
+   
         GroundProbe(true);
-        
+  
+       
+
        // ApplyForce(force);
         if (Input.GetKeyDown(KeyCode.Escape)){
             #if UNITY_EDITOR
@@ -85,9 +99,15 @@ public class PlayerController : MonoBehaviour
       
     }
     void FixedUpdate(){
-        ProcessForce();
-        // ProcessSpriteFlip();
-        RotateCharacter();
+        if (!OnBoat){
+            ProcessForce();
+            RotateCharacter();
+        } else {
+            //Debug.Log("moving boat");
+            boatRef.MoveBoat(moveDir);
+            RotateCharacter();
+
+        }
     }
 
     void ClimbLadder2()
@@ -113,6 +133,9 @@ public class PlayerController : MonoBehaviour
             //movingMode = MovingMode.climbing;
           //  Debug.Log("ladded");
         //};
+        // if (other.gameObject.CompareTag("boat")){
+        //     BoatModeEnbled =true;
+        // }
        
        
     }
@@ -128,6 +151,10 @@ public class PlayerController : MonoBehaviour
             //movingMode = MovingMode.climbing;
             Debug.Log("ladded");
         };
+        // if (other.gameObject.CompareTag("boat")){
+        //     Debug.Log("near boat");
+        //     nearBoat = true;
+        // }
     }
       void OnCollisionExit(Collision other ){
          if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
@@ -135,6 +162,9 @@ public class PlayerController : MonoBehaviour
             Debug.Log("leaving ladder");
             EndClimbing();};
         };
+
+
+
         }
 
     
@@ -151,13 +181,42 @@ public class PlayerController : MonoBehaviour
             groundBelow = Physics.Raycast(transform.position, Vector3.down, out groundslopeHit,  groundprobelength, TerrainLayer);
             steppable = Physics.Raycast(startray, Vector3.down, out slopeHit,  probeLength-steppableLength, TerrainLayer);
             CalulateMoveMode();
-            //Debug.DrawRay(transform.position,slopeMove);
+            
 
-            // if (debug){Debug.DrawRay(startray, Vector3.down*probeLength);}
-            //if (debug){Debug.DrawRay(startray, Vector3.down*(probeLength-steppableLength));}
-            // if (debug){Debug.DrawRay(transform.position, Vector3.down*groundprobelength);}
-           // if (debug){Debug.DrawRay(transform.position,Vector3.down*groundprobelength);}
+            if(BoatModeEnbled && !OnBoat && movingMode != MovingMode.falling){
+             if (groundslopeHit.collider.CompareTag("boat")){
+                    parentToBoat();
+                }
+            }
+                
+
+
+
         }
+    void parentToBoat(){
+        movingMode = MovingMode.riding;
+        Debug.Log("parenting to boat");
+        OnBoat=true;
+        rb.isKinematic = true; 
+        originalParent = transform.parent;
+        transform.SetParent(groundslopeHit.collider.gameObject.transform);
+        boatRef.UdockBoat();
+        transform.localPosition = Vector3.zero+Vector3.up*boatheight; 
+        //transform.localRotation = Quaternion.identity;
+    }
+    void unparentFromBoat(){
+        BoatModeEnbled = false;
+        OnBoat=false;
+        rb.isKinematic=false;
+        //movingMode = MovingMode.falling;
+        Debug.Log("removefromboat");
+        transform.SetParent(originalParent);
+        StartCoroutine(BoatWait());
+        boatRef.DockBoat();
+        //rb.velocity += new Vector3(0,jumpPower*100,0);
+        
+    }
+
 
     void OnMove(InputValue move){
         
@@ -181,13 +240,21 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnJump(){
-       // Debug.Log("jump");
+         if(OnBoat){unparentFromBoat();};
        if (movingMode != MovingMode.falling){
+        
+       
+
+    
        rb.velocity += new Vector3(0,jumpPower,0);
         //rb.useGravity= true;
         //rb.drag = 0;
+        
         movingMode = MovingMode.falling;
        }
+    }
+    void OnFire(){
+        Debug.Log("action");
     }
     private void ProcessJump()
     {
@@ -210,14 +277,20 @@ public class PlayerController : MonoBehaviour
             
             // Smoothly rotate the character to face the new direction
             Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
+            if(OnBoat){
+               // boatRef.RotateBoat(targetRotation);
+            } else {
             rb.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
-            
+            }
         }
     }
 
     
 
     void CalulateMoveMode(){
+
+        if (OnBoat){ return; };
+
         float angle = Vector3.Angle(Vector3.up,groundslopeHit.normal);
         SlopeAngleDebug = angle;
 
@@ -297,6 +370,8 @@ public class PlayerController : MonoBehaviour
             
             force = playerSpeed*.01f * Time.fixedDeltaTime * moveDir;
             break;
+        case MovingMode.riding:
+        break;
 
         default: 
             break;
@@ -319,8 +394,13 @@ public class PlayerController : MonoBehaviour
 
     //     }
     // }
-}
 
+
+IEnumerator BoatWait(){
+        yield return new WaitForSeconds(3);
+        BoatModeEnbled =true;
+    }
+}
 //probe ahead
 //probe under
 //if probhead is false
