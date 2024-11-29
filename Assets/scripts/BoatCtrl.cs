@@ -34,7 +34,7 @@ public class BoatCtrl : MonoBehaviour
     public void UdockBoat(){
         rb.constraints &= ~RigidbodyConstraints.FreezePositionZ;
         rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
-       // rb.constraints &= ~RigidbodyConstraints.FreezeRotationY;
+       rb.freezeRotation = true;
     }
 
     public void MoveBoat(Vector3 direction){

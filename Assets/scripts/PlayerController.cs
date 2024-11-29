@@ -208,7 +208,7 @@ public class PlayerController : MonoBehaviour
         //transform.SetParent(groundslopeHit.collider.gameObject.transform);
         transform.SetParent(boatParent);
         boatRef.UdockBoat();
-        transform.localPosition = new Vector3(10.18f,7.27f,-14.9f);
+        transform.localPosition = new Vector3(10.18f,7f,-14.9f);
         transform.localRotation = Quaternion.Euler(0, -88.7f, 0);
         
     }
