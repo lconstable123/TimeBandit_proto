@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
 {
     [Header("locomotion")]
     [SerializeField] float playerSpeed = 400000.0f;
+    public float rota;
    // [SerializeField] float groundDist = 1.5f;
     [SerializeField] float groundDrag;
     [SerializeField] float playerHeight = 2f;
@@ -32,9 +33,11 @@ public class PlayerController : MonoBehaviour
     public bool groundAhead;
     public bool groundBelow;
     public bool steppable;
-    [SerializeField] bool BoatModeEnbled = false;
-    public bool OnBoat = false;
-    bool nearBoat = false;
+    [SerializeField] bool BoatModeAllow = false;
+    public bool ParentedToBoat = false;
+    public bool nearBoat = false;
+    public bool BoatLock = false;
+
     Camera cam;
 
     [Header("Slope handling")]
@@ -48,7 +51,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask TerrainLayer;
     Rigidbody rb;
     SpriteRenderer sr;
-    BoatCtrl boatRef;
+    [SerializeField]  BoatCtrl boatRef;
     float x,y;
     Vector3 moveDir;
     Transform originalParent;
@@ -74,9 +77,12 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //sr = GetComponent<SpriteRenderer>();
         cam = Camera.main;
-        if (BoatModeEnbled){
-            boatRef = FindObjectOfType<BoatCtrl>();
-        }
+        // if (BoatModeAllow){
+        //     boatRef = FindObjectOfType<BoatCtrl>();
+        //     if (boatRef== null){
+        //         Debug.Log("no boat");
+        //     }
+        // }
     }
 
     void Update()
@@ -96,17 +102,15 @@ public class PlayerController : MonoBehaviour
         #endif
         }
        // if(isClimbing){ClimbLadder2();}
-      
+     
     }
     void FixedUpdate(){
-        if (!OnBoat){
+        if (ParentedToBoat){
+            boatRef.MoveBoat(moveDir);
+            
+        } else {
             ProcessForce();
             RotateCharacter();
-        } else {
-            //Debug.Log("moving boat");
-            boatRef.MoveBoat(moveDir);
-            RotateCharacter();
-
         }
     }
 
@@ -128,22 +132,22 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other){
-        //if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
-         //   isClimbing = true;
-            //movingMode = MovingMode.climbing;
-          //  Debug.Log("ladded");
-        //};
-        // if (other.gameObject.CompareTag("boat")){
-        //     BoatModeEnbled =true;
-        // }
-       
+        if (other.gameObject.CompareTag("boat")){
+             if(BoatModeAllow && !ParentedToBoat ){
+                Debug.Log("parenting");
+                parentToBoat();
+        }
+            Debug.Log("near boat");
+            nearBoat = true;
+        }
        
     }
 
     void OnTriggerExit(Collider other){
-   // if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
-     //   if(isClimbing){EndClimbing();};
-    //    };
+    if (other.gameObject.CompareTag("boat")){
+            //Debug.Log("near boat");
+            nearBoat = false;
+        }
     }
     void OnCollisionEnter(Collision other ){
         if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
@@ -151,10 +155,7 @@ public class PlayerController : MonoBehaviour
             //movingMode = MovingMode.climbing;
             Debug.Log("ladded");
         };
-        // if (other.gameObject.CompareTag("boat")){
-        //     Debug.Log("near boat");
-        //     nearBoat = true;
-        // }
+
     }
       void OnCollisionExit(Collision other ){
          if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
@@ -162,6 +163,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log("leaving ladder");
             EndClimbing();};
         };
+        
 
 
 
@@ -182,12 +184,13 @@ public class PlayerController : MonoBehaviour
             steppable = Physics.Raycast(startray, Vector3.down, out slopeHit,  probeLength-steppableLength, TerrainLayer);
             CalulateMoveMode();
             
-
-            if(BoatModeEnbled && !OnBoat && movingMode != MovingMode.falling){
-             if (groundslopeHit.collider.CompareTag("boat")){
-                    parentToBoat();
-                }
-            }
+            //if boat mode is allowed and not parent to the boat and we are falling, parent
+            // if(BoatModeAllow && !ParentedToBoat  ){
+            //  if (groundslopeHit.collider.CompareTag("boat")){
+            //     Debug.Log("parenting");
+            //         parentToBoat();
+            //     }
+            // }
                 
 
 
@@ -196,17 +199,22 @@ public class PlayerController : MonoBehaviour
     void parentToBoat(){
         movingMode = MovingMode.riding;
         Debug.Log("parenting to boat");
-        OnBoat=true;
+        //rb.rotation = Quaternion.Euler(0, 180, 0);
+        ParentedToBoat=true;
+        
         rb.isKinematic = true; 
         originalParent = transform.parent;
-        transform.SetParent(groundslopeHit.collider.gameObject.transform);
+        Transform boatParent = boatRef.parent;
+        //transform.SetParent(groundslopeHit.collider.gameObject.transform);
+        transform.SetParent(boatParent);
         boatRef.UdockBoat();
-        transform.localPosition = Vector3.zero+Vector3.up*boatheight; 
-        //transform.localRotation = Quaternion.identity;
+        transform.localPosition = new Vector3(10.18f,7.27f,-14.9f);
+        transform.localRotation = Quaternion.Euler(0, -88.7f, 0);
+        
     }
     void unparentFromBoat(){
-        BoatModeEnbled = false;
-        OnBoat=false;
+        BoatModeAllow = false;
+        ParentedToBoat=false;
         rb.isKinematic=false;
         //movingMode = MovingMode.falling;
         Debug.Log("removefromboat");
@@ -216,7 +224,6 @@ public class PlayerController : MonoBehaviour
         //rb.velocity += new Vector3(0,jumpPower*100,0);
         
     }
-
 
     void OnMove(InputValue move){
         
@@ -240,31 +247,15 @@ public class PlayerController : MonoBehaviour
     }
 
     void OnJump(){
-         if(OnBoat){unparentFromBoat();};
-       if (movingMode != MovingMode.falling){
-        
-       
+       if(ParentedToBoat && !BoatLock){unparentFromBoat();};
 
-    
+       if (movingMode != MovingMode.falling){
        rb.velocity += new Vector3(0,jumpPower,0);
-        //rb.useGravity= true;
-        //rb.drag = 0;
-        
         movingMode = MovingMode.falling;
        }
     }
     void OnFire(){
         Debug.Log("action");
-    }
-    private void ProcessJump()
-    {
-    //     //rb.AddForce(Vector3.up* jumpPower, ForceMode.Force);
-    //     movingMode = MovingMode.falling;
-    //    // rb.velocity += new Vector3(x*playerSpeed,jumpPower,0);
-    //     rb.velocity += new Vector3(0,jumpPower,0);
-    //     rb.useGravity= true;
-    //     rb.drag = 0;
-
     }
 
     public void RotateCharacter(){
@@ -277,7 +268,7 @@ public class PlayerController : MonoBehaviour
             
             // Smoothly rotate the character to face the new direction
             Quaternion targetRotation = Quaternion.Euler(0f, targetAngle, 0f);
-            if(OnBoat){
+            if(ParentedToBoat){
                // boatRef.RotateBoat(targetRotation);
             } else {
             rb.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.fixedDeltaTime * rotationSpeed);
@@ -289,7 +280,7 @@ public class PlayerController : MonoBehaviour
 
     void CalulateMoveMode(){
 
-        if (OnBoat){ return; };
+        if (ParentedToBoat){ return; };
 
         float angle = Vector3.Angle(Vector3.up,groundslopeHit.normal);
         SlopeAngleDebug = angle;
@@ -304,7 +295,7 @@ public class PlayerController : MonoBehaviour
         } else if ( angle != 0  && angle < maxSlopeAngle ){
             movingMode = MovingMode.ramp;
             return;
-        } else if (groundAhead && steppable){
+        } else if (groundAhead && steppable && !nearBoat){
             movingMode = MovingMode.stepping;
             return;
         }
@@ -385,26 +376,10 @@ public class PlayerController : MonoBehaviour
             //  rb.AddForce(Vector3.down * 100f, ForceMode.Force);
             // }
         }
-    // void ProcessSpriteFlip(){
-    //     if (x != 0 && x < 0){
-    //         sr.flipX=true;
-    //     }
-    //     else if (x != 0 && x > 0){
-    //         sr.flipX=false;
-
-    //     }
-    // }
 
 
 IEnumerator BoatWait(){
         yield return new WaitForSeconds(3);
-        BoatModeEnbled =true;
+        BoatModeAllow =true;
     }
 }
-//probe ahead
-//probe under
-//if probhead is false
-    //check probe under
-    //if both are false player is int air
-//if flat is under, 
-

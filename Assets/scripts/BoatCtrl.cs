@@ -6,6 +6,8 @@ public class BoatCtrl : MonoBehaviour
 {
     Rigidbody rb;
     [SerializeField] float Speed;
+    [SerializeField] public Transform parent;
+    [SerializeField] Transform boatCage;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,13 +22,24 @@ public class BoatCtrl : MonoBehaviour
     public void DockBoat(){
         rb.constraints = RigidbodyConstraints.FreezeAll;
     }
+    public void enableCage(){
+        
+        boatCage.gameObject.SetActive(true);
+    }
+      public void disableCage(){
+        boatCage.gameObject.SetActive(false);
+    }
+
+
     public void UdockBoat(){
         rb.constraints &= ~RigidbodyConstraints.FreezePositionZ;
         rb.constraints &= ~RigidbodyConstraints.FreezePositionX;
+       // rb.constraints &= ~RigidbodyConstraints.FreezeRotationY;
     }
 
     public void MoveBoat(Vector3 direction){
         Vector3 force = direction*Speed;
+        
         rb.AddForce(force, ForceMode.Force);
     }
     public void RotateBoat(Quaternion rot){
