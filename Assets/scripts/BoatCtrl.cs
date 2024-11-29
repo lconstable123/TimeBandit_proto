@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
 public class BoatCtrl : MonoBehaviour
@@ -8,6 +9,8 @@ public class BoatCtrl : MonoBehaviour
     [SerializeField] float Speed;
     [SerializeField] public Transform parent;
     [SerializeField] Transform boatCage;
+
+    public float speed;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +21,17 @@ public class BoatCtrl : MonoBehaviour
     void Update()
     {
         
+    }
+
+    void FixedUpdate(){
+        Vector3 velocity = rb.velocity;
+        speed = velocity.magnitude;
+         if (velocity.magnitude > 7f)
+        {
+            // Normalize the velocity and scale it to the max speed
+            rb.velocity = velocity.normalized * 7f;
+        }
+
     }
     public void DockBoat(){
         rb.constraints = RigidbodyConstraints.FreezeAll;
