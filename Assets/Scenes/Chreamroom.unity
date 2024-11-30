@@ -8830,10 +8830,9 @@ MonoBehaviour:
   SpawnVel: -4722
   SpwanHeight: 0
   SpawnDist: 0
-  StateDrivenCameraReset: 1
   sdc: {fileID: 1561304078}
-  startCamera: 2
-  returnToFlowCam: 0
+  startCamera: 1
+  dollyCamera: {fileID: 881027295}
 --- !u!65 &1437196055
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9821,10 +9820,9 @@ MonoBehaviour:
   SpawnVel: 54.49
   SpwanHeight: 0
   SpawnDist: 0
-  StateDrivenCameraReset: 1
   sdc: {fileID: 1561304078}
   startCamera: 2
-  returnToFlowCam: 1
+  dollyCamera: {fileID: 0}
 --- !u!65 &1557320515
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10880,6 +10878,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggle1: {fileID: 385906907}
   toggle2: {fileID: 761325439}
+  Tag: 
   toggle: 1
 --- !u!65 &1720884938
 BoxCollider:
@@ -11750,6 +11749,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toggle1: {fileID: 385906907}
   toggle2: {fileID: 761325439}
+  Tag: 
   toggle: 0
 --- !u!65 &1915479797
 BoxCollider:

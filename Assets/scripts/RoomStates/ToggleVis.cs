@@ -6,6 +6,7 @@ public class ToggelVis : MonoBehaviour
 {
     [SerializeField] GameObject toggle1;
     [SerializeField] GameObject toggle2;
+    [SerializeField] string Tag = "";
     public bool toggle;
     // Start is called before the first frame update
     void Start()
@@ -19,7 +20,10 @@ public class ToggelVis : MonoBehaviour
         
     }
     void OnTriggerEnter(Collider other){
-        if (other.gameObject.CompareTag("boat")){
+
+        if (Tag != ""){
+
+        if (other.gameObject.CompareTag(Tag)){
             if(toggle){
                 toggle2.SetActive(true);
                 toggle1.SetActive(false);
@@ -31,6 +35,7 @@ public class ToggelVis : MonoBehaviour
 
             }
 
+        }
         }
     }
 }

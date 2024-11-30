@@ -35,6 +35,7 @@ public class cameraManager : MonoBehaviour
     }
 
     public void ChangeCam(Cams changecam){
+        animator = GetComponent<Animator>();
         if(cams != changecam){
             cams = changecam;
         switch (changecam){

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/StartRoom nolines.unity
+    path: Assets/Scenes/StartRoom.unity
     guid: 4bf16f4b1efc1dd4cb48df7b84f551ca
   - enabled: 1
     path: Assets/Scenes/Hallway_1.unity
