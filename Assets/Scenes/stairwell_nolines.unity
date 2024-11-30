@@ -764,7 +764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorId: 0
   doorOpen: 0
-  whereTo: Hallway_1
+  whereTo: StartRoom_nolines
   doorToId: 1
   transitionDuration: 0
   SpawnVel: 3000
@@ -773,6 +773,7 @@ MonoBehaviour:
   StateDrivenCameraReset: 0
   sdc: {fileID: 0}
   startCamera: 0
+  returnToFlowCam: 1
 --- !u!65 &404139301
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -823,7 +824,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isOn: 1
   ChangeToCamera: 1
+  ChangeOut: 0
   ChangeOutCamera: 1
+  HardCut: 0
+  sdc: {fileID: 0}
 --- !u!114 &404139304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1565,6 +1569,7 @@ MonoBehaviour:
   zNormaliser: 23
   teleportZmagnitute: 0.29
   ParallaxspawnHeight: 0
+  impulse: 0
   teleportMode: 3
   side: 0
 --- !u!65 &631272006
@@ -1887,7 +1892,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorId: 4
   doorOpen: 0
-  whereTo: Mainroom nolines
+  whereTo: Chreamroom
   doorToId: 0
   transitionDuration: 0
   SpawnVel: 0
@@ -1895,7 +1900,8 @@ MonoBehaviour:
   SpawnDist: 0
   StateDrivenCameraReset: 0
   sdc: {fileID: 0}
-  startCamera: 0
+  startCamera: 1
+  returnToFlowCam: 1
 --- !u!65 &695553097
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3755,7 +3761,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360199262}
-  m_LocalRotation: {x: 0.014973825, y: -0.049836993, z: 0.0007472631, w: 0.9986448}
+  m_LocalRotation: {x: 0.0149678, y: -0.05732504, z: 0.00085953996, w: 0.99824303}
   m_LocalPosition: {x: -17.58, y: 4.1260004, z: -33.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4519,7 +4525,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548636252}
-  m_LocalRotation: {x: 0.014973825, y: -0.049836993, z: 0.0007472631, w: 0.9986448}
+  m_LocalRotation: {x: 0.0149678, y: -0.05732504, z: 0.00085953996, w: 0.99824303}
   m_LocalPosition: {x: -17.58, y: 4.1260004, z: -33.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

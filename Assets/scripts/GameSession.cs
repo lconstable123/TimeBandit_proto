@@ -255,7 +255,7 @@ public class GameSession : MonoBehaviour
     }
     public void SetDoorEntered(int door){
         enteredDoor = door;
-       //Debug.Log("setting door to " + enteredDoor);
+
     }
 }
 

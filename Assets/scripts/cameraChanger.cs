@@ -10,38 +10,29 @@ public class cameraChanger : MonoBehaviour
     GameSession gs;
     cameraManager cm;
     Cams cams;
+    [Header("states")]
     [SerializeField] bool isOn = true;
     [SerializeField] Cams ChangeToCamera;
     [SerializeField] bool ChangeOut = false;
     [SerializeField] Cams ChangeOutCamera;
+    [Header("transitions")]
     [SerializeField] bool HardCut;
     [SerializeField] CinemachineStateDrivenCamera sdc;
-    // Start is called before the first frame update
+
     void Start()
     {
       gs = GameSession.Persistent;
       if (gs==null){
-        Debug.Log("gmaeobe not ofund");
       }  
       cm = gs.GetComponent<cameraManager>();
        if (cm==null){
-        Debug.Log("camMonager not ofund");
       }  
-      //cm = FindObjectOfType<cameraManager>();
-    }
-    void Update(){
-       // if (Input.GetKeyDown(KeyCode.Alpha3)){
-        //    Debug.Log("pressed");
-          // cm.ChangeCam(Cams.followcam);
-       // }
-
-
 
     }
     
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("Player" ) && isOn){
-           //Debug.Log("enter change");
+
   if (!HardCut){
           sdc.m_DefaultBlend.m_Time = 2f;
             
@@ -51,16 +42,11 @@ public class cameraChanger : MonoBehaviour
         cm.ChangeCam(ChangeToCamera);
         }
     }
-//     void OnTriggerStay(Collider other){
-//         if (other.CompareTag("Player")){
-//           Debug.Log("change coamera volume " + ChangeToCamera.ToString());
-//             cm.ChangeCam(ChangeToCamera);
-//         }
-// }
+
     void OnTriggerExit(Collider other){
       if (ChangeOut){
         if (other.CompareTag("Player") && isOn ){
-       //  Debug.Log("out change");
+
          if (!HardCut){
           sdc.m_DefaultBlend.m_Time = 2f;
             
