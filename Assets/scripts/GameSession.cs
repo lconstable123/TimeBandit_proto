@@ -75,7 +75,7 @@ public class GameSession : MonoBehaviour
         //     } else{
         //     DropObject();}
         // }
-       doorStatus.text = enteredDoor.ToString();
+      // doorStatus.text = enteredDoor.ToString();
     }
 
     private void Singleton()
