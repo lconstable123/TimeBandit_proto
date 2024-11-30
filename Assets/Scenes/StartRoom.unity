@@ -3406,7 +3406,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1437196052}
   m_LocalRotation: {x: -0, y: -0.0037023746, z: -0, w: 0.9999932}
-  m_LocalPosition: {x: -12.890001, y: -8.34, z: -16.6}
+  m_LocalPosition: {x: -6.43, y: -8.34, z: 12.9}
   m_LocalScale: {x: 1.9449, y: 3.8485, z: 0.67725}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3702,7 +3702,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorId: 1
   doorOpen: 0
-  whereTo: stairwell_nolines
+  whereTo: Chreamroom
   doorToId: 0
   transitionDuration: 0
   SpawnVel: 3052
@@ -3710,7 +3710,7 @@ MonoBehaviour:
   SpawnDist: 0
   sdc: {fileID: 1561304078}
   startCamera: 3
-  dollyCamera: {fileID: 0}
+  dollyCamera: {fileID: 1548636253}
 --- !u!65 &1557320515
 BoxCollider:
   m_ObjectHideFlags: 0

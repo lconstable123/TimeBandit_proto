@@ -19,6 +19,7 @@ public class cameraChanger : MonoBehaviour
     [SerializeField] bool HardCut;
     [SerializeField] CinemachineStateDrivenCamera sdc;
 
+
     void Start()
     {
       gs = GameSession.Persistent;

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using System.Runtime.CompilerServices;
 using Cinemachine;
 
 using UnityEngine;
-
+using UnityEngine.Animations;
 using UnityEngine.SceneManagement;
 
 public class Doorway : MonoBehaviour
@@ -32,12 +33,17 @@ public class Doorway : MonoBehaviour
     [SerializeField] CinemachineStateDrivenCamera sdc;
     [SerializeField] Cams startCamera;
 
-    [Header("Set Dolly")]
+    [Header("Set Dolly and Aim")]
     [SerializeField] CinemachineVirtualCamera dollyCamera = null;
+    
 
     GameSession gs;
     private float DollyDamping; 
+    float ComposerXDamping;
+    float ComposerYDamping;
     private CinemachineTrackedDolly dolly;
+    CinemachineComposer comp;
+    
     void Start()
     {
         gs = GameSession.Persistent;
@@ -59,9 +65,15 @@ public class Doorway : MonoBehaviour
 
         if (sdc != null)
         {
-            ResetSDC();
-            StartCoroutine(ResetCameraDelay());
+            ResetSDC();  
+            StartCoroutine(IRestore());
         }
+               
+        if (dollyCamera != null){
+            ResetDolly();
+            StartCoroutine(IRestore());
+        }
+
 
         Vector3 spawnPos = transform.position-transform.forward*SpawnDist;
         spawnPos += new Vector3(0f,SpwanHeight,0f);
@@ -69,20 +81,22 @@ public class Doorway : MonoBehaviour
    }
 
 
-void SetDolly(){
-   
+void ResetDolly(){
    dolly = dollyCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>();
    dolly.m_AutoDolly.m_Enabled = true;
    DollyDamping = dolly.m_XDamping;
    dolly.m_XDamping=0;
+   comp = dollyCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineComposer>();
+    if (comp != null){
+   ComposerXDamping = comp.m_VerticalDamping;
+   ComposerYDamping = comp.m_HorizontalDamping;
+   comp.m_VerticalDamping = 0;
+   comp.m_HorizontalDamping = 0;
+    }
+
+   
                    
-
-
 }
-
-
-
-
 
     private void ResetSDC()
     {
@@ -92,21 +106,21 @@ void SetDolly(){
         sdc.m_DefaultBlend.m_Time = 0f;
 
         gs.GetComponent<cameraManager>().ChangeCam(startCamera);
-
-        if (dollyCamera!=null){
-            SetDolly();
-        }
-
-    }
-
-    IEnumerator ResetCameraDelay(){
-    yield return new WaitForSeconds(2);
-    sdc.m_DefaultBlend.m_Time = 2f;
-
-    if (dollyCamera != null){
         
-        dolly.m_XDamping=DollyDamping;
     }
+
+    IEnumerator IRestore(){
+    yield return new WaitForSeconds(2);
+
+        if (sdc !=null){sdc.m_DefaultBlend.m_Time = 2f;};
+        if (dollyCamera != null){
+            dolly.m_XDamping = DollyDamping;
+            
+            }
+        if (comp != null){
+            comp.m_VerticalDamping = ComposerXDamping;
+            comp.m_HorizontalDamping = ComposerYDamping;
+        }
    }
 
    public void BruteLoadScene(){
