@@ -83,9 +83,10 @@ public class Doorway : MonoBehaviour
 
 void ResetDolly(){
    dolly = dollyCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>();
-   dolly.m_AutoDolly.m_Enabled = true;
+   
    DollyDamping = dolly.m_XDamping;
    dolly.m_XDamping=0;
+   
    comp = dollyCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineComposer>();
     if (comp != null){
    ComposerXDamping = comp.m_VerticalDamping;
@@ -93,7 +94,7 @@ void ResetDolly(){
    comp.m_VerticalDamping = 0;
    comp.m_HorizontalDamping = 0;
     }
-
+dolly.m_AutoDolly.m_Enabled = true;
    
                    
 }
