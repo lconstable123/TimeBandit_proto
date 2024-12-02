@@ -14,7 +14,9 @@ public class TB_animator : MonoBehaviour
         idle=1,
         walking=2,
         running=3,
-        sleeping=4
+        sleeping=4,
+        looking=5,
+        rowing=6
     }
     [SerializeField] AnimPlaying a;
    
@@ -57,6 +59,10 @@ public class TB_animator : MonoBehaviour
        // Debug.Log("waking animation");
         animator.SetBool("isWake",true);
     }
+    public void Look(){
+        
+        SwitchAnim(AnimPlaying.looking);
+    }
 
 
     void SwitchAnim(AnimPlaying anim){
@@ -65,6 +71,7 @@ public class TB_animator : MonoBehaviour
                 animator.SetBool("isIdle", true);
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
+                // animator.SetBool("isLooking", false);
                 //animator.SetBool("isWake",true);
                 
                 break;
@@ -73,6 +80,7 @@ public class TB_animator : MonoBehaviour
                 animator.SetBool("isIdle", false);
                 animator.SetBool("isWalking", true);
                 animator.SetBool("isRunning", false);
+                animator.SetBool("isLooking", false);
                 //animator.SetBool("isWake",true);
                 break;
 
@@ -81,6 +89,7 @@ public class TB_animator : MonoBehaviour
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", true);
                 animator.SetBool("isWake",true);
+                animator.SetBool("isLooking", false);
                 break;
             case AnimPlaying.sleeping:
                 // an.SetTrigger("sleepNow");
@@ -88,9 +97,21 @@ public class TB_animator : MonoBehaviour
                 animator.SetBool("isWake",false);
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
-                animator.SetBool("isRunning", false);
-            break;
-
+                animator.SetBool("isIdle", false);
+                animator.SetBool("isLooking", false);
+                break;
+            case AnimPlaying.looking:
+                // an.SetTrigger("sleepNow");
+                // Debug.Log("firstsleep");
+                // animator.SetBool("isWake",true);
+                // animator.SetBool("isWalking", false);
+                // animator.SetBool("isRunning", false);
+                // animator.SetBool("isIdle", false);
+                Debug.Log("loook");
+                animator.SetBool("isLooking", true);
+                break;
+            case AnimPlaying.rowing:
+                break;
             default:
                 break;
 

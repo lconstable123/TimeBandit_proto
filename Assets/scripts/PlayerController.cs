@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotationSpeed = 10f;
     public bool controlsSoftLocked = false;
     public bool controlsHardLocked = false;
+    IdleTimeOut to;
    // [SerializeField] float slopeUp = 20f;
 
     [Header("navigation")]
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     public bool groundAhead;
     public bool groundBelow;
     public bool steppable;
+    public bool FlipXInput = false;
     [SerializeField] bool BoatModeAllow = false;
     public bool ParentedToBoat = false;
     public bool nearBoat = false;
@@ -82,6 +84,10 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         tbAn = GetComponent<TB_animator>();
+        to = GetComponent<IdleTimeOut>();
+        if (to == null){
+            Debug.Log("attach a timeout to the player");
+        }
         //sr = GetComponent<SpriteRenderer>();
         cam = Camera.main;
         // if (BoatModeAllow){
@@ -160,6 +166,9 @@ public class PlayerController : MonoBehaviour
         }
   
     void OnMove(InputValue move){
+        
+        to.ResetTimer();
+
         if (!controlsHardLocked){
             if (movingMode == MovingMode.sleeping)
                 {StartCoroutine(wakeUp());}
@@ -175,6 +184,9 @@ public class PlayerController : MonoBehaviour
  
 
     void OnJump(){
+
+        to.ResetTimer();
+        
         if (!controlsHardLocked){
         if (movingMode == MovingMode.sleeping)
             {
@@ -293,7 +305,16 @@ public class PlayerController : MonoBehaviour
     {
         x = move.Get<Vector2>().x;
         y = move.Get<Vector2>().y;
+    if (FlipXInput){
+        x = x*-1;
+        y = y*-1;
+        };
 
+
+
+        if(x>0 ||y>0){to.ResetTimer();}
+        
+        
         if (!camerBasedMove)
         {
             moveDir = new Vector3(x, 0, y);
@@ -394,23 +415,43 @@ void unparentFromBoat(){
     }
 
 public void sleep(bool hardLock,Transform pos){
-    Debug.Log("sleep");
+    if(!ParentedToBoat){
+    //Debug.Log("sleep");
+    GetComponent<TB_animator>().Sleep();
     movingMode = MovingMode.sleeping;
     rb = GetComponent<Rigidbody>();
     rb.position = pos.position;
     rb.rotation = pos.rotation;
     if (hardLock){
-        StartCoroutine(lockControlsForTime(6f));
+        StartCoroutine(lockControlsForTime(3f));
     }
     
     controlsSoftLocked = true;
+    }
+}
+
+public void flipXInput(float time){
+    StartCoroutine(temporarilyFlipX(time));
+}
+
+public void look(){
+    // //Debug.Log("sleep");
+    GetComponent<TB_animator>().Look();
+    // movingMode = MovingMode.sleeping;
+
+    // if (hardLock){
+    //     StartCoroutine(lockControlsForTime(3f));
+    // }
+    
+    // controlsSoftLocked = true;
 
 }
+
 IEnumerator wakeUp(){
     tbAn.WakeUp();
     //controlsLocked=true;
     //Debug.Log("waking up");
-    yield return new WaitForSeconds(4);
+    yield return new WaitForSeconds(3f);
     movingMode = MovingMode.ground;
     controlsSoftLocked = false;
 
@@ -421,6 +462,12 @@ IEnumerator lockControlsForTime(float time){
     yield return new WaitForSeconds(time);
     //Debug.Log("unlocking controls");
     controlsHardLocked=false;
+}
+
+IEnumerator temporarilyFlipX(float time){
+    FlipXInput=true;
+    yield return new WaitForSeconds(time);
+    FlipXInput = false;
 }
 
 

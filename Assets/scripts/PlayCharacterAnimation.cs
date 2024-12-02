@@ -7,7 +7,7 @@ public class PlayCharacterAnimation : MonoBehaviour
 {
 
     [SerializeField] Animator an;
-    [SerializeField] TB_animator tbAn;
+   // [SerializeField] TB_animator tbAn;
     [SerializeField] PlayerController pc;
     [SerializeField] Transform sleeppos;
     
@@ -48,7 +48,7 @@ public class PlayCharacterAnimation : MonoBehaviour
     }
 void sleep(bool hardlock){
     pc.sleep(hardlock,sleeppos);
-    tbAn.Sleep();
+   // tbAn.Sleep();
     
 }
 }

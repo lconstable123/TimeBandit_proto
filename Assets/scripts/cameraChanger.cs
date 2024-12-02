@@ -35,10 +35,10 @@ public class cameraChanger : MonoBehaviour
         if (other.CompareTag("Player" ) && isOn){
 
   if (!HardCut){
-          sdc.m_DefaultBlend.m_Time = 2f;
+          if (sdc!=null){sdc.m_DefaultBlend.m_Time = 2f;}
             
         } else {
-          sdc.m_DefaultBlend.m_Time = 0f;
+          if(sdc!=null){sdc.m_DefaultBlend.m_Time = 0f;}
         }
         cm.ChangeCam(ChangeToCamera);
         }

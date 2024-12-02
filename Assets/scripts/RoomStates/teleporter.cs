@@ -20,6 +20,10 @@ public class teleporter : MonoBehaviour
      [SerializeField] float teleportZmagnitute;
      [SerializeField] float ParallaxspawnHeight;
      [SerializeField] float impulse;
+    [Header("flip X exiting portal")]
+     [SerializeField] bool flipX ;
+    [SerializeField] float fliptime;
+    [SerializeField] PlayerController pc;
     // [SerializeField] bool LR;
      Vector3 teleportPos;
 
@@ -78,6 +82,9 @@ public class teleporter : MonoBehaviour
                         dolly.m_XDamping=0;
                         StartCoroutine(EnableDamping());
                         }
+                    if (flipX && pc != null){
+                        pc.flipXInput(fliptime);
+                    }
                     
 
 
