@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TB_animator : MonoBehaviour
 {
-    Animator animator;
+    [SerializeField] Animator animator;
     Rigidbody rb;
     public Vector3 vel;
     public float speed;
@@ -13,7 +13,8 @@ public class TB_animator : MonoBehaviour
     public enum AnimPlaying{
         idle=1,
         walking=2,
-        running=3
+        running=3,
+        sleeping=4
     }
     [SerializeField] AnimPlaying a;
    
@@ -49,6 +50,13 @@ public class TB_animator : MonoBehaviour
         
         
     }
+    public void Sleep(){
+        SwitchAnim(AnimPlaying.sleeping);
+    }
+    public void WakeUp(){
+       // Debug.Log("waking animation");
+        animator.SetBool("isWake",true);
+    }
 
 
     void SwitchAnim(AnimPlaying anim){
@@ -57,6 +65,7 @@ public class TB_animator : MonoBehaviour
                 animator.SetBool("isIdle", true);
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", false);
+                //animator.SetBool("isWake",true);
                 
                 break;
 
@@ -64,13 +73,23 @@ public class TB_animator : MonoBehaviour
                 animator.SetBool("isIdle", false);
                 animator.SetBool("isWalking", true);
                 animator.SetBool("isRunning", false);
+                //animator.SetBool("isWake",true);
                 break;
 
             case AnimPlaying.running:
                 animator.SetBool("isIdle", false);
                 animator.SetBool("isWalking", false);
                 animator.SetBool("isRunning", true);
+                animator.SetBool("isWake",true);
                 break;
+            case AnimPlaying.sleeping:
+                // an.SetTrigger("sleepNow");
+                // Debug.Log("firstsleep");
+                animator.SetBool("isWake",false);
+                animator.SetBool("isWalking", false);
+                animator.SetBool("isRunning", false);
+                animator.SetBool("isRunning", false);
+            break;
 
             default:
                 break;
