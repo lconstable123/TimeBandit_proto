@@ -15,10 +15,10 @@ EditorBuildSettings:
     path: Assets/Scenes/Stairwell.unity
     guid: 3380502bf4ab4fb418c1f6f09cc75a39
   - enabled: 1
-    path: Assets/Scenes/Mainroom nolines.unity
+    path: Assets/Scenes/old/Mainroom nolines.unity
     guid: a4f8ba25a8f383644a720f0b7a6b991e
   - enabled: 0
-    path: Assets/Scenes/old/Mainroom.unity
+    path: Assets/Scenes/old/Mainroom old.unity
     guid: 14f280ed832ae0945baa7ca3325901db
   - enabled: 1
     path: Assets/Scenes/Redroom.unity
