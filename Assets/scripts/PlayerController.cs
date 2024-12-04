@@ -38,10 +38,13 @@ public class PlayerController : MonoBehaviour
     public bool groundBelow;
     public bool steppable;
     public bool FlipXInput = false;
+    [Header("Boat")]
     [SerializeField] bool BoatModeAllow = false;
+    [SerializeField]  BoatCtrl boatRef;
     public bool ParentedToBoat = false;
     public bool nearBoat = false;
     public bool BoatLock = false;
+    public float boatheight;
 
     Camera cam;
 
@@ -56,16 +59,21 @@ public class PlayerController : MonoBehaviour
     public LayerMask TerrainLayer;
     Rigidbody rb;
     SpriteRenderer sr;
-    [SerializeField]  BoatCtrl boatRef;
+    
+    [Header("Debug")]
     float x,y;
     Vector3 moveDir;
     Transform originalParent;
     TB_animator tbAn;
+    [Header("Sleep and Idle")]
+    [SerializeField] float waketime = 2.5f;
+    [SerializeField] float sleeptime = 2f;
+
 
     private bool isJumping;
     public bool isClimbing;
     public bool touchingRamp;
-    public float boatheight;
+   
 
     public enum MovingMode{
         ground = 1,
@@ -245,8 +253,10 @@ public class PlayerController : MonoBehaviour
             rb.useGravity = false;
             force = playerSpeed *Time.fixedDeltaTime * GetLadderMoveDirection();
             ApplyForce(force);
+          
             break;
         case MovingMode.ground:
+       
             rb.drag = groundDrag;
             rb.useGravity = false;
             force = playerSpeed * Time.fixedDeltaTime * moveDir + (Vector3.down * 100f);
@@ -259,9 +269,11 @@ public class PlayerController : MonoBehaviour
             moveDir+= new Vector3(0f,.1f,0f);
             force = playerSpeed * Time.fixedDeltaTime * moveDir;
             ApplyForce(force);
+            
             //Debug.Log(force);
             break;
         case MovingMode.ramp:
+        
             rb.drag = groundDrag;
             rb.useGravity = false;
             Vector3 slopeMove = GetSlopeMoveDirection(); 
@@ -276,12 +288,14 @@ public class PlayerController : MonoBehaviour
             ApplyForce(force); 
             break;
         case MovingMode.falling:
+        to.ResetTimer();
             rb.useGravity= true;
             rb.drag = 0f;  
             force = playerSpeed*.01f * Time.fixedDeltaTime * moveDir;
             ApplyForce(force);
             break;
         case MovingMode.riding:
+            
             break;
         case MovingMode.sleeping:
             Debug.Log("sleeddp");
@@ -296,6 +310,8 @@ public class PlayerController : MonoBehaviour
     }
 
     void ApplyForce(Vector3 force){
+          if(x>0 ||y>0){to.ResetTimer();}
+
             rb.AddForce(force, ForceMode.Force);
             // if(rb.velocity.y > 0){
             //  rb.AddForce(Vector3.down * 100f, ForceMode.Force);
@@ -311,9 +327,6 @@ public class PlayerController : MonoBehaviour
         };
 
 
-
-        if(x>0 ||y>0){to.ResetTimer();}
-        
         
         if (!camerBasedMove)
         {
@@ -352,7 +365,6 @@ IEnumerator BoatWait(){
         yield return new WaitForSeconds(3);
         BoatModeAllow =true;
     }
-
 
 void parentToBoat(){
         movingMode = MovingMode.riding;
@@ -423,7 +435,7 @@ public void sleep(bool hardLock,Transform pos){
     rb.position = pos.position;
     rb.rotation = pos.rotation;
     if (hardLock){
-        StartCoroutine(lockControlsForTime(3f));
+        StartCoroutine(lockControlsForTime(sleeptime));
     }
     
     controlsSoftLocked = true;
@@ -451,7 +463,7 @@ IEnumerator wakeUp(){
     tbAn.WakeUp();
     //controlsLocked=true;
     //Debug.Log("waking up");
-    yield return new WaitForSeconds(3f);
+    yield return new WaitForSeconds(waketime);
     movingMode = MovingMode.ground;
     controlsSoftLocked = false;
 

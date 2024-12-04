@@ -94,7 +94,10 @@ public class GameSession : MonoBehaviour
     }
 
     public void ResetGameSession(){
+        SetDoorEntered(0);  
         SceneManager.LoadScene(0);
+        
+ 
         //FindObjectOfType<ScenePersist>().ResetScenePersist();
         Destroy(gameObject);
     }
