@@ -134,7 +134,8 @@ PlayerSettings:
   vulkanEnableCommandBufferRecycling: 1
   loadStoreDebugModeEnabled: 0
   bundleVersion: 0.1.0
-  preloadedAssets: []
+  preloadedAssets:
+  - {fileID: 11400000, guid: e150635e156965946bd25770bf6b8998, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -846,11 +847,11 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: MattBlue
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: 
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
-  metroCertificateSubject: 
-  metroCertificateIssuer: 
-  metroCertificateNotAfter: 0000000000000000
+  metroCertificateSubject: VirtuallyAnything
+  metroCertificateIssuer: VirtuallyAnything
+  metroCertificateNotAfter: 8029acc7d664dc01
   metroApplicationDescription: MattBlue
   wsaImages: {}
   metroTileShortName: MattBlue

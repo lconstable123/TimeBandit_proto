@@ -2908,7 +2908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89d6cc8029ea8794c92887cbd185cdb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  Speed: 9
   parent: {fileID: 221724995}
   boatCage: {fileID: 811678419}
   speed: 0
@@ -4682,6 +4682,9 @@ MonoBehaviour:
   teleportZmagnitute: 0
   ParallaxspawnHeight: 0
   impulse: 10000
+  flipX: 0
+  fliptime: 0
+  pc: {fileID: 0}
   teleportMode: 3
   side: 0
 --- !u!65 &421797545
@@ -14327,7 +14330,7 @@ MonoBehaviour:
   m_YawDamping: 0
   m_RollDamping: 0
   m_AutoDolly:
-    m_Enabled: 0
+    m_Enabled: 1
     m_PositionOffset: 0
     m_SearchRadius: 0
     m_SearchResolution: 5
@@ -16506,7 +16509,7 @@ MonoBehaviour:
     m_MinDuration: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 0
+    m_Time: 2
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []

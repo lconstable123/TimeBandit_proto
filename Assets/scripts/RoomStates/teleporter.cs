@@ -24,6 +24,9 @@ public class teleporter : MonoBehaviour
      [SerializeField] bool flipX ;
     [SerializeField] float fliptime;
     [SerializeField] PlayerController pc;
+    // [Header("Screen Wrapper Manger (reference to enable)")]
+    // [SerializeField] Screen_wrapper sw;
+    // [SerializeField] bool screenwrapperstatus;
     // [SerializeField] bool LR;
      Vector3 teleportPos;
 
@@ -38,6 +41,7 @@ public class teleporter : MonoBehaviour
         right=2,
 
      }
+     [Header("Modes (mostly obsolete)")]
 
      [SerializeField] Mode teleportMode;
      [SerializeField] Side side;
@@ -85,6 +89,11 @@ public class teleporter : MonoBehaviour
                     if (flipX && pc != null){
                         pc.flipXInput(fliptime);
                     }
+                    // if(sw !=null && screenwrapperstatus == false){
+                    //     Debug.Log("disabling screen wrapper");
+                    //     sw.enabled = screenwrapperstatus;
+                        
+                    // }
                     
 
 
@@ -95,7 +104,12 @@ public class teleporter : MonoBehaviour
                     //if (rb == null){Debug.Log("no");};
                     Vector3 force = transform.forward* impulse;
                     rb.AddForce(force, ForceMode.Force);
-                    
+
+                    // if(sw !=null && screenwrapperstatus == true){
+                    //     Debug.Log("enabling screen wrapper");
+                    //     sw.enabled = screenwrapperstatus;
+                        
+                    // }
                    //dolly.m_XDamping=1.5f;
                     break;
 

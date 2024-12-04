@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine.Utility;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -31,7 +32,7 @@ public class SpawnController : MonoBehaviour
 
         Rigidbody rb = GetComponent<Rigidbody>();
         rb.position = spawnLoc;
-        rb.rotation = spawnRot;
+        rb.rotation = spawnRot.Normalized();
         rb.AddForce(spawnVel);
 
     }

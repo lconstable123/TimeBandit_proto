@@ -1653,6 +1653,9 @@ MonoBehaviour:
   teleportZmagnitute: 0.29
   ParallaxspawnHeight: 0
   impulse: 0
+  flipX: 0
+  fliptime: 0
+  pc: {fileID: 0}
   teleportMode: 3
   side: 0
 --- !u!65 &631272006
@@ -3923,7 +3926,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360199262}
-  m_LocalRotation: {x: 0.014967754, y: -0.057378285, z: 0.0008603382, w: 0.99823993}
+  m_LocalRotation: {x: 0.014967767, y: -0.05736305, z: 0.0008601098, w: 0.9982408}
   m_LocalPosition: {x: -17.58, y: 4.1260004, z: -33.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4731,7 +4734,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548636252}
-  m_LocalRotation: {x: 0.014967754, y: -0.057378285, z: 0.0008603382, w: 0.99823993}
+  m_LocalRotation: {x: 0.014967767, y: -0.05736305, z: 0.0008601098, w: 0.9982408}
   m_LocalPosition: {x: -17.58, y: 4.1260004, z: -33.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

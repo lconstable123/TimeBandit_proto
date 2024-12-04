@@ -2182,7 +2182,7 @@ MonoBehaviour:
   teleportZmagnitute: 0
   ParallaxspawnHeight: 0
   impulse: 5000
-  flipX: 1
+  flipX: 0
   fliptime: 3
   pc: {fileID: 2080605022}
   teleportMode: 3
@@ -4590,15 +4590,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 757818508}
-  m_LocalRotation: {x: -0, y: 0.7154521, z: -0, w: -0.69866186}
-  m_LocalPosition: {x: 18.95, y: -9.61, z: 0.75}
+  m_LocalRotation: {x: -0, y: -0.70660347, z: -0, w: -0.70760983}
+  m_LocalPosition: {x: 47.124, y: 3.961, z: 0.387}
   m_LocalScale: {x: 1.9449, y: 3.8485, z: 2.0617523}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 418114239}
   m_Father: {fileID: 1161101172}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 268.639, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 449.918, z: 0}
 --- !u!114 &757818510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4616,7 +4616,7 @@ MonoBehaviour:
   whereTo: stairwell nolines
   doorToId: 2
   transitionDuration: 0
-  SpawnVel: 8985
+  SpawnVel: 0
   SpwanHeight: 0
   SpawnDist: 0
   sdc: {fileID: 1561304078}
@@ -8465,7 +8465,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360199262}
-  m_LocalRotation: {x: 0.012076744, y: 0.8487647, z: -0.01940331, w: 0.52827656}
+  m_LocalRotation: {x: 0.012076793, y: 0.8487634, z: -0.01940328, w: 0.5282787}
   m_LocalPosition: {x: -38.359997, y: 16.743929, z: 37.284485}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9970,7 +9970,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540896547}
-  m_LocalRotation: {x: -0.12636225, y: 0.7954304, z: 0.17775892, w: 0.56544226}
+  m_LocalRotation: {x: -0.12636231, y: 0.7954304, z: 0.17775893, w: 0.5654422}
   m_LocalPosition: {x: -8.640002, y: -16.843927, z: 36.515514}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10099,7 +10099,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548636252}
-  m_LocalRotation: {x: 0.012076744, y: 0.8487647, z: -0.01940331, w: 0.52827656}
+  m_LocalRotation: {x: 0.012076793, y: 0.8487634, z: -0.01940328, w: 0.5282787}
   m_LocalPosition: {x: -31.5, y: 11.6, z: 55.199997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10250,7 +10250,7 @@ MonoBehaviour:
   teleportZmagnitute: 0
   ParallaxspawnHeight: 0
   impulse: 5000
-  flipX: 1
+  flipX: 0
   fliptime: 4
   pc: {fileID: 2080605022}
   teleportMode: 3
@@ -10330,8 +10330,8 @@ MonoBehaviour:
   SpwanHeight: 0
   SpawnDist: 0
   sdc: {fileID: 1561304078}
-  startCamera: 2
-  dollyCamera: {fileID: 0}
+  startCamera: 3
+  dollyCamera: {fileID: 1378871986}
 --- !u!65 &1557320515
 BoxCollider:
   m_ObjectHideFlags: 0
