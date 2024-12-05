@@ -42,7 +42,8 @@ public class cameraChanger : MonoBehaviour
           if (sdc!=null){sdc.m_DefaultBlend.m_Time = 2f;}
             
         } else {
-          if(sdc!=null){sdc.m_DefaultBlend.m_Time = 0f;}
+          if(sdc!=null){sdc.m_DefaultBlend.m_Time = 0f;
+          Debug.Log("hardct");}
         }
         cm.ChangeCam(ChangeToCamera);
         }
