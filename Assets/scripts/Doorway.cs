@@ -35,7 +35,7 @@ public class Doorway : MonoBehaviour
 
     [Header("Set Dolly and Aim")]
     [SerializeField] CinemachineVirtualCamera dollyCamera = null;
-    
+    [SerializeField] CinemachineVirtualCamera aimCamera = null;
 
     GameSession gs;
     private float DollyDamping; 
@@ -66,13 +66,16 @@ public class Doorway : MonoBehaviour
         if (sdc != null)
         {
             ResetSDC();  
-            StartCoroutine(IRestore());
         }
                
         if (dollyCamera != null){
-            ResetDolly();
-            StartCoroutine(IRestore());
+            ResetDolly();  
         }
+        if (aimCamera != null){
+            ResetAim();   
+        }
+
+        StartCoroutine(IRestore());
 
 
         Vector3 spawnPos = transform.position-transform.forward*SpawnDist;
@@ -87,17 +90,29 @@ void ResetDolly(){
    DollyDamping = dolly.m_XDamping;
    dolly.m_XDamping=0;
    
-   comp = dollyCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineComposer>();
-    if (comp != null){
-   ComposerXDamping = comp.m_VerticalDamping;
-   ComposerYDamping = comp.m_HorizontalDamping;
-   comp.m_VerticalDamping = 0;
-   comp.m_HorizontalDamping = 0;
-    }
+//    comp = dollyCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineComposer>();
+//     if (comp != null){
+//    ComposerXDamping = comp.m_VerticalDamping;
+//    ComposerYDamping = comp.m_HorizontalDamping;
+//    comp.m_VerticalDamping = 0;
+//    comp.m_HorizontalDamping = 0;
+//     }
 dolly.m_AutoDolly.m_Enabled = true;
    
                    
 }
+
+void ResetAim(){
+   comp = aimCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineComposer>();
+     if (comp != null){
+   ComposerXDamping = comp.m_VerticalDamping;
+   ComposerYDamping = comp.m_HorizontalDamping;
+   comp.m_VerticalDamping = 0;
+   comp.m_HorizontalDamping = 0;
+     }
+}
+
+
 
     private void ResetSDC()
     {
@@ -114,10 +129,7 @@ dolly.m_AutoDolly.m_Enabled = true;
     yield return new WaitForSeconds(2);
 
         if (sdc !=null){sdc.m_DefaultBlend.m_Time = 2f;};
-        if (dollyCamera != null){
-            dolly.m_XDamping = DollyDamping;
-            
-            }
+        if (dollyCamera != null){dolly.m_XDamping = DollyDamping;}
         if (comp != null){
             comp.m_VerticalDamping = ComposerXDamping;
             comp.m_HorizontalDamping = ComposerYDamping;
