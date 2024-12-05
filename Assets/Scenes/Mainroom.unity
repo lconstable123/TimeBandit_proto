@@ -1106,6 +1106,7 @@ MonoBehaviour:
   sdc: {fileID: 1561304078}
   startCamera: 1
   dollyCamera: {fileID: 1548636253}
+  aimCamera: {fileID: 0}
 --- !u!4 &175730176
 Transform:
   m_ObjectHideFlags: 0
@@ -1114,7 +1115,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 175730174}
   m_LocalRotation: {x: 0.05590531, y: -0.43564335, z: -0.041131623, w: 0.89743954}
-  m_LocalPosition: {x: -9.01, y: 1.9054546, z: -4.02}
+  m_LocalPosition: {x: -15.82, y: 1.35, z: 1.3}
   m_LocalScale: {x: 2.3435, y: 2.3435, z: 2.3435001}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1280,7 +1281,7 @@ GameObject:
   - component: {fileID: 196917938}
   - component: {fileID: 196917937}
   m_Layer: 0
-  m_Name: Door (2)
+  m_Name: Dooe_redroom_right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1321,15 +1322,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorId: 2
   doorOpen: 0
-  whereTo: BlueMonument
-  doorToId: 0
+  whereTo: Redroom
+  doorToId: 3
   transitionDuration: 0
-  SpawnVel: 0
+  SpawnVel: -1000
   SpwanHeight: 0
   SpawnDist: 1.86
   sdc: {fileID: 1561304078}
   startCamera: 1
   dollyCamera: {fileID: 1548636253}
+  aimCamera: {fileID: 0}
 --- !u!4 &196917939
 Transform:
   m_ObjectHideFlags: 0
@@ -1337,14 +1339,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196917936}
-  m_LocalRotation: {x: -0, y: 0.50089264, z: -0, w: 0.8655094}
-  m_LocalPosition: {x: -8.610001, y: 0.9954543, z: 6.8500004}
+  m_LocalRotation: {x: 0, y: 0.44617385, z: 0, w: 0.89494634}
+  m_LocalPosition: {x: -9.218, y: 0.911, z: 6.629}
   m_LocalScale: {x: 2.3435, y: 2.3435, z: 1.3565817}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1286537592}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 60.118, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 772.997, z: 0}
 --- !u!1 &206136619
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1477,7 @@ MonoBehaviour:
   sdc: {fileID: 1561304078}
   startCamera: 1
   dollyCamera: {fileID: 1548636253}
+  aimCamera: {fileID: 0}
 --- !u!4 &231111502
 Transform:
   m_ObjectHideFlags: 0
@@ -1671,6 +1674,7 @@ MonoBehaviour:
   sdc: {fileID: 1561304078}
   startCamera: 2
   dollyCamera: {fileID: 1548636253}
+  aimCamera: {fileID: 0}
 --- !u!4 &364034132
 Transform:
   m_ObjectHideFlags: 0
@@ -1698,7 +1702,7 @@ GameObject:
   - component: {fileID: 433097871}
   - component: {fileID: 433097870}
   m_Layer: 0
-  m_Name: Door (4)
+  m_Name: Door_redroom_left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1748,6 +1752,7 @@ MonoBehaviour:
   sdc: {fileID: 1561304078}
   startCamera: 1
   dollyCamera: {fileID: 1548636253}
+  aimCamera: {fileID: 0}
 --- !u!4 &433097872
 Transform:
   m_ObjectHideFlags: 0
@@ -4402,9 +4407,9 @@ Transform:
   m_Children:
   - {fileID: 175730176}
   - {fileID: 231111502}
-  - {fileID: 196917939}
   - {fileID: 364034132}
   - {fileID: 433097872}
+  - {fileID: 196917939}
   - {fileID: 1880797123}
   - {fileID: 911796301}
   - {fileID: 1929022076}
@@ -7675,7 +7680,7 @@ PrefabInstance:
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.450001
+      value: -14.09
       objectReference: {fileID: 0}
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}
@@ -7685,7 +7690,7 @@ PrefabInstance:
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 4.53
+      value: 4.23
       objectReference: {fileID: 0}
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}

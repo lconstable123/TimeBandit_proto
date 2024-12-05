@@ -11,16 +11,17 @@ public class cameraChanger : MonoBehaviour
     cameraManager cm;
     Cams cams;
     [Header("states")]
-    [SerializeField] bool isOn = true;
+    [SerializeField] public bool isOn = true;
+    [SerializeField] bool turnOffAfterChange=false;
     [SerializeField] Cams ChangeToCamera;
     [SerializeField] bool ChangeOut = false;
     [SerializeField] Cams ChangeOutCamera;
     [Header("transitions")]
     [SerializeField] bool HardCut;
     [SerializeField] CinemachineStateDrivenCamera sdc;
-    [Header("Screen Wrapper Manger (reference to enable)")]
-    [SerializeField] Screen_wrapper sw;
-    [SerializeField] bool screenwrapperstatus;
+    // [Header("Screen Wrapper Manger (reference to enable)")]
+    // [SerializeField] Screen_wrapper sw;
+    // [SerializeField] bool screenwrapperstatus;
 
 
     void Start()
@@ -45,10 +46,10 @@ public class cameraChanger : MonoBehaviour
         }
         cm.ChangeCam(ChangeToCamera);
         }
+  if (turnOffAfterChange){
+    isOn=false;
+  }
 
-    if(sw !=null){
-        sw.enabled = screenwrapperstatus;                    
-    }
 
 
     }
@@ -65,9 +66,7 @@ public class cameraChanger : MonoBehaviour
         }
             cm.ChangeCam(ChangeOutCamera);
         }
-        if(sw !=null){
-        sw.enabled = screenwrapperstatus;                    
-    }
+       
     }
     }
 }
