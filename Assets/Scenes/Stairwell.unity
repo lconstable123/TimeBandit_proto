@@ -845,6 +845,7 @@ MonoBehaviour:
   sdc: {fileID: 0}
   startCamera: 0
   dollyCamera: {fileID: 0}
+  aimCamera: {fileID: 0}
 --- !u!65 &404139301
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -894,13 +895,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOn: 1
+  turnOffAfterChange: 0
   ChangeToCamera: 1
   ChangeOut: 0
   ChangeOutCamera: 1
   HardCut: 0
   sdc: {fileID: 0}
-  sw: {fileID: 0}
-  screenwrapperstatus: 0
 --- !u!114 &404139304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1986,8 +1986,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorId: 1
   doorOpen: 0
-  whereTo: Chreamroom
-  doorToId: 0
+  whereTo: YellowRoom
+  doorToId: 2
   transitionDuration: 0
   SpawnVel: 0
   SpwanHeight: 0
@@ -1995,6 +1995,7 @@ MonoBehaviour:
   sdc: {fileID: 0}
   startCamera: 1
   dollyCamera: {fileID: 1548636253}
+  aimCamera: {fileID: 0}
 --- !u!65 &695553097
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3928,7 +3929,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360199262}
-  m_LocalRotation: {x: 0.014967776, y: -0.057351746, z: 0.0008599404, w: 0.9982415}
+  m_LocalRotation: {x: 0.014967764, y: -0.057365127, z: 0.000860141, w: 0.9982407}
   m_LocalPosition: {x: -17.58, y: 4.1260004, z: -33.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4736,7 +4737,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548636252}
-  m_LocalRotation: {x: 0.014967776, y: -0.057351746, z: 0.0008599404, w: 0.9982415}
+  m_LocalRotation: {x: 0.014967764, y: -0.057365127, z: 0.000860141, w: 0.9982407}
   m_LocalPosition: {x: -17.58, y: 4.1260004, z: -33.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

@@ -633,8 +633,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorId: 0
   doorOpen: 0
-  whereTo: Mainroom
-  doorToId: 2
+  whereTo: YellowRoom
+  doorToId: 0
   transitionDuration: 0
   SpawnVel: 0
   SpwanHeight: 0
@@ -642,6 +642,7 @@ MonoBehaviour:
   sdc: {fileID: 1561304078}
   startCamera: 1
   dollyCamera: {fileID: 0}
+  aimCamera: {fileID: 0}
 --- !u!4 &175730176
 Transform:
   m_ObjectHideFlags: 0
@@ -3535,7 +3536,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548636252}
-  m_LocalRotation: {x: 0.018471872, y: 0.97289264, z: -0.08366457, w: 0.21479999}
+  m_LocalRotation: {x: 0.018471872, y: 0.97289264, z: -0.08366457, w: 0.2148}
   m_LocalPosition: {x: -4.8900023, y: 0.7860718, z: 13.545514}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5193,7 +5194,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015067332}
-  m_LocalRotation: {x: 0.002949778, y: 0.96696866, z: -0.011201822, w: 0.25463203}
+  m_LocalRotation: {x: 0.0029497233, y: 0.9669699, z: -0.011201834, w: 0.25462738}
   m_LocalPosition: {x: 0.48999977, y: -3.97, z: -0.62999916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
