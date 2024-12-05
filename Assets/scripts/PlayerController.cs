@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("navigation")]
     public float XRayoffset= 0.2f;
-
+    public float YRayoffset= 0.2f;
     public float probeLength = 0.3f;
     public float steppableLength = 0.3f;
     public float groundprobelength = 1f;
@@ -162,14 +162,18 @@ public class PlayerController : MonoBehaviour
     void GroundProbe( bool debug)
         {
         
-           float xOffset = (Mathf.Abs(x)*XRayoffset) ;
-           float yOffset = (Mathf.Abs(y)*XRayoffset);
-           Vector3 off = new (moveDir.x*xOffset,0,moveDir.z*yOffset);
+           float xOffset = Mathf.Abs(x)*XRayoffset ;
+           float yOffset = Mathf.Abs(y)*YRayoffset;
+           //Vector3 off = new (moveDir.x*xOffset,0,moveDir.z*yOffset);
+           Vector3 off = new (moveDir.x*XRayoffset,0,moveDir.z*YRayoffset);
            Vector3 heightOffset = new(0,playerHeight*0.5f,0);
            Vector3 startray = transform.position + off;
             groundAhead = Physics.Raycast(startray, Vector3.down, out slopeHit,  probeLength, TerrainLayer);
             groundBelow = Physics.Raycast(transform.position, Vector3.down, out groundslopeHit,  groundprobelength, TerrainLayer);
-            steppable = Physics.Raycast(startray, Vector3.down, out slopeHit,  probeLength-steppableLength, TerrainLayer);
+            Vector3 kneeheight = transform.position+(Vector3.down*steppableLength);
+            steppable = Physics.Raycast(kneeheight, off, out slopeHit,  .4f, TerrainLayer);
+            
+            Debug.DrawRay(kneeheight,off);
             CalulateMoveMode();
         }
   
@@ -235,7 +239,7 @@ public class PlayerController : MonoBehaviour
         } else if ( angle != 0  && angle < maxSlopeAngle ){
             movingMode = MovingMode.ramp;
             return;
-        } else if (groundAhead && steppable && !nearBoat){
+        } else if (groundAhead && steppable && groundBelow && !nearBoat){
             movingMode = MovingMode.stepping;
             return;
         }

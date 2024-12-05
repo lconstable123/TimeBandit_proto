@@ -22,6 +22,7 @@ public class ToggelCompon : MonoBehaviour
 
 
         if (other.gameObject.CompareTag("Player")){
+            Debug.Log("turning off");
                 toggle1.isEnabled=false;
             }
         }
@@ -29,6 +30,7 @@ public class ToggelCompon : MonoBehaviour
 
 
         if (other.gameObject.CompareTag("Player")){
+            Debug.Log("turning on");
                 toggle1.isEnabled=true;
             }
         }    
