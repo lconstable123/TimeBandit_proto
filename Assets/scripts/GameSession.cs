@@ -37,6 +37,7 @@ public class GameSession : MonoBehaviour
     public GameObject player;
     [SerializeField] GameObject itemPrefab;
     public int enteredDoor = 0;
+    public bool camerasLocked = false;
     
 
     public class ItemInstance
@@ -45,6 +46,7 @@ public class GameSession : MonoBehaviour
     public Vector3 Loc;
     public ItemSO Iteminfo;
     public string Level;
+    
 
     public ItemInstance(string id, Vector3 loc, ItemSO iteminfo, string level)
     {

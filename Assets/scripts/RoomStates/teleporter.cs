@@ -24,6 +24,10 @@ public class teleporter : MonoBehaviour
      [SerializeField] bool flipX ;
     [SerializeField] float fliptime;
     [SerializeField] PlayerController pc;
+
+    [Header("experiment")]
+
+
     // [Header("Screen Wrapper Manger (reference to enable)")]
     // [SerializeField] Screen_wrapper sw;
     // [SerializeField] bool screenwrapperstatus;
@@ -84,6 +88,8 @@ public class teleporter : MonoBehaviour
                        // Debug.Log("dolly found found");
                         //dolly.m_AutoDolly.m_Enabled = false; 
                         dolly.m_XDamping=0;
+                       // dolly.m_YDamping=0;
+                     //   dolly.m_ZDamping=0;
                         StartCoroutine(EnableDamping());
                         }
                     if (flipX && pc != null){
@@ -138,6 +144,8 @@ public class teleporter : MonoBehaviour
             yield return new WaitForSeconds(.5f);
             // Debug.Log("damped");
             dolly.m_XDamping=1.5f;
+           // dolly.m_XDamping=1.5f;
+            //dolly.m_ZDamping=1.5f;
         }
     }
 

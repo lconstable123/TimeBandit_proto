@@ -3,7 +3,17 @@ guid: 268831fab7d6a194d93c52f98ade5ad0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beigeroom
+    second: {fileID: 2100000, guid: 7819ed314870d3e4b913ec2981b304df, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: beigeroom._lit
+    second: {fileID: 2100000, guid: 74bf8eebe2a0b1b4f8576fdfbae11b3e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

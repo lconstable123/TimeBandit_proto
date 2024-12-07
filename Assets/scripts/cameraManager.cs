@@ -2,36 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class cameraManager : MonoBehaviour
 {
     Animator animator;
     
     public Cams cams;
     
+ 
+   GameSession gs;
     
 
-    // Start is called before the first frame update
+
     void Start()
     {
     animator = GetComponent<Animator>();
+    //gs= GetComponent<GameSession>();
     
     }
 
-    // Update is called once per frame
+
     void Update()
     {
-        // if (Input.GetKeyDown(KeyCode.Alpha1)){
-        //     Debug.Log("pressed");
-            
-        // }
-        // if (Input.GetKeyDown(KeyCode.Alpha2)){
-        //     Debug.Log("pressed");
-            
-        // }
-        // if (Input.GetKeyDown(KeyCode.Alpha3)){
-        //     Debug.Log("pressed");
-           
-        // }
+
     }
 
     public void ChangeCam(Cams changecam){
@@ -77,5 +70,7 @@ public class cameraManager : MonoBehaviour
 
 
     }
+
+
     
 }
