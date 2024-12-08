@@ -2332,7 +2332,7 @@ PrefabInstance:
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -9.4
+      value: -12.23
       objectReference: {fileID: 0}
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}
@@ -5661,7 +5661,7 @@ MonoBehaviour:
   doorId: 0
   doorOpen: 0
   whereTo: Mainroom
-  doorToId: 5
+  doorToId: 6
   transitionDuration: 0
   SpawnVel: -4722
   SpwanHeight: 0
