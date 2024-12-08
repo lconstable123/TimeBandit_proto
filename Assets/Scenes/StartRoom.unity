@@ -749,6 +749,7 @@ GameObject:
   - component: {fileID: 268860744}
   - component: {fileID: 268860743}
   - component: {fileID: 268860746}
+  - component: {fileID: 268860747}
   m_Layer: 0
   m_Name: Teleporter Room_In (1)
   m_TagString: Untagged
@@ -850,6 +851,21 @@ MonoBehaviour:
   whereTo: {fileID: 626946850}
   impulse: -57.67
   scm: {fileID: 522656645}
+--- !u!114 &268860747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 268860741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3f7ed2eaa140445b29e629acfb368d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sw: {fileID: 2122731536}
+  enterstatus: 0
+  exitstatus: 0
 --- !u!1 &273017311
 GameObject:
   m_ObjectHideFlags: 0
@@ -1498,7 +1514,7 @@ MonoBehaviour:
   ChangeToCamera: 1
   ChangeOut: 1
   ChangeOutCamera: 1
-  HardCut: 0
+  HardCut: 1
   sdc: {fileID: 1561304078}
 --- !u!64 &553350189
 MeshCollider:
@@ -3416,6 +3432,11 @@ PrefabInstance:
       objectReference: {fileID: 1561304078}
     - target: {fileID: 2436947524826264811, guid: 7cbf2e62132680a49bd16774cc9a8dc3,
         type: 3}
+      propertyPath: HardCut
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2436947524826264811, guid: 7cbf2e62132680a49bd16774cc9a8dc3,
+        type: 3}
       propertyPath: ChangeOut
       value: 0
       objectReference: {fileID: 0}
@@ -3691,6 +3712,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: start_room
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a5b438cf425bc104a98c59a5a3ff9b3e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7064539268536305747, guid: a5b438cf425bc104a98c59a5a3ff9b3e,
         type: 3}
@@ -4413,7 +4439,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1437196053
 Transform:
   m_ObjectHideFlags: 0
@@ -4732,7 +4758,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1533888296
 Transform:
   m_ObjectHideFlags: 0
@@ -4741,7 +4767,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1533888295}
   m_LocalRotation: {x: -0, y: 0.73091465, z: -0, w: -0.6824689}
-  m_LocalPosition: {x: -2.7, y: -8.33, z: 9.7}
+  m_LocalPosition: {x: -2.98, y: -8.33, z: 13.75}
   m_LocalScale: {x: 1.9449, y: 3.8485, z: 0.67725}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4770,7 +4796,7 @@ MonoBehaviour:
   SpwanHeight: 0
   SpawnDist: 0
   sdc: {fileID: 1561304078}
-  startCamera: 1
+  startCamera: 3
   dollyCamera: {fileID: 1548636253}
   aimCamera: {fileID: 0}
 --- !u!65 &1533888298
@@ -4828,7 +4854,7 @@ MonoBehaviour:
   - m_Script
   m_LockStageInInspector: 
   m_StreamingVersion: 20170927
-  m_Priority: 82
+  m_Priority: 10
   m_StandbyUpdate: 1
   m_LookAt: {fileID: 1991340180}
   m_Follow: {fileID: 1991340180}
@@ -5022,7 +5048,7 @@ MonoBehaviour:
     m_MinDuration: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 0
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -6421,7 +6447,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122731529}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9748bcfb2acaeb94d9db7f6a0466c491, type: 3}
   m_Name: 

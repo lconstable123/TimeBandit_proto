@@ -52,7 +52,11 @@ public class Doorway : MonoBehaviour
     void OnTriggerEnter(Collider other){
         if (other.CompareTag("Player")){
             if (doorOpen){
+                
+               
+                // gs.GetComponent<cameraManager>().ChangeCam(startCamera);
                 gs.SetDoorEntered(doorToId);  
+                
                 gs.LeaveScene(whereTo);   
 
             } 
@@ -88,7 +92,10 @@ void ResetDolly(){
    dolly = dollyCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineTrackedDolly>();
    
    DollyDamping = dolly.m_XDamping;
+
    dolly.m_XDamping=0;
+   dolly.m_YDamping = 0;
+   dolly.m_ZDamping = 0;
    
 //    comp = dollyCamera.GetComponent<CinemachineVirtualCamera>().GetCinemachineComponent<CinemachineComposer>();
 //     if (comp != null){
@@ -109,6 +116,7 @@ void ResetAim(){
    ComposerYDamping = comp.m_HorizontalDamping;
    comp.m_VerticalDamping = 0;
    comp.m_HorizontalDamping = 0;
+   
      }
 }
 
@@ -116,7 +124,7 @@ void ResetAim(){
 
     private void ResetSDC()
     {
-        gs = GameSession.Persistent;
+       gs = GameSession.Persistent;
         Animator an = gs.GetComponent<Animator>();
         sdc.m_AnimatedTarget = an;
         sdc.m_DefaultBlend.m_Time = 0f;

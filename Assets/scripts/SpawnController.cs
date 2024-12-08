@@ -11,7 +11,7 @@ public class SpawnController : MonoBehaviour
 
     void Start()
     {
-        gs = GameSession.Persistent;
+ gs = GameSession.Persistent;
        
         Vector3 spawnLoc = new Vector3();
         Quaternion spawnRot = new Quaternion();
@@ -34,6 +34,9 @@ public class SpawnController : MonoBehaviour
         rb.position = spawnLoc;
         rb.rotation = spawnRot.Normalized();
         rb.AddForce(spawnVel);
+    }
+    void Awake(){
+               
 
     }
 

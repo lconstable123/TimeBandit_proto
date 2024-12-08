@@ -114,18 +114,18 @@ public class Pickup : MonoBehaviour
         }
     }
 
-    public void PickupObject(){
-        gs.AddPickedUpItem(objectId,item);
-        Destroy(gameObject);
-    }
-    public ItemSO getitem(){
-        return item;
-    }
+    // public void PickupObject(){
+    //     gs.AddPickedUpItem(objectId,item);
+    //     Destroy(gameObject);
+    // }
+    // public ItemSO getitem(){
+    //     return item;
+    // }
 
-    public string InitialiseId(){
+    // public string InitialiseId(){
         
-        objectId = System.Guid.NewGuid().ToString();
-        return objectId;
-    }
+    //     objectId = System.Guid.NewGuid().ToString();
+    //     return objectId;
+    // }
    
 }
