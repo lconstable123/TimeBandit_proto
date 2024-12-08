@@ -5233,9 +5233,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1570349933}
   - component: {fileID: 1570349936}
-  - component: {fileID: 1570349935}
   - component: {fileID: 1570349934}
   - component: {fileID: 1570349937}
+  - component: {fileID: 1570349938}
   m_Layer: 0
   m_Name: Teleporter Room_Out
   m_TagString: Untagged
@@ -5277,30 +5277,6 @@ MonoBehaviour:
   ChangeOutCamera: 3
   HardCut: 1
   sdc: {fileID: 1561304078}
---- !u!114 &1570349935
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570349932}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7dbfd3598372ac449b2ba92fd88b1b74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  virtualCamera: {fileID: 1378871986}
-  whereTo: {fileID: 617162040}
-  teleportXdist: 8
-  zNormaliser: 23
-  teleportZmagnitute: 0.29
-  ParallaxspawnHeight: 0
-  impulse: 0
-  flipX: 0
-  fliptime: 0
-  pc: {fileID: 2122731541}
-  teleportMode: 3
-  side: 0
 --- !u!65 &1570349936
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5337,6 +5313,21 @@ MonoBehaviour:
   whereTo: {fileID: 617162040}
   impulse: -17.43
   scm: {fileID: 1070717544}
+--- !u!114 &1570349938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570349932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a3f7ed2eaa140445b29e629acfb368d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sw: {fileID: 2122731536}
+  enterstatus: 0
+  exitstatus: 0
 --- !u!4 &1573258258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1922266175820466911, guid: 7cbf2e62132680a49bd16774cc9a8dc3,
@@ -6447,7 +6438,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2122731529}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9748bcfb2acaeb94d9db7f6a0466c491, type: 3}
   m_Name: 
