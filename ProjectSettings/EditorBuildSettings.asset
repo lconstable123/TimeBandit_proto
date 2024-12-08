@@ -21,14 +21,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Redroom.unity
     guid: a90af8b3333676e42a5fc94f35960024
   - enabled: 1
-    path: Assets/Scenes/Chreamroom.unity
-    guid: 37b0e0c5c350c2a4c808cbb86b49704b
-  - enabled: 1
     path: Assets/Scenes/BlueMonument.unity
     guid: a820206f721461b4baf2a729d78343ce
   - enabled: 1
     path: Assets/Scenes/YellowRoom.unity
     guid: 1683bc7987ff09349a454322b3e676b9
+  - enabled: 1
+    path: Assets/Scenes/Creamroom.unity
+    guid: 20b5f765aa82f2142ab782c2eb3fea01
   - enabled: 1
     path: Assets/Scenes/Funstairs.unity
     guid: be99a16dc352716409f996f1ab0409ec
