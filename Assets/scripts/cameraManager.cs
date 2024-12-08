@@ -58,6 +58,10 @@ public class cameraManager : MonoBehaviour
                 //animator.SetTrigger("wallcam");
                 animator.SetInteger("cam",5);
                 break;
+            case(Cams.cam6):
+                //animator.SetTrigger("wallcam");
+                animator.SetInteger("cam",6);
+                break;
 
 
             default:

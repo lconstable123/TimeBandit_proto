@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/YellowRoom.unity
     guid: 1683bc7987ff09349a454322b3e676b9
+  - enabled: 1
+    path: Assets/Scenes/Funstairs.unity
+    guid: be99a16dc352716409f996f1ab0409ec
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: e150635e156965946bd25770bf6b8998,
       type: 2}
