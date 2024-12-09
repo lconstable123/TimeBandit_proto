@@ -8,8 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/StartRoom.unity
     guid: 4bf16f4b1efc1dd4cb48df7b84f551ca
-  - enabled: 1
-    path: Assets/Scenes/Hallway_1.unity
+  - enabled: 0
+    path: Assets/Scenes/old/Hallway_1.unity
     guid: c18db9fe5fd5e4f49bdde4368357fd9b
   - enabled: 1
     path: Assets/Scenes/Stairwell.unity
@@ -23,6 +23,12 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/BlueMonument.unity
     guid: a820206f721461b4baf2a729d78343ce
+  - enabled: 1
+    path: Assets/Scenes/Hallway_3.unity
+    guid: 4ce74dc24e49ea14db2914df4300bb0a
+  - enabled: 1
+    path: Assets/Scenes/Hallway_2.unity
+    guid: 65fd15b26461a5743a58bd7ae0e651e6
   - enabled: 1
     path: Assets/Scenes/YellowRoom.unity
     guid: 1683bc7987ff09349a454322b3e676b9
