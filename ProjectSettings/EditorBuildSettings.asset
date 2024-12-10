@@ -36,6 +36,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Creamroom.unity
     guid: 20b5f765aa82f2142ab782c2eb3fea01
   - enabled: 1
+    path: Assets/Scenes/Striperoom.unity
+    guid: ae1a4ff5f155e8e4583492cb8fa22153
+  - enabled: 1
     path: Assets/Scenes/Funstairs.unity
     guid: be99a16dc352716409f996f1ab0409ec
   m_configObjects:
