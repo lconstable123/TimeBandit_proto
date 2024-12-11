@@ -13,7 +13,8 @@ public class Teleporter_2 : MonoBehaviour
      [SerializeField] float impulse;
      [Header("camera resetting")]
      [SerializeField] ScneCameraManager scm;
-
+     [SerializeField] Vector3 spawndirection;
+     [SerializeField] float spawnrot;
 
 
 
@@ -52,9 +53,10 @@ public class Teleporter_2 : MonoBehaviour
  
 void Teleport(Collider other){
     other.transform.position = whereTo.transform.position;
-    other.transform.rotation = transform.rotation;
-    Rigidbody rb =other.GetComponent<Rigidbody>();          
-    Vector3 force = transform.forward* impulse;
+    //other.transform.rotation = transform.rotation;
+    Rigidbody rb =other.GetComponent<Rigidbody>();
+    //rb.rotation = Quaternion.Euler(new Vector3(0,spawnrot,0));          
+    Vector3 force = spawndirection* impulse;
     rb.AddForce(force, ForceMode.Force);
 }
    

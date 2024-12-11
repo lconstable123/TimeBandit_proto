@@ -38,6 +38,7 @@ public class GameSession : MonoBehaviour
     [SerializeField] GameObject itemPrefab;
     public int enteredDoor = 0;
     public bool camerasLocked = false;
+    public bool centralDoorOpen=false;
     
 
     public class ItemInstance
