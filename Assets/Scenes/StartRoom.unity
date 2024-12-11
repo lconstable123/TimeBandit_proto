@@ -851,6 +851,8 @@ MonoBehaviour:
   whereTo: {fileID: 626946850}
   impulse: -57.67
   scm: {fileID: 522656645}
+  spawndirection: {x: 0, y: 0, z: 0}
+  spawnrot: 0
 --- !u!114 &268860747
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1312,7 +1314,7 @@ Light:
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 105.62
+  m_Intensity: 206.9
   m_Range: 15
   m_SpotAngle: 179
   m_InnerSpotAngle: 179
@@ -1370,7 +1372,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 529698127}
   m_LocalRotation: {x: 0.7006922, y: -0.09502824, z: -0.09502817, w: 0.7006924}
-  m_LocalPosition: {x: -33.68, y: 33.77, z: -44.98}
+  m_LocalPosition: {x: -33.68, y: 33.77, z: -35.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5588,6 +5590,8 @@ MonoBehaviour:
   whereTo: {fileID: 617162040}
   impulse: -17.43
   scm: {fileID: 1070717544}
+  spawndirection: {x: 0, y: 0, z: 0}
+  spawnrot: 0
 --- !u!114 &1570349938
 MonoBehaviour:
   m_ObjectHideFlags: 0

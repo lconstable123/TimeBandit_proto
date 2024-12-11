@@ -126,8 +126,8 @@ public class PlayerController : MonoBehaviour
                     boatRef.MoveBoat(moveDir);
                 } else {
                     ProcessForce();
-                    if(!isClimbing){
-                    RotateCharacter();}
+                   // if(!isClimbing){
+                   RotateCharacter();
                 }
             }
         }
@@ -158,14 +158,17 @@ public class PlayerController : MonoBehaviour
     
     }
     void OnCollisionEnter(Collision other ){
-       
+       if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
+            isClimbing = true;
+            movingMode = MovingMode.climbing;
+        };
     }
       void OnCollisionExit(Collision other ){
-        //  if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
-        // if(isClimbing){
+         if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
+        if(isClimbing && groundBelow){
 
-        //     EndClimbing();};
-        // };
+            EndClimbing();};
+        };
         }
 
     void GroundProbe( bool debug)
@@ -236,7 +239,7 @@ public class PlayerController : MonoBehaviour
 
         if (ParentedToBoat){ return; };
         if(controlsSoftLocked){return; };
-        if(isClimbing){return;}
+        //if(isClimbing){return;}
         float angle = Vector3.Angle(Vector3.up,groundslopeHit.normal);
         SlopeAngleDebug = angle;
 
@@ -268,6 +271,7 @@ public class PlayerController : MonoBehaviour
             rb.useGravity = false;
             force = playerSpeed *Time.fixedDeltaTime * GetLadderMoveDirection();
             ApplyForce(force);
+            // rb.AddForce(Vector3.up * 200f, ForceMode.Force);
           
             break;
         case MovingMode.ground:
@@ -297,7 +301,7 @@ public class PlayerController : MonoBehaviour
             // if (slopeMove.y > 0){
             //     slopeMove += (Vector3.up*slopeUp);
             // }
-            //rb.AddForce(Vector3.up * 100f, ForceMode.Force);
+           // rb.AddForce(Vector3.up * 100f, ForceMode.Force);
            // rb.AddForce(Vector3.down * 100f, ForceMode.Force);
             force = playerSpeed * Time.fixedDeltaTime * slopeMove;
             ApplyForce(force); 
@@ -428,13 +432,22 @@ void unparentFromBoat(){
     }
 
      public void EndClimbing(){
-       isClimbing = false;
-       rb.useGravity = true;
+    //    StartCoroutine(Endclimb());
+          isClimbing = false;
+      rb.useGravity = true;
+
        
         //myRigidbody.gravityScale = gravity;
        // animator.speed = 1;
        // animator.SetBool("isClimbing",false);
     }
+    // IEnumerator Endclimb(){
+    //     yield return new WaitForSeconds(.3f);
+    //     if (isClimbing){
+    //       isClimbing = false;
+    //    rb.useGravity = true;
+    //     }
+    // }
     void CheckQuit()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

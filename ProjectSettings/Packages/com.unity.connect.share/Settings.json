@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"H:/Development/Tb_build_web_2;H:/Development/TB_build_web;H:/Development/TBbuild3;;;;;;;\"}"
+                "value": "{\"m_Value\":\"H:/Development/Tb_build_web_3;H:/Development/Tb_build_web_2;H:/Development/TBbuild3;;;;;;;\"}"
             }
         ]
     }
