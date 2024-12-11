@@ -8,6 +8,7 @@ public class TB_animator : MonoBehaviour
     Rigidbody rb;
     public Vector3 vel;
     public float speed;
+    public bool climbing=false;
     [SerializeField] float speeToIdle= 2f;
     [SerializeField] float speedToRun= 4f;
     public enum AnimPlaying{
@@ -16,7 +17,8 @@ public class TB_animator : MonoBehaviour
         running=3,
         sleeping=4,
         looking=5,
-        rowing=6
+        rowing=6,
+        climbingdown=7
     }
     [SerializeField] AnimPlaying a;
    
@@ -36,7 +38,7 @@ public class TB_animator : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { if(!climbing){
         vel = rb.velocity;
         speed = Vector3.Magnitude(vel);
 
@@ -49,7 +51,7 @@ public class TB_animator : MonoBehaviour
         } else {
             SwitchAnim(AnimPlaying.idle);
         }
-        
+    }  
         
     }
     public void Sleep(){
@@ -62,6 +64,10 @@ public class TB_animator : MonoBehaviour
     public void Look(){
         
         SwitchAnim(AnimPlaying.looking);
+    }
+    public void ClimbDown(){
+        climbing=true;
+        SwitchAnim(AnimPlaying.climbingdown);
     }
 
 
@@ -109,6 +115,16 @@ public class TB_animator : MonoBehaviour
                 // animator.SetBool("isIdle", false);
                 Debug.Log("loook");
                 animator.SetBool("isLooking", true);
+                break;
+             case AnimPlaying.climbingdown:
+                // an.SetTrigger("sleepNow");
+                // Debug.Log("firstsleep");
+                // animator.SetBool("isWake",false);
+                // animator.SetBool("isWalking", false);
+                // animator.SetBool("isRunning", false);
+                // animator.SetBool("isIdle", false);
+                // animator.SetBool("isLooking", false);
+                //animator.SetBool("isClimbingDown",true);
                 break;
             case AnimPlaying.rowing:
                 break;

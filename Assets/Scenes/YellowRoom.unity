@@ -4186,7 +4186,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 384090018}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -36.94, y: 3.07, z: 150.16}
+  m_LocalPosition: {x: -36.94, y: 3.07, z: 151.19}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4229,7 +4229,7 @@ Light:
   m_Shape: 0
   m_Color: {r: 0.9811321, g: 0.9459609, b: 0.85617656, a: 1}
   m_Intensity: 16.8
-  m_Range: 5.3
+  m_Range: 4.95
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -11596,6 +11596,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: prop
       objectReference: {fileID: 0}
+    - target: {fileID: 8377977036258513145, guid: 268831fab7d6a194d93c52f98ade5ad0,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -16.55
+      objectReference: {fileID: 0}
     - target: {fileID: 8448953383854280731, guid: 268831fab7d6a194d93c52f98ade5ad0,
         type: 3}
       propertyPath: m_Layer
@@ -15035,7 +15040,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1137000704
 Transform:
   m_ObjectHideFlags: 0
@@ -17601,7 +17606,7 @@ MonoBehaviour:
   doorId: 3
   doorOpen: 1
   whereTo: Hallway_2
-  doorToId: 3
+  doorToId: 1
   transitionDuration: 0
   SpawnVel: -6329
   SpwanHeight: 0

@@ -636,7 +636,7 @@ MonoBehaviour:
   whereTo: YellowRoom
   doorToId: 0
   transitionDuration: 0
-  SpawnVel: 0
+  SpawnVel: -1696.7
   SpwanHeight: 0
   SpawnDist: 1.86
   sdc: {fileID: 1561304078}
@@ -3077,7 +3077,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360199262}
-  m_LocalRotation: {x: 0.0915558, y: -0.008357783, z: 0.00076845824, w: 0.9957646}
+  m_LocalRotation: {x: 0.091555774, y: -0.008357753, z: 0.0007684553, w: 0.9957646}
   m_LocalPosition: {x: 1.4900026, y: 0.8539281, z: -37.48551}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3182,7 +3182,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378871985}
-  m_LocalRotation: {x: 0.0915558, y: -0.008357783, z: 0.00076845824, w: 0.9957646}
+  m_LocalRotation: {x: 0.091555774, y: -0.008357753, z: 0.0007684553, w: 0.9957646}
   m_LocalPosition: {x: 8.35, y: -4.29, z: -19.569998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5194,7 +5194,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015067332}
-  m_LocalRotation: {x: 0.0029499358, y: 0.9669651, z: -0.011201782, w: 0.25464562}
+  m_LocalRotation: {x: 0.00294977, y: 0.96696883, z: -0.011201826, w: 0.25463134}
   m_LocalPosition: {x: 0.48999977, y: -3.97, z: -0.62999916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

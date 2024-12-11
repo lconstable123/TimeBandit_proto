@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
     public bool groundBelow;
     public bool steppable;
     public bool FlipXInput = false;
+    [SerializeField] float climbspeed;
     [Header("Boat")]
     [SerializeField] bool BoatModeAllow = false;
     [SerializeField]  BoatCtrl boatRef;
@@ -125,7 +126,8 @@ public class PlayerController : MonoBehaviour
                     boatRef.MoveBoat(moveDir);
                 } else {
                     ProcessForce();
-                    RotateCharacter();
+                    if(!isClimbing){
+                    RotateCharacter();}
                 }
             }
         }
@@ -138,25 +140,32 @@ public class PlayerController : MonoBehaviour
         }
             nearBoat = true;
         }   
+         if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
+            isClimbing = true;
+            movingMode = MovingMode.climbing;
+        };
+        if (other.gameObject.layer == LayerMask.NameToLayer("ladderend")){
+      if(isClimbing){
+
+       EndClimbing();};
+      };
     }
 
     void OnTriggerExit(Collider other){
     if (other.gameObject.CompareTag("boat")){
             nearBoat = false;
         }
+    
     }
     void OnCollisionEnter(Collision other ){
-        if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
-            isClimbing = true;
-            movingMode = MovingMode.climbing;
-        };
+       
     }
       void OnCollisionExit(Collision other ){
-         if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
-        if(isClimbing){
+        //  if (other.gameObject.layer == LayerMask.NameToLayer("Ladder")){
+        // if(isClimbing){
 
-            EndClimbing();};
-        };
+        //     EndClimbing();};
+        // };
         }
 
     void GroundProbe( bool debug)
@@ -206,6 +215,7 @@ public class PlayerController : MonoBehaviour
             } else {
 
             if(ParentedToBoat && !BoatLock){unparentFromBoat();};
+            if(isClimbing){EndClimbing();};
             if (movingMode != MovingMode.falling){
                 rb.velocity += new Vector3(0,jumpPower,0);
                 movingMode = MovingMode.falling;
@@ -226,6 +236,7 @@ public class PlayerController : MonoBehaviour
 
         if (ParentedToBoat){ return; };
         if(controlsSoftLocked){return; };
+        if(isClimbing){return;}
         float angle = Vector3.Angle(Vector3.up,groundslopeHit.normal);
         SlopeAngleDebug = angle;
 
@@ -397,9 +408,14 @@ void unparentFromBoat(){
     }
 
     private Vector3 GetLadderMoveDirection(){
-        if(!groundBelow || y > Mathf.Epsilon){return new Vector3(x,y,0);}
-        if(groundBelow && y > Mathf.Epsilon){return new Vector3(x,y,0);}
-        else { return moveDir;}
+        
+        if(!groundBelow) {return new Vector3(0,y*climbspeed,0);}
+
+        if(groundBelow && y > Mathf.Epsilon){return new Vector3(0,y*climbspeed,0);}
+        //if(groundBelow && y < Mathf.Epsilon){EndClimbing(); return new Vector3(0,0,0);}
+        else { 
+            //isClimbing=false;
+            return moveDir;}
     }
     void ClimbLadder2()
     {
@@ -411,8 +427,10 @@ void unparentFromBoat(){
         //if(!playerHasVerticalSpeed){animator.speed = 0;} else {animator.speed = 1;}
     }
 
-     void EndClimbing(){
+     public void EndClimbing(){
        isClimbing = false;
+       rb.useGravity = true;
+       
         //myRigidbody.gravityScale = gravity;
        // animator.speed = 1;
        // animator.SetBool("isClimbing",false);
