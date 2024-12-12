@@ -56,6 +56,7 @@ public class PlayerController : MonoBehaviour
     public bool OnSlopDebug;
     public float SlopeAngleDebug;
     Vector3 force = new();
+    public bool isClimbing=false;
 
     public LayerMask TerrainLayer;
     Rigidbody rb;
@@ -68,11 +69,7 @@ public class PlayerController : MonoBehaviour
     TB_animator tbAn;
     [Header("Sleep and Idle")]
     [SerializeField] float waketime = 2.5f;
-    [SerializeField] float sleeptime = 2f;
-
-
-    private bool isJumping;
-    public bool isClimbing;
+    [SerializeField] float sleeptime = 2f; 
     public bool touchingRamp;
    
 

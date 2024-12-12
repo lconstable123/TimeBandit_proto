@@ -46,7 +46,7 @@ Material:
     m_Floats:
     - _BRIGHTNESS: 0.75
     - _QueueControl: 0
-    - _Shiny: 0.611
+    - _Shiny: 0.354
     - _skribble: 1
     m_Colors:
     - _Color: {r: 0.5849056, g: 0.5380028, b: 0.5380028, a: 0}

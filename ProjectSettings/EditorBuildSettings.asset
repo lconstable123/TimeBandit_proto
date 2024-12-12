@@ -36,8 +36,20 @@ EditorBuildSettings:
     path: Assets/Scenes/Creamroom.unity
     guid: 20b5f765aa82f2142ab782c2eb3fea01
   - enabled: 1
+    path: Assets/Scenes/Creamroom_1.unity
+    guid: 97b641fb4b482254db3a52f3e36a40bd
+  - enabled: 1
     path: Assets/Scenes/Striperoom.unity
     guid: ae1a4ff5f155e8e4583492cb8fa22153
+  - enabled: 1
+    path: Assets/Scenes/Funstairs_2.unity
+    guid: f631064527262374ca61e06b6ab0091b
+  - enabled: 1
+    path: Assets/Scenes/Funstairs_1.unity
+    guid: 5f9b0b4b3564e814ba1f57928e1fba6b
+  - enabled: 1
+    path: Assets/Scenes/Hallway_4.unity
+    guid: 45c6c4e44d3b65b48baaa0854b3a3a23
   - enabled: 1
     path: Assets/Scenes/Funstairs.unity
     guid: be99a16dc352716409f996f1ab0409ec
