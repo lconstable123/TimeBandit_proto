@@ -42,9 +42,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Float: 3.5
+    - _Boolean: 0
+    - _Float: 1.16
+    - _Float_1: 0
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _hole: 0
+    - _xpos: -0.46
     m_Colors:
     - _colour: {r: 1.02, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
