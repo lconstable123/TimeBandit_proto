@@ -6,16 +6,44 @@ public class wallexplode : MonoBehaviour
 {
     [SerializeField] Transform Solidwall;
     [SerializeField] Transform Holewall;
+    [SerializeField] GameObject Teleporter;
     bool isTriggered =false;
+    [SerializeField] int wallId;
+    [SerializeField] switchbox sb;
 void OnTriggerEnter(Collider other){
  if (other.CompareTag("Player") && !isTriggered){
   Holewall.gameObject.SetActive(true);
-Solidwall.gameObject.SetActive(false);
+  if (Teleporter != null){
+    Solidwall.gameObject.SetActive(false);
+  }
+
+Teleporter.SetActive(false);
 isTriggered = true;
+setSb(wallId);
+
+
     
 }
 
 }
+
+void setSb(int id){
+  
+  switch(id){
+    case 0:
+      sb.isLeftWall = true;
+      break;
+    case 1:
+      sb.isRightWall = true;
+      break;
+    case 2:
+      sb.isForwardWall = true;
+      break;
+    default:
+      break;
+  }
+}
+
 }
     
 
