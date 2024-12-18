@@ -11,6 +11,7 @@ public class IdleTimeOut : MonoBehaviour
     PlayerController pc;
     public float timeSinceInput;
     public bool timing=true;
+    bool leaveOnce = true;
     GameSession gs;
 
     // Start is called before the first frame update
@@ -43,7 +44,11 @@ public class IdleTimeOut : MonoBehaviour
     }
 
     void HardTimeOut(){
-        gs.ResetGameSession();
+        if (leaveOnce){
+            leaveOnce = false;
+            gs.ResetGameSession();
+        }
+        
     }
     void LookTimeOut(){
         

@@ -16,6 +16,10 @@ public class mainmenu : MonoBehaviour
         StartCoroutine(Unlock());
     }
 
+    void Update(){
+        CheckQuit();
+    }
+
     void OnAnyKey(){
         if (doonce){
             Animator an = canvas.GetComponent<Animator>();
@@ -34,6 +38,19 @@ public class mainmenu : MonoBehaviour
     IEnumerator Unlock(){
         yield return new WaitForSeconds(1.5f);
         doonce = true;
+    }
+
+       void CheckQuit()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+
+            Application.Quit();
+#endif
+        }
     }
 
 }
