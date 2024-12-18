@@ -1,16 +1,10 @@
-//using System;
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEditor.Callbacks;
 
 using System;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.InputSystem;
-using UnityEngine.UIElements;
-//using UnityEngine.XR;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -25,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float rotationSpeed = 10f;
     public bool controlsSoftLocked = false;
     public bool controlsHardLocked = false;
+    public bool endgame = false;
     IdleTimeOut to;
    // [SerializeField] float slopeUp = 20f;
 
@@ -202,6 +197,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void OnAnyKey(){
+        if (endgame){
+            GameSession gs = GameSession.Persistent;
+            gs.ResetGameSession();
+        }
+    }
  
 
     void OnJump(){

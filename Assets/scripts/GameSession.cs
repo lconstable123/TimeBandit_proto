@@ -65,9 +65,9 @@ public class GameSession : MonoBehaviour
     }
     void Start(){
         // if(ppvol.profile.TryGet(out cAdjust)){
-        //   //  Debug.Log("found post effect");
+        //   Debug.Log("found post effect");
         // } else {
-        //   //  Debug.Log("could not find effect");  
+        //    Debug.Log("could not find effect");  
         // }
     //player = FindObjectOfType<PlayerController>().gameObject;
     }
@@ -98,12 +98,42 @@ public class GameSession : MonoBehaviour
     }
 
     public void ResetGameSession(){
-        SetDoorEntered(0);  
-        SceneManager.LoadScene(0);
+       // SetDoorEntered(0);  
+      
+        //SceneManager.LoadScene(0);
+        StartCoroutine(LoadSceneAsync(0));
+        //SceneManager.LoadSceneAsync(0,LoadSceneMode.Single);
+         
         
  
         //FindObjectOfType<ScenePersist>().ResetScenePersist();
-        Destroy(gameObject);
+        
+    }
+    IEnumerator LoadSceneAsync(int num){
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(num);
+        asyncOperation.allowSceneActivation = false;
+        // while (!asyncOperation.isDone){
+        //     yield return null;
+        // }
+        while (!asyncOperation.isDone){
+             if (asyncOperation.progress >= 0.9f){
+                Destroy(gameObject);
+                asyncOperation.allowSceneActivation = true;
+             }
+            yield return null;
+            }
+        
+   
+        
+    }
+       IEnumerator LoadSceneAsyncString(string name){
+        AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(name);
+        while (!asyncOperation.isDone){
+            yield return null;
+        }
+        
+   
+        
     }
     
     private void DebugInv()
@@ -135,7 +165,8 @@ public class GameSession : MonoBehaviour
         pickedUpItems.Clear();
     }
     public void LeaveScene(string whereTo){
-        SceneManager.LoadScene(whereTo);
+        //SceneManager.LoadScene(whereTo);
+        StartCoroutine(LoadSceneAsyncString(whereTo));
        // SetSceneInitialised();
         // if(useSceneFade){
         //     StartCoroutine(ILeaveScene(whereTo));
@@ -143,28 +174,32 @@ public class GameSession : MonoBehaviour
         // SceneManager.LoadScene(whereTo);
         // }
     }
-    // IEnumerator ILeaveScene(string whereTo){
-    //             Debug.Log("entered doorway");
-    //             // StoreObjectStates();
-    //             // float elapsed = 0f;
-    //             // while (elapsed < transitionDuration){
-    //             //     cAdjust.postExposure.value = Mathf.Lerp(0f,-10f, elapsed/transitionDuration);
-    //             //     elapsed += Time.deltaTime;
-    //             //     yield return null;
-    //             // }
-    //             // cAdjust.postExposure.value = -10;
 
-    //             SceneManager.LoadScene(whereTo);
-    //             // elapsed = 0f;
-    //             // while (elapsed < transitionDuration){
-    //             //     cAdjust.postExposure.value = Mathf.Lerp(-10f,0f, elapsed/transitionDuration);
-    //             //     elapsed += Time.deltaTime;
-    //             //     yield return null;
-    //             // }
-    //             // cAdjust.postExposure.value = 0;
+    public void LeaveSceneWithFade(string whereTo){
+        StartCoroutine(ILeaveScene(whereTo));
+    }
+    IEnumerator ILeaveScene(string whereTo){
+                //Debug.Log("entered doorway");
+                //StoreObjectStates();
+                float elapsed = 0f;
+                while (elapsed < transitionDuration){
+                    cAdjust.postExposure.value = Mathf.Lerp(0f,-10f, elapsed/transitionDuration);
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+                cAdjust.postExposure.value = -10;
+
+                SceneManager.LoadScene(whereTo);
+                elapsed = 0f;
+                while (elapsed < transitionDuration){
+                    cAdjust.postExposure.value = Mathf.Lerp(-10f,0f, elapsed/transitionDuration);
+                    elapsed += Time.deltaTime;
+                    yield return null;
+                }
+                cAdjust.postExposure.value = 0;
 
                 
-    // }
+    }
 //     public void AddPickedUpItem(string itemId, ItemSO item)
 //     {
 //         pickedUpItems.Add(itemId);
