@@ -43,6 +43,12 @@ public class PlayerController : MonoBehaviour
     public float boatheight;
 
     Camera cam;
+    AudioSource ac;
+    [Header("Audio")]
+
+    [SerializeField ] AudioClip Jumpsound;
+    [SerializeField] float jumpVol = .5f;
+
 
     [Header("Slope handling")]
     public float maxSlopeAngle;
@@ -86,6 +92,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         tbAn = GetComponent<TB_animator>();
         to = GetComponent<IdleTimeOut>();
+        ac = GetComponent<AudioSource>();
         if (to == null){
             Debug.Log("attach a timeout to the player");
         }
@@ -220,6 +227,7 @@ public class PlayerController : MonoBehaviour
             if (movingMode != MovingMode.falling){
                 rb.velocity += new Vector3(0,jumpPower,0);
                 movingMode = MovingMode.falling;
+                PlayJump();
             }
             }
         }
@@ -489,8 +497,13 @@ public void look(){
     // }
     
     // controlsSoftLocked = true;
-
 }
+
+
+public void PlayJump(){
+    if (ac != null){ac.PlayOneShot(Jumpsound,jumpVol);}
+}
+
 
 IEnumerator wakeUp(){
     tbAn.WakeUp();

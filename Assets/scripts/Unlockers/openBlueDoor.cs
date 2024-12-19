@@ -5,12 +5,15 @@ using UnityEngine;
 public class openBlueDoor : MonoBehaviour
 {
     [SerializeField] GameObject doorToOpen;
+    [SerializeField] AudioClip openSound;
+    AudioSource ac;
     public bool isOpen=false;
     GameSession gs;
     // Start is called before the first frame update
     void Start()
     {
         gs = GameSession.Persistent;
+        ac = GetComponent<AudioSource>();
         if(gs.blueDoorOpen){
                 HardOpen();
 
@@ -27,6 +30,9 @@ public class openBlueDoor : MonoBehaviour
                 isOpen = true;
                  gs = GameSession.Persistent;
                  gs.blueDoorOpen=true;
+                 if (ac != null){
+                    ac.PlayOneShot(openSound);
+                 }
             
             }
             }

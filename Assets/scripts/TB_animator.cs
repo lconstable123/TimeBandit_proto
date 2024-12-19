@@ -5,10 +5,12 @@ using UnityEngine;
 public class TB_animator : MonoBehaviour
 {
     [SerializeField] Animator animator;
+ 
     Rigidbody rb;
     public Vector3 vel;
     public float speed;
     public bool climbing=false;
+    
     [SerializeField] float speeToIdle= 2f;
     [SerializeField] float speedToRun= 4f;
     public enum AnimPlaying{
@@ -32,6 +34,7 @@ public class TB_animator : MonoBehaviour
             Debug.Log("animator not found");
         }
         rb = GetComponent<Rigidbody>();
+ 
 
 
     }

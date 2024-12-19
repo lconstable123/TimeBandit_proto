@@ -5,9 +5,13 @@ using UnityEngine;
 public class lvl1dooropen : MonoBehaviour
 {
     Animator an;
+    AudioSource ac;
+    [SerializeField] AudioClip openSound;
+    bool firstTime = true;
     // Start is called before the first frame update
     void Start()
     {
+       ac = GetComponent<AudioSource>();
        an = GetComponent<Animator>(); 
     }
 
@@ -18,6 +22,10 @@ public class lvl1dooropen : MonoBehaviour
     }
     void OnTriggerEnter(){
         an.SetBool("doorOpen", true);
+        if (ac != null && firstTime){
+            ac.PlayOneShot(openSound);
+            firstTime = false;
+            }
 
     }
      void OnTriggerExit(){

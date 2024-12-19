@@ -16,6 +16,8 @@ using System;
 public class GameSession : MonoBehaviour
 {
     public HashSet<string> pickedUpItems = new();
+    AudioSource ac;
+   
     public Dictionary<string,Vector3> itemLocations = new();
     public List<string> scenesInitialised = new();
     public int DebugCounter;
@@ -23,6 +25,8 @@ public class GameSession : MonoBehaviour
     [SerializeField] Volume ppvol;
     public float transitionDuration = .5f;
     [SerializeField] bool useSceneFade;
+     [SerializeField] AudioClip roomEnterSound;
+     [SerializeField] float roomenterVol = .5f;
     ColorAdjustments cAdjust;
     [SerializeField] TextMeshProUGUI inventoryGUI;
     [SerializeField] TextMeshProUGUI doorStatus;
@@ -64,6 +68,7 @@ public class GameSession : MonoBehaviour
         Singleton();
     }
     void Start(){
+        ac = GetComponent<AudioSource>();
         // if(ppvol.profile.TryGet(out cAdjust)){
         //   Debug.Log("found post effect");
         // } else {
@@ -99,17 +104,13 @@ public class GameSession : MonoBehaviour
 
     public void ResetGameSession(){
        // SetDoorEntered(0);  
-      
         //SceneManager.LoadScene(0);
         StartCoroutine(LoadSceneAsync(0));
         //SceneManager.LoadSceneAsync(0,LoadSceneMode.Single);
-         
-        
- 
-        //FindObjectOfType<ScenePersist>().ResetScenePersist();
-        
+        //FindObjectOfType<ScenePersist>().ResetScenePersist();     
     }
     IEnumerator LoadSceneAsync(int num){
+        //if (ac != null){ac.PlayOneShot(roomEnterSound,roomenterVol);}
         AsyncOperation asyncOperation = SceneManager.LoadSceneAsync(num);
         asyncOperation.allowSceneActivation = false;
         // while (!asyncOperation.isDone){
@@ -131,6 +132,7 @@ public class GameSession : MonoBehaviour
         while (!asyncOperation.isDone){
             yield return null;
         }
+    
         
    
         
@@ -166,6 +168,7 @@ public class GameSession : MonoBehaviour
     }
     public void LeaveScene(string whereTo){
         //SceneManager.LoadScene(whereTo);
+         if (ac != null){ac.PlayOneShot(roomEnterSound,roomenterVol);}
         StartCoroutine(LoadSceneAsyncString(whereTo));
        // SetSceneInitialised();
         // if(useSceneFade){
