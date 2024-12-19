@@ -32,7 +32,7 @@ public class Screen_wrapper : MonoBehaviour
         Vector3 relpos = new Vector3(screenpos.x/mainCamera.pixelWidth,screenpos.y/mainCamera.pixelHeight,screenpos.z);
         
 
-       if (relpos.x < 0)
+       if (relpos.x < -0.1)
          {
             Vector3 rightPosinWorld = mainCamera.ScreenToWorldPoint(new Vector3(mainCamera.pixelWidth-buffer,screenpos.y,screenpos.z));
             Vector3 offset = new Vector3(rightPosinWorld.x,transform.position.y,transform.position.z);
@@ -40,7 +40,7 @@ public class Screen_wrapper : MonoBehaviour
             transform.position = rightPosinWorld;
             
         }
-        if (relpos.x > 1)
+        if (relpos.x > 1.1)
          {
             Vector3 rightPosinWorld = mainCamera.ScreenToWorldPoint(new Vector3(buffer,screenpos.y,screenpos.z));
             Vector3 offset = new Vector3(rightPosinWorld.x,transform.position.y,transform.position.z);

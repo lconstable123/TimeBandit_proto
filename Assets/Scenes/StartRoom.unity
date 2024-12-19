@@ -2417,7 +2417,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 1602336403}
-  m_PathPosition: 0.59767646
+  m_PathPosition: 0.48130134
   m_PositionUnits: 0
   m_PathOffset: {x: 0, y: 0.6, z: 0}
   m_XDamping: 1.5
@@ -4500,7 +4500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360199262}
   m_LocalRotation: {x: -0.0077666356, y: 0, z: 0, w: 0.99996984}
-  m_LocalPosition: {x: -18.340456, y: 4.3557076, z: -23.1}
+  m_LocalPosition: {x: -18.340454, y: 4.3557076, z: -23.100002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5263,7 +5263,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548636252}
   m_LocalRotation: {x: -0.0077666356, y: -0, z: -0, w: 0.99996984}
-  m_LocalPosition: {x: -11.480458, y: -0.7882204, z: -5.1844864}
+  m_LocalPosition: {x: -11.480456, y: -0.7882204, z: -5.1844883}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5752,7 +5752,7 @@ MonoBehaviour:
   m_Waypoints:
   - position: {x: 0, y: 0, z: -0.27}
     roll: 0
-  - position: {x: 0.0000009136249, y: 0, z: 2.0546842}
+  - position: {x: 0.0000067823526, y: 0, z: 2.6167796}
     roll: 0
 --- !u!4 &1602336404
 Transform:
