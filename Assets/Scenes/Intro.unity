@@ -888,6 +888,11 @@ PrefabInstance:
       propertyPath: roomEnterSound
       value: 
       objectReference: {fileID: 8300000, guid: 16d3c72862e8f9941a47f10e9cc50c5a, type: 3}
+    - target: {fileID: 7244209364980464228, guid: cb87e97818a13974e8e0c59b115dc33e,
+        type: 3}
+      propertyPath: centralDoorOpen
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7996749596475608060, guid: cb87e97818a13974e8e0c59b115dc33e,
         type: 3}
       propertyPath: m_RootOrder

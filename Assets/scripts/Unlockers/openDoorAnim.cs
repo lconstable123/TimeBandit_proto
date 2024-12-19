@@ -16,7 +16,10 @@ public class openDoorAnim : MonoBehaviour
         gs = GameSession.Persistent;
         if(gs.centralDoorOpen){
                 HardOpen();
-
+        }
+        if(gs.centralRoomFirstTime){
+            StartCoroutine(doorCloseAfterDelay());
+            gs.centralRoomFirstTime = false;
         }
     }
 
@@ -38,5 +41,14 @@ public class openDoorAnim : MonoBehaviour
     void HardOpen(){
         doorToOpen.GetComponent<Animator>().SetTrigger("hardOpen");
         doorToOpen.GetComponent<Animator>().SetBool("isOpen",true);
+    }  
+
+    IEnumerator doorCloseAfterDelay(){
+        yield return new WaitForSeconds(1.5f);
+        doorToOpen.GetComponent<Animator>().SetBool("isOpen",false);
+        As.PlayOneShot(doorSound);
+        gs.centralDoorOpen=false;
     }
+
+    
 }

@@ -43,6 +43,7 @@ public class GameSession : MonoBehaviour
     public int enteredDoor = 0;
     public bool camerasLocked = false;
     public bool centralDoorOpen=false;
+    public bool centralRoomFirstTime = true;
      public bool blueDoorOpen=false;
     
 
