@@ -4984,7 +4984,7 @@ PrefabInstance:
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -5.25
       objectReference: {fileID: 0}
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}
@@ -20421,7 +20421,7 @@ GameObject:
   - component: {fileID: 1982425333}
   - component: {fileID: 1982425332}
   m_Layer: 0
-  m_Name: to_main (1)
+  m_Name: to_bush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20434,15 +20434,15 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1982425330}
-  m_LocalRotation: {x: -0, y: -0.68382543, z: -0, w: -0.72964567}
-  m_LocalPosition: {x: -3.1, y: -12.510108, z: -59.3}
-  m_LocalScale: {x: 1.9449, y: 3.8485, z: 0.3175717}
+  m_LocalRotation: {x: -0, y: -0.99970615, z: -0, w: -0.024242448}
+  m_LocalPosition: {x: -3.69, y: -12.510108, z: -59.3}
+  m_LocalScale: {x: 0.19068189, y: 3.8485, z: 6.5184765}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1287026633}
   m_Father: {fileID: 1161101172}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 356.287, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 537.222, z: 0}
 --- !u!114 &1982425332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20457,14 +20457,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorId: 1
   doorOpen: 0
-  whereTo: Mainroom
-  doorToId: 13
+  whereTo: BlueMonument
+  doorToId: 0
   transitionDuration: 0
-  SpawnVel: -144
+  SpawnVel: -618.3
   SpwanHeight: 0
   SpawnDist: 0
   sdc: {fileID: 1561304078}
-  startCamera: 5
+  startCamera: 4
   dollyCamera: {fileID: 0}
   aimCamera: {fileID: 0}
 --- !u!65 &1982425333
@@ -22131,6 +22131,7 @@ MonoBehaviour:
   stepsound: {fileID: 8300000, guid: 85d77973f4e9fa14c9672660aacf7704, type: 3}
   jumpsound: {fileID: 8300000, guid: 4d5d651b78527664b996f9c7bbfbd733, type: 3}
   StepVol: 0.29
+  JumpVol: 0.4
 --- !u!82 &7802434455405838345
 AudioSource:
   m_ObjectHideFlags: 0

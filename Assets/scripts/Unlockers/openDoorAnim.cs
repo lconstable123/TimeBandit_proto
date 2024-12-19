@@ -7,9 +7,12 @@ public class openDoorAnim : MonoBehaviour
     [SerializeField] GameObject doorToOpen;
     public bool isOpen=false;
     GameSession gs;
+    [SerializeField] AudioClip doorSound;
+    AudioSource As;
     // Start is called before the first frame update
     void Start()
     {
+        As = GetComponent<AudioSource>();
         gs = GameSession.Persistent;
         if(gs.centralDoorOpen){
                 HardOpen();
@@ -25,6 +28,7 @@ public class openDoorAnim : MonoBehaviour
             if(!gs.centralDoorOpen && !isOpen){
                 doorToOpen.GetComponent<Animator>().SetBool("isOpen",true);
                 isOpen = true;
+                As.PlayOneShot(doorSound);
                  gs = GameSession.Persistent;
                  gs.centralDoorOpen=true;
             

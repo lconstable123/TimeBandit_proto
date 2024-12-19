@@ -627,8 +627,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   doorId: 0
   doorOpen: 0
-  whereTo: YellowRoom
-  doorToId: 0
+  whereTo: Striperoom
+  doorToId: 1
   transitionDuration: 0
   SpawnVel: -1696.7
   SpwanHeight: 0
@@ -3326,6 +3326,7 @@ MonoBehaviour:
   stepsound: {fileID: 8300000, guid: 85d77973f4e9fa14c9672660aacf7704, type: 3}
   jumpsound: {fileID: 8300000, guid: 4d5d651b78527664b996f9c7bbfbd733, type: 3}
   StepVol: 0.29
+  JumpVol: 0.4
 --- !u!1 &1210351240
 GameObject:
   m_ObjectHideFlags: 0
@@ -3828,7 +3829,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360199262}
-  m_LocalRotation: {x: -0.020218039, y: 0.00585634, z: 0.000118429954, w: 0.99977845}
+  m_LocalRotation: {x: -0.02021806, y: 0.0058563743, z: 0.00011843078, w: 0.99977845}
   m_LocalPosition: {x: 1.4900026, y: 0.18392801, z: -29.695515}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3933,7 +3934,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1378871985}
-  m_LocalRotation: {x: -0.020218039, y: 0.00585634, z: 0.000118429954, w: 0.99977845}
+  m_LocalRotation: {x: -0.02021806, y: 0.0058563743, z: 0.00011843078, w: 0.99977845}
   m_LocalPosition: {x: 8.35, y: -4.96, z: -11.780001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5600,7 +5601,7 @@ PrefabInstance:
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -19.29
+      value: -23.73
       objectReference: {fileID: 0}
     - target: {fileID: 8529625975515563127, guid: 96b2a4a27fd555246b6fe0770ba799cb,
         type: 3}
@@ -5845,7 +5846,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2015067332}
-  m_LocalRotation: {x: -0.033573173, y: 0.15964036, z: 0.0054324865, w: 0.98658925}
+  m_LocalRotation: {x: -0.033573233, y: 0.15962915, z: 0.0054321056, w: 0.98659104}
   m_LocalPosition: {x: 0.48999977, y: -3.97, z: -0.62999916}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
