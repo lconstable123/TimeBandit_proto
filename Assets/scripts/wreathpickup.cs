@@ -31,12 +31,12 @@ public class wreathpickup : MonoBehaviour
     void OnTriggerEnter(Collider other){
      if (other.gameObject.CompareTag("Player")){
         SetEndState();
-         if(frame != null){
-            Animator an = frame.GetComponent<Animator>();
-                if(an != null){
-                    an.SetTrigger("on");
-                }
-     }
+    //      if(frame != null){
+    //         Animator an = frame.GetComponent<Animator>();
+    //             if(an != null){
+    //                 an.SetTrigger("on");
+    //             }
+    //  }
 }
     }
 

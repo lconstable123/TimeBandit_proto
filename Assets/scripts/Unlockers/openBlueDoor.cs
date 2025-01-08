@@ -25,7 +25,8 @@ public class openBlueDoor : MonoBehaviour
 
 
         if (other.gameObject.CompareTag("Player")){
-            if(!gs.centralDoorOpen && !isOpen){
+            if(!gs.blueDoorOpen && !isOpen){
+                
                 doorToOpen.GetComponent<Animator>().SetBool("isOpen",true);
                 isOpen = true;
                  gs = GameSession.Persistent;

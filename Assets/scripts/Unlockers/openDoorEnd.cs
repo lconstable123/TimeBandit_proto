@@ -8,6 +8,7 @@ public class openDoorEnd: MonoBehaviour
     public bool isOpen=false;
     public bool locked=true;
     GameSession gs;
+    [SerializeField] GameObject frame;
     [SerializeField] AudioClip doorSound;
     AudioSource As;
     // Start is called before the first frame update
@@ -23,23 +24,44 @@ public class openDoorEnd: MonoBehaviour
 
 
      void OnTriggerEnter(Collider other){
-
-
         if (other.gameObject.CompareTag("Player")){
             if(!gs.EndDoorOpen && !isOpen && !locked){
-                doorToOpen.GetComponent<Animator>().SetBool("isOpen",true);
+                 if(frame != null){
+            Animator an = frame.GetComponent<Animator>();
+                if(an != null){
+                    an.SetTrigger("on");
+                }
+
+
+
+
+
+                
                 isOpen = true;
                 //As.PlayOneShot(doorSound);
                  gs = GameSession.Persistent;
                  gs.EndDoorOpen=true;
+                 StartCoroutine(openDoor());
+
+
+
+
+                
             
             }
             }
         }
+     }
     void HardOpen(){
         doorToOpen.GetComponent<Animator>().SetTrigger("hardOpen");
         doorToOpen.GetComponent<Animator>().SetBool("isOpen",true);
     }  
+
+    IEnumerator openDoor(){
+        yield return new WaitForSeconds(3);
+        doorToOpen.GetComponent<Animator>().SetBool("isOpen",true);
+
+    }
 
 
 
