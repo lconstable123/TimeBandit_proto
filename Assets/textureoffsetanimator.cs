@@ -31,4 +31,5 @@ public class TextureOffsetAnimator : MonoBehaviour
             material.mainTextureOffset = Vector2.Lerp(startOffset, endOffset, t);
         }
     }
+   
 }

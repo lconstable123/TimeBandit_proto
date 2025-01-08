@@ -60,6 +60,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Funstairs.unity
     guid: be99a16dc352716409f996f1ab0409ec
   - enabled: 1
+    path: Assets/Scenes/Wreathroom.unity
+    guid: 7113ecbc6a2f66d4382cb8deba142d8b
+  - enabled: 1
+    path: Assets/Scenes/Wreathroom_clear.unity
+    guid: 679e19745ef21b54ea3fd17073dfe4da
+  - enabled: 1
     path: Assets/Scenes/YellowRoom_2.unity
     guid: e56b07bda75f82640952134b0797e08b
   m_configObjects:
