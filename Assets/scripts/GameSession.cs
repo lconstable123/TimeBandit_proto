@@ -47,6 +47,9 @@ public class GameSession : MonoBehaviour
     public bool centralRoomFirstTime = true;
      public bool blueDoorOpen=false;
     
+    [SerializeField ] GameObject PauseMenu;
+    public bool isPaused = false;
+    public bool pauseable = true;
 
     public class ItemInstance
 {
@@ -150,6 +153,19 @@ public class GameSession : MonoBehaviour
             inv += subs;
         }
         Debug.Log(inv);
+    }
+
+    public void Pause( bool state){
+        if (pauseable && PauseMenu != null){
+            if (state){
+                //isPaused = true;
+                
+                PauseMenu.SetActive(true);
+            } else {
+                //isPaused = false;
+                PauseMenu.SetActive(false);
+            }
+        }
     }
 
     private void RefreshInventory()

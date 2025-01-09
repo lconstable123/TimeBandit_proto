@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     public float boatheight;
 
     Camera cam;
+    GameSession gs;
     AudioSource ac;
     [Header("Audio")]
 
@@ -93,6 +94,7 @@ public class PlayerController : MonoBehaviour
         tbAn = GetComponent<TB_animator>();
         to = GetComponent<IdleTimeOut>();
         ac = GetComponent<AudioSource>();
+        gs = GameSession.Persistent;
         if (to == null){
             Debug.Log("attach a timeout to the player");
         }
@@ -206,10 +208,41 @@ public class PlayerController : MonoBehaviour
 
     void OnAnyKey(){
         if (endgame){
-            GameSession gs = GameSession.Persistent;
+            //GameSession gs = GameSession.Persistent;
             gs.ResetGameSession();
         }
     }
+
+    void OnPause(){
+        if (!gs.isPaused){
+                gs.Pause(true);
+                controlsHardLocked = true;
+                gs.isPaused = true;
+                //TB_animator tba = FindObjectOfType<TB_animator>();
+                //tba.TogglePause(true);
+                //tbAn.speed = 0;
+                Time.timeScale = 0;
+            } else {
+                gs.Pause(false);
+                //tbAn.speed = 1;
+                controlsHardLocked = false;
+                gs.isPaused = false;
+                Time.timeScale = 1;
+               // TB_animator tba = FindObjectOfType<TB_animator>();
+               // tba.TogglePause(false);
+            }
+    }
+
+    void OnRestart(){
+        if (gs.isPaused){
+            Time.timeScale = 1;
+            gs.ResetGameSession();
+
+        }
+    }
+
+
+
  
 
     void OnJump(){

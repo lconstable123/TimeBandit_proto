@@ -11558,7 +11558,7 @@ GameObject:
   - component: {fileID: 1561304079}
   - component: {fileID: 1561304078}
   m_Layer: 0
-  m_Name: Stateful_Camera_1
+  m_Name: Stateful_Camera_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11596,15 +11596,15 @@ MonoBehaviour:
   - {fileID: 1030730844}
   m_Instructions:
   - m_FullHash: 475735122
-    m_VirtualCamera: {fileID: 0}
+    m_VirtualCamera: {fileID: 1378871986}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -812619847
-    m_VirtualCamera: {fileID: 0}
+    m_VirtualCamera: {fileID: 1548636253}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -229292674
-    m_VirtualCamera: {fileID: 0}
+    m_VirtualCamera: {fileID: 1030730844}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: 1815204061
@@ -11612,11 +11612,11 @@ MonoBehaviour:
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: 456581195
-    m_VirtualCamera: {fileID: 0}
+    m_VirtualCamera: {fileID: 1661699928}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -2109754895
-    m_VirtualCamera: {fileID: 0}
+    m_VirtualCamera: {fileID: 1540896549}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -180846233
@@ -11625,7 +11625,7 @@ MonoBehaviour:
     m_MinDuration: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 0
+    m_Time: 2
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -11647,6 +11647,20 @@ MonoBehaviour:
   - m_Hash: -2109754895
     m_ParentHash: 756556552
   - m_Hash: -180846233
+    m_ParentHash: 756556552
+  - m_Hash: -441583221
+    m_ParentHash: 756556552
+  - m_Hash: -857873741
+    m_ParentHash: 756556552
+  - m_Hash: 2017536360
+    m_ParentHash: 756556552
+  - m_Hash: 1080742023
+    m_ParentHash: 756556552
+  - m_Hash: 220310977
+    m_ParentHash: 756556552
+  - m_Hash: 1720647634
+    m_ParentHash: 756556552
+  - m_Hash: 1586013606
     m_ParentHash: 756556552
 --- !u!4 &1561304079
 Transform:

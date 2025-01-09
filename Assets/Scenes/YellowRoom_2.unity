@@ -4526,7 +4526,7 @@ Light:
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0, b: 0, a: 1}
   m_Intensity: 16.7
   m_Range: 6.3
   m_SpotAngle: 30
@@ -15441,11 +15441,11 @@ MonoBehaviour:
   - {fileID: 1260965239}
   m_Instructions:
   - m_FullHash: 475735122
-    m_VirtualCamera: {fileID: 0}
+    m_VirtualCamera: {fileID: 2031671193}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -812619847
-    m_VirtualCamera: {fileID: 0}
+    m_VirtualCamera: {fileID: 1260965239}
     m_ActivateAfter: 0
     m_MinDuration: 0
   - m_FullHash: -229292674
@@ -15470,7 +15470,7 @@ MonoBehaviour:
     m_MinDuration: 0
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 0
+    m_Time: 2
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -17613,14 +17613,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1835730159}
-  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: -0, y: 0.7000299, z: -0, w: 0.71411365}
   m_LocalPosition: {x: 78.4, y: 0.7, z: -8.54}
-  m_LocalScale: {x: 0.2232688, y: 18.095415, z: 61.9239}
+  m_LocalScale: {x: 0.2232688, y: 18.095415, z: 126.46718}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 133398935}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 88.859, z: 0}
 --- !u!114 &1835730161
 MonoBehaviour:
   m_ObjectHideFlags: 0

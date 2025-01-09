@@ -74,6 +74,7 @@ public class TB_animator : MonoBehaviour
     }
 
 
+
     void SwitchAnim(AnimPlaying anim){
         switch (anim){
             case AnimPlaying.idle:
