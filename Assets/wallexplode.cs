@@ -10,11 +10,14 @@ public class wallexplode : MonoBehaviour
     bool isTriggered =false;
     [SerializeField] int wallId;
     [SerializeField] switchbox sb;
+    [SerializeField] AudioClip smashsound;
 void OnTriggerEnter(Collider other){
  if (other.CompareTag("Player") && !isTriggered){
   Holewall.gameObject.SetActive(true);
   if (Teleporter != null){
     Solidwall.gameObject.SetActive(false);
+  AudioSource ac = GetComponent<AudioSource>();
+  ac.PlayOneShot(smashsound,1);
   }
 
 Teleporter.SetActive(false);

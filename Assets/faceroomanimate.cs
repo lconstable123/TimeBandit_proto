@@ -42,7 +42,7 @@ public class faceroomanimate : MonoBehaviour
     void changeface(){
         int randomVal = Random.Range(0,3);
         if (randomVal == val){
-            randomVal = (randomVal+1)%3;
+            randomVal = (randomVal+1)%4;
         }
        val = randomVal;
        mat.SetFloat("_frame",val);
