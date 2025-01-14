@@ -44,7 +44,7 @@ public class openDoorAnim : MonoBehaviour
     }  
 
     IEnumerator doorCloseAfterDelay(){
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2.5f);
         doorToOpen.GetComponent<Animator>().SetBool("isOpen",false);
         As.PlayOneShot(doorSound);
         gs.centralDoorOpen=false;

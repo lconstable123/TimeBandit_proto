@@ -8415,7 +8415,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee73571102d8ca41b1a7fcd1bc20e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepsound: {fileID: 8300000, guid: 85d77973f4e9fa14c9672660aacf7704, type: 3}
+  stepsound: {fileID: 8300000, guid: 0ea0c7572fa112242b917fe2dc22613f, type: 3}
   jumpsound: {fileID: 8300000, guid: 4d5d651b78527664b996f9c7bbfbd733, type: 3}
   StepVol: 0.29
   JumpVol: 0.4

@@ -10904,7 +10904,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1540896547}
-  m_LocalRotation: {x: -0.03810678, y: 0.92838484, z: 0.09935957, w: 0.35605788}
+  m_LocalRotation: {x: -0.038106777, y: 0.92838484, z: 0.09935957, w: 0.35605788}
   m_LocalPosition: {x: -10.46, y: -10.82, z: 43.82}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11151,7 +11151,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548636252}
-  m_LocalRotation: {x: 0.06321108, y: 0.8954097, z: -0.1348957, w: 0.41958204}
+  m_LocalRotation: {x: 0.06321138, y: 0.89540875, z: -0.13489556, w: 0.41958404}
   m_LocalPosition: {x: -31.5, y: 11.6, z: 55.199997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16117,7 +16117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ee73571102d8ca41b1a7fcd1bc20e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stepsound: {fileID: 8300000, guid: 85d77973f4e9fa14c9672660aacf7704, type: 3}
+  stepsound: {fileID: 8300000, guid: 0ea0c7572fa112242b917fe2dc22613f, type: 3}
   jumpsound: {fileID: 8300000, guid: 4d5d651b78527664b996f9c7bbfbd733, type: 3}
   StepVol: 0.29
   JumpVol: 0.4
