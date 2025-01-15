@@ -6,8 +6,8 @@ public class FloorSpawner : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] GameObject shape;
-    [SerializeField] float speed = 1f;
-    [SerializeField] float maxSize = 10f;
+   // [SerializeField] float speed = 1f;
+    //[SerializeField] float maxSize = 10f;
     void Start()
     {
         
