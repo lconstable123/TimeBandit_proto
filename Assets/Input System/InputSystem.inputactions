@@ -532,6 +532,17 @@
                 },
                 {
                     "name": "",
+                    "id": "e26f9425-e1d1-4e64-accc-db98bd724207",
+                    "path": "<XInputController>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "AnyKey",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "17d261c0-662b-45c3-b551-839827bc1cd4",
                     "path": "<Keyboard>/q",
                     "interactions": "",
@@ -555,7 +566,7 @@
                 {
                     "name": "",
                     "id": "fcba1c28-4063-4e71-88c2-77f8af762381",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<XInputController>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",
@@ -570,6 +581,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Restart",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "093086d0-04e4-40fa-ab0d-a12ee5974499",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "Restart",
                     "isComposite": false,
                     "isPartOfComposite": false
